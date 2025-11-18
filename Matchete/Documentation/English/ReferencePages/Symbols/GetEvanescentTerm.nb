@@ -1,0 +1,268 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10103,        258]
+NotebookOptionsPosition[      6937,        187]
+NotebookOutlinePosition[      9264,        245]
+CellTagsIndexPosition[      9180,        240]
+WindowTitle->GetEvanescentTerm
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "88b9a22c-a200-463c-a5ba-4702c779462c"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "d4e1d11d-55a2-4934-9598-ed28b54648bc"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "258ad7fb-83e0-4476-8945-beba34b7ffea"]
+        }],ExpressionUUID->"3cf1f925-9590-419a-b120-194c2c223bcc"],
+        StripOnInput->False],{
+       "\"Matchete/ref/GetEvanescentTerm\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/GetEvanescentTerm"], Delimiter, 
+        "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/\
+GetEvanescentTerm.html"], StandardForm]], "Input", TextClipboardType -> 
+                "PlainText"]}, Visible -> False]]; 
+          SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/GetEvanescentTerm" <> ".html"], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "7444804b-7280-49f9-a55b-959a4ca63f7f"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "e3fca23d-a97d-43f0-bde7-cb8506204d5d"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"8a5da905-1b45-4f77-8fe7-6bb6db119a89"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"166c3c77-4796-4129-aae2-681cb7dbef56"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "GetEvanescentTerm", "ObjectName",ExpressionUUID->
+      "e7d34cda-69de-4940-9366-3ebb3f7b8921"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"9a908e32-cb1d-494e-8fb3-b153d8bf3cf4"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "2bbc5671-72cb-46f5-a476-e3e19d0f2611"]
+    }],ExpressionUUID->"2f71008a-5114-49d0-9b51-b0fd21ad58fb"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"eae607bb-237a-4c5a-b4e5-\
+62566f2b3744"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["GetEvanescentTerm"]], 
+         "paclet:Matchete/ref/GetEvanescentTerm", "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       StyleBox["label", "TI"], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "2b3d5781-1f19-4bc9-8e1a-ab4f3ad6eff0"],
+     "\[LineSeparator]outputs the informations (Operators, Origin) about the \
+evanescent operator given as an argument. \t\t\t\t\t\t\t\t\tIf no argument is \
+given, it returns the full list of generated evanescent operators."
+    }],ExpressionUUID->"34b0afc2-e5c6-49a5-851a-99d3de42bec8"]}
+  }]], "Usage",
+ CellID->1259368124,ExpressionUUID->"e632606b-e7d9-4cd5-810a-002bb9c297e5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"45f0605d-bc32-496d-b513-1cce174713c7"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"fb763cf4-4082-4ce3-86a3-f544e9b3d460"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "3f5b1a6f-2ecb-42b3-b9e1-ce8183ba6943"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->701029943,ExpressionUUID->"b06e12b3-6ffe-4b37-abfd-417130cda36e"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->1886579283,ExpressionUUID->"085bf0cc-85d1-453c-8ce9-9ee20f99bdf6"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"49430aa1-a233-43fc-badc-43cb820514a3"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"GetEvanescentTerm",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 9, 11.007206}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "GetEvanescentTerm[label] outputs the informations (Operators, Origin) \
+about the evanescent operator given as an argument. If no argument is given, \
+it returns the full list of generated evanescent operators.", 
+    "synonyms" -> {}, "tabletags" -> {}, "title" -> "GetEvanescentTerm", 
+    "titlemodifier" -> "", "metadescription" -> "", "windowtitle" -> 
+    "GetEvanescentTerm", "type" -> "Symbol", "uri" -> 
+    "Matchete/ref/GetEvanescentTerm"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"92ed9b4e-e63e-47e8-8f5b-183722294a83"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[5099, 137, 1437, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"b06e12b3-6ffe-4b37-abfd-417130cda36e",
+   CellTags->"PrimaryExamplesSection",
+   CellID->701029943]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 8981, 233}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[585, 21, 2952, 71, 50, "AnchorBarGrid",ExpressionUUID->"8a5da905-1b45-4f77-8fe7-6bb6db119a89",
+ CellID->1],
+Cell[3540, 94, 91, 0, 22, "ContextNameCell",ExpressionUUID->"166c3c77-4796-4129-aae2-681cb7dbef56"],
+Cell[CellGroupData[{
+Cell[3656, 98, 560, 14, 57, "ObjectNameGrid",ExpressionUUID->"eae607bb-237a-4c5a-b4e5-62566f2b3744"],
+Cell[4219, 114, 843, 18, 127, "Usage",ExpressionUUID->"e632606b-e7d9-4cd5-810a-002bb9c297e5",
+ CellID->1259368124]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5099, 137, 1437, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"b06e12b3-6ffe-4b37-abfd-417130cda36e",
+ CellTags->"PrimaryExamplesSection",
+ CellID->701029943],
+Cell[6539, 177, 198, 3, 29, "Input",ExpressionUUID->"085bf0cc-85d1-453c-8ce9-9ee20f99bdf6",
+ CellID->1886579283]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[6855, 185, 78, 0, 40, "FooterCell",ExpressionUUID->"49430aa1-a233-43fc-badc-43cb820514a3"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

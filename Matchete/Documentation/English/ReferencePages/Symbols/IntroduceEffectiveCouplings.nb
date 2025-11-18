@@ -1,0 +1,455 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     17611,        445]
+NotebookOptionsPosition[     13774,        364]
+NotebookOutlinePosition[     16243,        423]
+CellTagsIndexPosition[     16158,        418]
+WindowTitle->IntroduceEffectiveCouplings
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "79f57ce2-93fc-4768-8f11-722c7a9b45ff"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "240cc057-e74d-408a-b23e-467af7eaf0eb"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "07b40a67-7c99-49cb-893f-4be76c0c587d"]
+        }],ExpressionUUID->"f256b3d6-dd4d-4180-b13a-9e198629edcf"],
+        StripOnInput->False],{
+       "\"Matchete/ref/IntroduceEffectiveCouplings\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/IntroduceEffectiveCouplings"], 
+        Delimiter, "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/\
+IntroduceEffectiveCouplings.html"], StandardForm]], "Input", 
+                TextClipboardType -> "PlainText"]}, Visible -> False]]; 
+          SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/IntroduceEffectiveCouplings" <> ".html"], 
+             None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "c0129153-5658-413f-bdcc-a629eeb19662"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "839e977b-3a17-4308-8503-4728dda8d1f3"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"1e1dc610-6246-4659-ab66-9359497acdc0"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"c4e907b8-ae2a-4fb3-96b7-21eb6635ec80"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "IntroduceEffectiveCouplings", "ObjectName",ExpressionUUID->
+      "49da39a5-8e9f-40b0-94e0-6d7535b281b2"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"5659cdb7-ab1a-411d-9b1c-4a09e0d087a9"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "71e831da-16ce-4c8f-a564-a343eb7733cd"]
+    }],ExpressionUUID->"500ea773-2643-448a-9300-901ed604d7e7"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"ed5a5ce2-2149-4dad-b3bb-\
+b54da0cf5d8d"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["IntroduceEffectiveCouplings"]], 
+         "paclet:Matchete/ref/IntroduceEffectiveCouplings", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", "L", "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "88f5541e-a7ae-40ce-ab60-38c7bee0e1c8"],
+     "\[LineSeparator]replaces operator coefficients with newly defined, \
+generic couplings to compress the structure of the Lagrangian. Use ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["ReplaceEffectiveCouplings"]], 
+        "paclet:Matchete/ref/ReplaceEffectiveCouplings", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "418a36fa-62d7-4729-9dd2-79796984aefd"],
+     " to resubstitute them or ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["PrintEffectiveCouplings"]], 
+        "paclet:Matchete/ref/PrintEffectiveCouplings", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "fe2b901c-7301-46a7-b479-50dd8343617d"],
+     " to show a list of the couplings and their definitions."
+    }],ExpressionUUID->"8275cf5d-fdfe-49c3-a9a5-44dfe3f3022c"]}
+  }]], "Usage",
+ CellID->196657011,ExpressionUUID->"b26fa30d-5756-4903-89bf-b8eae5810e27"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{
+      13.600000000000001`, {-0.1685058593749993, 13.768505859375}}]],
+    ExpressionUUID->"5da367e1-aaeb-4b8e-9989-88f00ac9e6a9"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"c694ff79-97ff-46e1-8e94-3a5a5da408d2"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"2ae7926c-ccb9-430f-bab5-48c9d377afb7"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"9d571a12-c630-4198-9aaf-c0e99eaaecf7"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->303791110,ExpressionUUID->"838eef1d-9555-497a-8364-653d0e7819ea"],
+
+Cell["The following options can be given: ", "Notes",
+ CellID->237051144,ExpressionUUID->"7aed3b69-744d-4af6-a5fd-1cb419fe73d7"],
+
+Cell[BoxData[GridBox[{
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "f453f932-29d7-4495-b38c-703adfabc6c8"], 
+    TemplateBox[{
+      Cell[
+       TextData["EffectiveCouplingSymbol"]], 
+      "paclet:Matchete/ref/EffectiveCouplingSymbol", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], "\"\<C\>\"", Cell[TextData[{
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["EffectiveCouplingSymbol"]], 
+        "paclet:Matchete/ref/EffectiveCouplingSymbol", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"3ColumnTableMod"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "32f9bfb1-b13e-4e91-b4ee-ff00c7615a62"],
+     " an option of ",
+     Cell[BoxData["IntroduceEffectiveCouplings"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "726400f3-beb3-4469-9221-ad7b3f46df87"],
+     " and is the symbol used for automatically defined effective couplings. \
+The standard option is ",
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["EffectiveCouplingSymbol"]], 
+         "paclet:Matchete/ref/EffectiveCouplingSymbol", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"3ColumnTableMod"], "\[Rule]", 
+       TemplateBox[{
+         Cell[
+          TextData["\"C\""]], "paclet:ref/C"},
+        "RefLink",
+        BaseStyle->{"3ColumnTableMod"}]}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "e6ca7ec1-52fe-464a-977a-7c13b332010b"]
+    }], "TableText",ExpressionUUID->"fe51a7e6-cf09-4cb8-b6f8-e00e9265dd2b"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "f9f7107a-44f3-4e88-a26f-2f7fb95ca581"], 
+    TemplateBox[{
+      Cell[
+       TextData["OverrideDuplicateCouplingCheck"]], 
+      "paclet:Matchete/ref/OverrideDuplicateCouplingCheck", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["False"]], "paclet:ref/False"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["OverrideDuplicateCouplingCheck"]], 
+        "paclet:Matchete/ref/OverrideDuplicateCouplingCheck", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"3ColumnTableMod"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "7146b7b4-e8a3-4db6-a5b2-f9bf9b6cb9b2"],
+     " is an option for ",
+     Cell[BoxData["IntroduceEffectiveCouplings"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "f9aad8e3-9c29-4836-a74f-4578644bc511"],
+     " (standard is False). If set to true, the function will introduce \
+effective couplings ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["ev"]], "paclet:Matchete/ref/ev", "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"3ColumnTableMod"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "31415f34-7bec-4fad-b3f4-27de521413c0"],
+     "en if an identical one has been defined pr",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["ev"]], "paclet:Matchete/ref/ev", "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"3ColumnTableMod"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "20379377-8ee9-4900-9562-bb6d98990511"],
+     "iously."
+    }], "TableText",ExpressionUUID->"02558487-a94b-4b93-a00e-ac846dbb7fca"]}
+  }]], "3ColumnTableMod",
+ GridBoxOptions->{
+ GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {None, {None}}},
+ GridBoxDividers->{"Rows" -> {{True, True, True}}}},
+ CellID->536412023,ExpressionUUID->"846b7ab1-c7d1-4e25-a443-4a7f3425f792"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"b8d6d210-8a23-4a4b-9cd0-215aecb5c8c3"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"3042b1b7-69f0-4d97-927d-3e3aa2326595"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "16f3faa7-8652-4f90-b3e5-beb075355335"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1248556851,ExpressionUUID->"27a4d045-335a-4535-89a4-17e1249a2683"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->419506278,ExpressionUUID->"dfdd0d6e-662c-4b80-a77a-202aaa288f92"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"3c7cf7ef-e5d1-4899-8a48-58f50256ab9c"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"IntroduceEffectiveCouplings",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed, "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 9, 28.572971}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "IntroduceEffectiveCouplings[L] replaces operator coefficients with newly \
+defined, generic couplings to compress the structure of the Lagrangian. Use \
+ReplaceEffectiveCouplings to resubstitute them or PrintEffectiveCouplings to \
+show a list of the couplings and their definitions.", "synonyms" -> {}, 
+    "tabletags" -> {}, "title" -> "IntroduceEffectiveCouplings", 
+    "titlemodifier" -> "", "metadescription" -> "", "windowtitle" -> 
+    "IntroduceEffectiveCouplings", "type" -> "Symbol", "uri" -> 
+    "Matchete/ref/IntroduceEffectiveCouplings"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"0fb354b7-da64-4fac-9d01-7e65e554df43"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[11936, 314, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"27a4d045-335a-4535-89a4-17e1249a2683",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1248556851]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 15957, 411}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[595, 21, 3006, 72, 50, "AnchorBarGrid",ExpressionUUID->"1e1dc610-6246-4659-ab66-9359497acdc0",
+ CellID->1],
+Cell[3604, 95, 91, 0, 22, "ContextNameCell",ExpressionUUID->"c4e907b8-ae2a-4fb3-96b7-21eb6635ec80"],
+Cell[CellGroupData[{
+Cell[3720, 99, 570, 14, 57, "ObjectNameGrid",ExpressionUUID->"ed5a5ce2-2149-4dad-b3bb-b54da0cf5d8d"],
+Cell[4293, 115, 1601, 39, 127, "Usage",ExpressionUUID->"b26fa30d-5756-4903-89bf-b8eae5810e27",
+ CellID->196657011]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5931, 159, 1916, 48, 34, "NotesSection",ExpressionUUID->"838eef1d-9555-497a-8364-653d0e7819ea",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->303791110],
+Cell[7850, 209, 128, 1, 70, "Notes",ExpressionUUID->"7aed3b69-744d-4af6-a5fd-1cb419fe73d7",
+ CellID->237051144],
+Cell[7981, 212, 3828, 96, 70, "3ColumnTableMod",ExpressionUUID->"846b7ab1-c7d1-4e25-a443-4a7f3425f792",
+ CellID->536412023]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[11936, 314, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"27a4d045-335a-4535-89a4-17e1249a2683",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1248556851],
+Cell[13377, 354, 197, 3, 29, "Input",ExpressionUUID->"dfdd0d6e-662c-4b80-a77a-202aaa288f92",
+ CellID->419506278]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[13692, 362, 78, 0, 40, "FooterCell",ExpressionUUID->"3c7cf7ef-e5d1-4899-8a48-58f50256ab9c"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,264 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10222,        254]
+NotebookOptionsPosition[      6786,        180]
+NotebookOutlinePosition[      9386,        241]
+CellTagsIndexPosition[      9302,        236]
+WindowTitle->ReductionIdentities
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "1d3aaab9-3947-49fe-a063-bc72411706a1"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "5234f574-57cb-4a52-ae31-e15b55e6c76c"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "84f6f734-e93f-4e19-94ff-89eedc368e86"]
+        }],ExpressionUUID->"49e957f8-620a-4694-a024-c3fa6d5725a7"],
+        StripOnInput->False],{
+       "\"Matchete/ref/ReductionIdentities\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/ReductionIdentities"], Delimiter, 
+        "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/\
+ReductionIdentities.html"], StandardForm]], "Input", TextClipboardType -> 
+                "PlainText"]}, Visible -> False]]; 
+          SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/ReductionIdentities" <> ".html"], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "2bcd3405-d09e-4940-ba02-9d0f6719fa7a"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "d01b0804-1477-453a-83c8-3f23685105a6"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"554ad951-249b-4a84-89fc-d9b337821f29"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"b1d35cfe-5b9c-45b9-ab86-a899a4e462cc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "ReductionIdentities", "ObjectName",ExpressionUUID->
+      "56882fe4-0199-4a03-bf5d-b428334c9a5a"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"a9f9cb2d-e0ba-4467-8791-b1c3fec51210"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "5f3916b8-b8ee-4a2e-b4d9-0ff467a72555"]
+    }],ExpressionUUID->"9a0cba01-35b6-409e-932f-756873fd32d7"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"b5b425f7-827c-4b57-a872-\
+cba163c000b4"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell["\<\
+Option for GreensSimplify to decide whether or not to use the subset of \
+identities valid only in 4 dimensions (fierz, gamma reduction and Levi-Civita \
+relations) in the simplification. \t\t\t\t The value can be dDimensional (4D \
+identies are not included), FourDimensional (4D identities are included), \
+Evanescent (4D identities are included with the corresponding evanescent \
+operators) or EvanescenceFree (4D identities are included and evanescent \
+contributions are evaluated).\
+\>",ExpressionUUID->"476c973c-89e6-4c71-8620-9eb35278ae93"]}
+  }]], "Usage",
+ CellID->431216342,ExpressionUUID->"ad4aee88-9b87-4b8a-b40e-e4576b543718"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"67ea3b03-05cd-47ff-a960-0ba781767992"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"1a76aac8-6a87-44c4-a611-e1c40efec69d"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "1a43e1ec-8c01-4727-a7ca-f06983aa9caa"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1057209494,ExpressionUUID->"860bc34c-ce60-4490-b8cb-1145eab04556"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->9830619,ExpressionUUID->"b274414d-0903-40cc-9d4b-f70c23c02f50"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"c139f75b-759e-433e-b788-996cfa4e54ce"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"ReductionIdentities",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 9, 49.930463}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "Option for GreensSimplify to decide whether or not to use the subset of \
+identities valid only in 4 dimensions (fierz, gamma reduction and Levi-Civita \
+relations) in the simplification. The value can be dDimensional (4D identies \
+are not included), FourDimensional (4D identities are included), Evanescent \
+(4D identities are included with the corresponding evanescent operators) or \
+EvanescenceFree (4D identities are included and evanescent contributions are \
+evaluated).", "synonyms" -> {}, "tabletags" -> {}, "title" -> 
+    "ReductionIdentities", "titlemodifier" -> "", "metadescription" -> "", 
+    "windowtitle" -> "ReductionIdentities", "type" -> "Symbol", "uri" -> 
+    "Matchete/ref/ReductionIdentities"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"a3e3bf33-3b83-4803-9c16-ff799998aa5b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[4950, 130, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"860bc34c-ce60-4490-b8cb-1145eab04556",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1057209494]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 9102, 229}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[587, 21, 2960, 71, 50, "AnchorBarGrid",ExpressionUUID->"554ad951-249b-4a84-89fc-d9b337821f29",
+ CellID->1],
+Cell[3550, 94, 91, 0, 22, "ContextNameCell",ExpressionUUID->"b1d35cfe-5b9c-45b9-ab86-a899a4e462cc"],
+Cell[CellGroupData[{
+Cell[3666, 98, 562, 14, 57, "ObjectNameGrid",ExpressionUUID->"b5b425f7-827c-4b57-a872-cba163c000b4"],
+Cell[4231, 114, 682, 11, 147, "Usage",ExpressionUUID->"ad4aee88-9b87-4b8a-b40e-e4576b543718",
+ CellID->431216342]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4950, 130, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"860bc34c-ce60-4490-b8cb-1145eab04556",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1057209494],
+Cell[6391, 170, 195, 3, 29, "Input",ExpressionUUID->"b274414d-0903-40cc-9d4b-f70c23c02f50",
+ CellID->9830619]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[6704, 178, 78, 0, 40, "FooterCell",ExpressionUUID->"c139f75b-759e-433e-b788-996cfa4e54ce"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,655 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     28187,        645]
+NotebookOptionsPosition[     24223,        564]
+NotebookOutlinePosition[     25879,        605]
+CellTagsIndexPosition[     25836,        602]
+WindowTitle->Matchete
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE GUIDE", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "2f507436-a5d4-4dcf-97f1-7f9d9ee6f443"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "7850a1ee-978e-48bf-8981-36f9e4e9656a"],
+        Background->RGBColor[0.85098, 0.396078, 0],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Functions",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "f9919550-cd36-4679-a655-f9ce6ae4881c"]
+         }],ExpressionUUID->"4074fe07-3bfb-4c2e-b85b-d71fc218c20b"],
+         StripOnInput->False],{
+        StyleBox[
+          "\"CollectOperators\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/CollectOperators"], 
+         StyleBox["\"Contract\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/Contract"], 
+         StyleBox[
+          "\"DefineCoupling\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DefineCoupling"], 
+         StyleBox["\"DefineField\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DefineField"], 
+         StyleBox[
+          "\"DefineFlavorIndex\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DefineFlavorIndex"], 
+         StyleBox[
+          "\"DefineGaugeGroup\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DefineGaugeGroup"], 
+         StyleBox[
+          "\"DefineGlobalGroup\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DefineGlobalGroup"], 
+         StyleBox["\"EOMSimplify\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/EOMSimplify"], 
+         StyleBox[
+          "\"GreensSimplify\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/GreensSimplify"], 
+         StyleBox[
+          "\"IBPIdentities\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/IBPIdentities"], 
+         StyleBox["\"LoadModel\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/LoadModel"], 
+         StyleBox[
+          "\"MapEffectiveCouplings\"", "SeeAlsoRelated", StripOnInput -> 
+           False] :> Documentation`HelpLookup[
+          "paclet:Matchete/ref/MapEffectiveCouplings"], 
+         StyleBox["\"Match\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/Match"], 
+         StyleBox[
+          "\"RelabelIndices\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/RelabelIndices"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"GuideFunction"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "95731058-b414-45cc-b0c5-565e23694db8"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Tech Notes",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "d2c6bfd0-7140-4ff1-8ca9-0a8d004b4247"]
+         }],ExpressionUUID->"dd798f78-ea59-4bcd-9aa0-5e18747b8bcb"],
+         StripOnInput->False],{
+        "\"Dirac Algebra\"" :> 
+         Documentation`HelpLookup["paclet:Matchete/tutorial/DiracAlgebra"], 
+         "\"Group Magic\"" :> 
+         Documentation`HelpLookup["paclet:Matchete/tutorial/GroupMagic"], 
+         "\"CG Coefficients\"" :> 
+         Documentation`HelpLookup["paclet:Matchete/tutorial/CGCoefficients"]},
+        
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"GuideTutorial"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "bedd121e-780c-48b0-b00e-f260a439d870"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "16c4c42b-0e10-409d-9d0f-5f5cd8e7720a"]
+         }],ExpressionUUID->"ce35d743-5b3a-4831-81b1-a2812c1122b9"],
+         StripOnInput->False],{
+        "\"Matchete/guide/Matchete\"" :> None, 
+         "\"Copy Wolfram Documentation Center URL\"" :> 
+         CopyToClipboard["Matchete/guide/Matchete"], Delimiter, 
+         "\"Copy web URL\"" :> 
+         Module[{DocumentationSearch`Private`nb$}, 
+           DocumentationSearch`Private`nb$ = 
+            NotebookPut[
+             Notebook[{
+               Cell[BoxData[
+                 MakeBoxes[
+                  Hyperlink[
+                   "http://reference.wolfram.com/language/Matchete/guide/\
+Matchete.html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, 
+               Visible -> False]]; 
+           SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+           FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+           NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+         "\"Go to web URL\"" :> 
+         FrontEndExecute[{
+           NotebookLocate[{
+             URL[If[TrueQ[False], 
+                 "http://reference.wolfram.com/system-modeler/", 
+                 "http://reference.wolfram.com/language/"] <> 
+               "Matchete/guide/Matchete" <> ".html"], None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "b01cbfa8-6884-4f6f-932b-8384a7f05b38"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "b8a9b731-39ca-4a10-9f90-6a9c1c80450e"]}
+  }]], "AnchorBarGrid",
+ CellID->1,ExpressionUUID->"54f99ebe-8e21-4480-8f8c-dc4f69566f1c"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Matchete",
+  FontSize->1,
+  FontColor->GrayLevel[1]],
+ "\n",
+ Cell[BoxData[
+  GraphicsBox[
+   {Thickness[0.001364256480218281], FaceForm[{RGBColor[
+    0., 0.31764699999999996`, 0.5921569999999999], Opacity[1.]}], 
+    FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 
+      3}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+      0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+      0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}}, {{0, 2, 
+      0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+      0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 
+      0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+      0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {
+      0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 
+      1, 0}, {0, 1, 0}}, {{0, 2, 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 
+      0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}}, {{0, 2, 
+      0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+      0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+      0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 
+      0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}}, {{{72.93, 
+      83.}, {26.633000000000003`, 82.977}, {-1.742, 81.805}, {0.082, 
+      78.641}, {-0.188, 66.973}, {44.672000000000004`, 5.977000000000004}, {
+      95.309, 2.4569999999999936`}, {223.895, -4.878999999999991}, {400.984, 
+      15.824000000000012`}, {574.0619999999999, 22.507999999999996`}, {
+      574.0619999999999, 74.629}, {426.60900000000004`, 75.59}, {
+      191.24599999999998`, 83.055}, {72.93, 83.}}, {{79.766, 72.844}, {97.039,
+       72.844}, {107.301, 63.022999999999996`}, {119.85199999999999`, 
+      72.844}, {138.23399999999998`, 72.844}, {134.766, 60.441}, {76.293, 
+      60.441}}, {{162.82000000000002`, 72.844}, {181.42200000000003`, 
+      72.844}, {184.08200000000002`, 60.441}, {152.18800000000002`, 
+      60.441}}, {{204.531, 72.844}, {249.26999999999998`, 72.844}, {245.875, 
+      60.586}, {196.70299999999997`, 60.586}}, {{266.84000000000003`, 
+      72.844}, {300.801, 72.844}, {297.184, 60.441}, {252.961, 60.441}, {
+      253.895, 63.59}, {255.617, 66.371}, {258.129, 68.781}, {
+      260.93399999999997`, 71.488}, {263.83599999999996`, 72.844}, {
+      266.84000000000003`, 72.844}}, {{307.96099999999996`, 72.844}, {325.754,
+       72.844}, {322.42999999999995`, 60.441}, {304.71099999999996`, 
+      60.441}}, {{339.043, 72.844}, {356.83599999999996`, 72.844}, {
+      353.58599999999996`, 60.441}, {335.57, 60.441}}, {{366.43399999999997`, 
+      72.844}, {409.84000000000003`, 72.844}, {406.594, 60.441}, {358.457, 
+      60.441}}, {{420.324, 72.844}, {465.062, 72.844}, {461.668, 60.586}, {
+      412.5, 60.586}}, {{473.47999999999996`, 72.844}, {516.891, 72.844}, {
+      513.641, 60.441}, {465.508, 60.441}}, {{148.277, 55.715}, {
+      185.11299999999997`, 55.715}, {192.35200000000003`, 
+      21.976999999999997`}, {173.82000000000002`, 21.976999999999997`}, {
+      168.797, 42.055}, {158.316, 42.055}, {143.477, 21.976999999999997`}, {
+      105.67999999999999`, 21.976999999999997`}, {114.09400000000001`, 
+      52.242000000000004`}, {101.617, 42.129000000000005`}, {91.281, 
+      52.242000000000004`}, {82.71900000000001, 21.976999999999997`}, {65.664,
+       21.976999999999997`}, {75.039, 55.641}, {133.58200000000002`, 
+      55.641}, {125.312, 26.401999999999994`}}, {{213.465, 55.641}, {230.148, 
+      55.641}, {221.21499999999997`, 21.976999999999997`}, {204.309, 
+      21.976999999999997`}}, CompressedData["
+1:eJxTTMoPSmViYGAQBWIQLRuVYn3/boGDadwuT55L3g6djglPL3QUOGz7/PdK
+xUpnh/J986X0uwscUq3v+/eGOzsobijKmNhb4HD4q0ZMP5OzA6/uprnv+wsc
+Lijd/lm3yskhFmgM0/QCB82Y/kNfLZwg6pcWONhyXV9c8NbRQaj5wKmFu6Hm
+HXd0mCzBEsanWgTng+WfFzq0id089/2yKcT+wgI4/yLInnv5cH7r68Adcpb5
+Dhog+zIsHEDW2H7Kg8hPtnU47m3e6Xgnz0EA5E51e4j6q3kOlS/VDDnWODgs
+cgX6FCj/qy5rT4mwk8PWE2X75t/Lc5hzRGFDUYSTwzeQwQ/zHLx4mLTbrzlB
+/PksD+LuXmcHoC3BjwvzIepPeDsAAGmFoGg=
+      "], {{303.01599999999996`, 55.641}, {352.10900000000004`, 55.641}, {
+      342.953, 21.901999999999994`}, {325.09, 21.901999999999994`}, {330.402, 
+      42.276999999999994`}, {317.484, 42.276999999999994`}, {311.801, 
+      21.976999999999997`}, {293.71099999999996`, 21.976999999999997`}}, {{
+      361.484, 55.641}, {405.043, 55.641}, {401.5, 42.202999999999996`}, {
+      377.504, 42.202999999999996`}, {375.58599999999996`, 35.266}, {
+      399.35900000000004`, 35.266}, {395.812, 21.976999999999997`}, {352.477, 
+      21.976999999999997`}}, {{429.258, 55.641}, {445.941, 55.641}, {437.008, 
+      21.976999999999997`}, {420.105, 21.976999999999997`}}, {{
+      468.53099999999995`, 55.641}, {512.09, 55.641}, {508.547, 
+      42.202999999999996`}, {484.555, 42.202999999999996`}, {482.633, 
+      35.266}, {506.40599999999995`, 35.266}, {502.863, 
+      21.976999999999997`}, {459.527, 21.976999999999997`}}}], 
+    FilledCurveBox[{{{1, 4, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}}, {{0, 2, 0}, {1, 3, 3}, {1, 3, 3}, {1, 
+      3, 3}, {0, 1, 0}, {1, 3, 3}}, {{1, 4, 3}, {0, 1, 0}, {1, 3, 3}}, {{0, 2,
+       0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}}}, {CompressedData["
+1:eJxTTMoPSmViYGAQB2IQnTnxbY19WJuDtP5dFTbFYAfdTXPfL+dpc7DccqJs
+n3ywQ9aekskS81odtn3+e6VCMthhmnN3znPlVgeQsmPCwQ5RKdb3/c+3Oixy
+Bar4YumQATLvbquDC1DZ75OmDp8u+SYJPGmF6Ltt4uBj3umY8LbVgQEEHIwd
+gLp7p/9udQCqXvlRyNBBrvV14I5JbQ4vLijd/nnP0MGO6/rigq1tEPM0TR0O
+f9WI6d/b5mABNOapgZkDiLrwtM2hd3qeULOBj0PFvvlS+o/aHIpBDnEPdBCI
+APoEyAfbFxAE4V9rg7ozCOK/bVD9EsEO8iD7gfaB/SMT7PB46ewjCiuh5gHD
+A+xeoPtCwBLBDsBQ8DZvboOEDzD8wObnIfjo4QsARrGtpA==
+      "], {{579.16, 76.383}, {579.16, 20.5}, {579.0740000000001, 
+      16.801000000000002`}, {594.875, 18.64800000000001}, {597.453, 20.5}, {
+      600.195, 21.851999999999997`}, {601.328, 25.914}, {603.4689999999999, 
+      26.016000000000005`}, {608.6840000000001, 25.617000000000004`}, {
+      613.9730000000001, 25.311999999999998`}, {619.348, 
+      25.077999999999996`}, {597.5980000000001, 76.191}, {591.02, 76.234}, {
+      584.707, 76.289}, {579.16, 76.383}}, {{672.4219999999999, 76.289}, {
+      661.8119999999999, 76.227}, {650.4730000000001, 76.18}, {639.125, 
+      76.148}, {661.02, 24.699000000000005`}, {671.3159999999999, 24.891}, {
+      682.164, 25.246000000000002`}, {693.914, 25.781}}, {{601.6880000000001, 
+      76.168}, {623.496, 24.909999999999997`}, {634.102, 24.531}, {645.141, 
+      24.445}, {656.977, 24.617000000000004`}, {635.055, 76.137}, {623.535, 
+      76.109}, {612.219, 76.117}, {601.6880000000001, 76.168}}}]},
+   AspectRatio->Automatic,
+   ImageSize->{489.6640625, 65.},
+   PlotRange->{{0., 733.}, {0., 83.}}]], "Input",ExpressionUUID->
+  "7e58a35b-4ff5-4a89-9839-03e49ce48bb3"],
+ "\n",
+ StyleBox["\t",
+  FontSize->10],
+ StyleBox["by Javier Fuentes-Mart\[IAcute]n, Matthias K\[ODoubleDot]nig, \
+Julie Pag\[EGrave]s, Anders Eller Thomsen, and Felix Wilsch",
+  FontSize->10,
+  FontColor->RGBColor[
+   0.5019607843137255, 0.6588235294117647, 0.796078431372549]]
+}], "GuideTitle",
+ CellID->1495465525,ExpressionUUID->"7135667c-1e7e-40eb-9597-f039c9dc36bd"],
+
+Cell["\<\
+Matchete is a package to perform EFT matching, RG calculations, and various \
+manipulations of Lagrangians. \
+\>", "GuideAbstract",
+ CellID->140474187,ExpressionUUID->"53e66677-e35e-49e0-ab5f-8b4970a7f163"],
+
+Cell["\t", "GuideDelimiterSubsection",ExpressionUUID->"98358c5e-83c4-497a-a48a-8aa22e64ebc0"],
+
+Cell[CellGroupData[{
+
+Cell["Define a Model", "GuideFunctionsSubsection",
+ CellID->1456812837,ExpressionUUID->"995bc519-4224-4e96-b6a4-2ffab0c522d6"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["DefineGaugeGroup"]], "paclet:Matchete/ref/DefineGaugeGroup", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "0853a165-31d6-45b7-bbb9-63f3c36ff035"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " define a new gauge group that can be used for fields and in Lagrangians"
+}], "GuideText",
+ CellID->1247996368,ExpressionUUID->"fbad5f21-59b5-42d4-b3a6-faf6ae7f2f64"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["DefineField"]], "paclet:Matchete/ref/DefineField", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "d3676711-a7e4-4168-95c8-123669b231bc"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " define a new field that can be used in Lagrangians"
+}], "GuideText",
+ CellID->1030464659,ExpressionUUID->"5d1f243b-e44d-409f-aced-1151a2c02294"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["DefineCoupling"]], "paclet:Matchete/ref/DefineCoupling", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "6b710a32-4261-4543-b450-682f2e469a35"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " define a new coupling that can be used in Lagrangians"
+}], "GuideText",
+ CellID->2051153527,ExpressionUUID->"dbd946ba-c06b-405f-94c0-1b8fab211164"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["LoadModel"]], "paclet:Matchete/ref/LoadModel", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "5ea88aac-44ec-4935-a274-b6d589b817a4"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " load a predefined model from the model directory"
+}], "GuideText",
+ CellID->306890730,ExpressionUUID->"e763d057-4d65-41ec-ae93-1da5b778b90d"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["DefineFlavorIndex"]], "paclet:Matchete/ref/DefineFlavorIndex", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",ExpressionUUID->
+  "8c102fca-cd3c-4a98-96c4-986c5191f32c"],
+ StyleBox[" \[FilledVerySmallSquare] ", "InlineSeparator"],
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["DefineGlobalGroup"]], "paclet:Matchete/ref/DefineGlobalGroup", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",ExpressionUUID->
+  "170faec7-a9c7-40b5-81fd-e27f1fe5ff95"]
+}], "InlineGuideFunctionListing",
+ CellID->154045091,ExpressionUUID->"8c972203-c145-46c9-a089-030d4e80bda0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["RG calculations", "GuideFunctionsSubsection",
+ CellID->677268565,ExpressionUUID->"5fbaa007-b0fb-4bbe-9451-d08bb2db2b19"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["Match"]], "paclet:Matchete/ref/Match", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "a76a8d08-dfdd-474b-9612-ae5ea1762b11"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " integrate out heavy fields from a Lagrangian and obtain the EFT"
+}], "GuideText",
+ CellID->1134572752,ExpressionUUID->"0c7985ec-8dd1-4450-970a-634870fbf557"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Lagrangian simplifications", "GuideFunctionsSubsection",
+ CellID->2005115608,ExpressionUUID->"1d2224ad-a413-4b01-8627-fed65f117c20"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["GreensSimplify"]], "paclet:Matchete/ref/GreensSimplify", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "9a47281f-009b-41bc-971d-17dc5883f19d"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " ",
+ "simplifies a Lagrangian to an off-shell basis"
+}], "GuideText",
+ CellID->345388716,ExpressionUUID->"1639240f-7d0a-4e7e-ab5a-e0e75ee0ae8b"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["EOMSimplify"]], "paclet:Matchete/ref/EOMSimplify", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "81112e4d-b67a-41ad-b5ff-c109f4f312bd"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " ",
+ "simplifies a Lagrangian to an on-shell basis"
+}], "GuideText",
+ CellID->300267908,ExpressionUUID->"24e8ffd7-de02-479b-85c3-2668b2751bbe"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["MapEffectiveCouplings"]], 
+    "paclet:Matchete/ref/MapEffectiveCouplings", "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"817452f7-c389-44f7-b30f-8a579b4134f7",ExpressionUUID->
+  "15a50093-73f4-41fb-9785-ea592f39cd9a"],
+ " ",
+ StyleBox["\[LongDash]", "GuideEmDash"],
+ " determine EFT of target basis based from a matched EFT "
+}], "GuideText",
+ CellID->1089961020,ExpressionUUID->"266c1d74-0a40-4821-be88-b40745c576c0"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["CollectOperators"]], "paclet:Matchete/ref/CollectOperators", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",ExpressionUUID->
+  "0af5aedd-3a06-470b-9ae5-5b2e965291b3"],
+ StyleBox[" \[FilledVerySmallSquare] ", "InlineSeparator"],
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["IBPIdentities"]], "paclet:Matchete/ref/IBPIdentities", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"56f7717f-49da-49e4-ad13-2a7ee7212f1a",ExpressionUUID->
+  "80646160-1183-41f2-b3b7-e1a6fb619033"],
+ StyleBox[" \[FilledVerySmallSquare] ", "InlineSeparator"],
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["RelabelIndices"]], "paclet:Matchete/ref/RelabelIndices", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"631a4d9f-1b90-46c7-9ea4-251d1c2fdc80",ExpressionUUID->
+  "92aec6fc-c496-48f2-b59a-9444bd2f9d70"],
+ StyleBox[" \[FilledVerySmallSquare] ", "InlineSeparator"],
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["Contract"]], "paclet:Matchete/ref/Contract", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFunctionSans"]], "InlineFunctionSans",
+  CellTags->"1dd5e42a-2c9c-4734-bd46-471af92e5b81",ExpressionUUID->
+  "9c4b3c0c-8bd7-438e-9ac8-f917ebe3d6a6"]
+}], "InlineGuideFunctionListing",
+ CellID->1623911975,ExpressionUUID->"baf24f74-6072-4bca-9933-ffe2cff74d14"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedTutorial.png"]],
+     ImageSizeCache->{50., {26.47265625, 33.52734375}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Tech", " ", "Notes"}], "GuideTutorialsSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["Dirac Algebra"]], 
+           "paclet:Matchete/tutorial/DiracAlgebra"},
+          "RefLinkPlain",
+          BaseStyle->{"GuideTutorial"}]], "GuideTutorial",ExpressionUUID->
+         "76e7f23d-c45a-43fb-80f5-89ce3c3ef49c"]}]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["Group Magic"]], "paclet:Matchete/tutorial/GroupMagic"},
+          "RefLinkPlain",
+          BaseStyle->{"GuideTutorial"}]], "GuideTutorial",ExpressionUUID->
+         "55ac28d3-1877-4a19-b09c-8714aeb28b0d"]}]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["CG Coefficients"]], 
+           "paclet:Matchete/tutorial/CGCoefficients"},
+          "RefLinkPlain",
+          BaseStyle->{"GuideTutorial"}]], "GuideTutorial",ExpressionUUID->
+         "58bab2c3-044f-4df3-8670-235fe0ee5562"]}]}
+     }]}
+  }]], "GuideTutorialsSection",ExpressionUUID->"37e94f13-7382-48e0-b60d-\
+c76d4f3b6d5b"],
+
+Cell[" ", "FooterCell",ExpressionUUID->"f11eaa18-41f2-4df5-8454-054a51715280"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"Matchete",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}}, 
+  "NewStyles" -> True, "CitationPopupData" -> {$Failed, ""}, "ShowCitation" -> 
+  False, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 7, 57.476622}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {
+     "matching", "Lagrangian", "QFT", "EFT", "field theory", "Matchete"}, 
+    "specialkeywords" -> {}, "tutorialcollectionlinks" -> {}, "index" -> True,
+     "label" -> "Matchete Guide", "language" -> "en", "paclet" -> "Matchete", 
+    "status" -> "None", "summary" -> 
+    "Matchete is a package to perform EFT matching, RG calculations, and \
+various manipulations of Lagrangians. ", "synonyms" -> {}, "tabletags" -> {}, 
+    "title" -> "Matchete", "titlemodifier" -> "", "metadescription" -> "", 
+    "windowtitle" -> "Matchete", "type" -> "Guide", "uri" -> 
+    "Matchete/guide/Matchete"}},
+CacheGraphics->False,
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Reference.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"6017bf74-090f-4f2c-a6c3-0a4833580d4f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[576, 21, 7205, 162, 50, "AnchorBarGrid",ExpressionUUID->"54f99ebe-8e21-4480-8f8c-dc4f69566f1c",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[7806, 187, 7295, 114, 89, "GuideTitle",ExpressionUUID->"7135667c-1e7e-40eb-9597-f039c9dc36bd",
+ CellID->1495465525],
+Cell[15104, 303, 216, 4, 37, "GuideAbstract",ExpressionUUID->"53e66677-e35e-49e0-ab5f-8b4970a7f163",
+ CellID->140474187],
+Cell[15323, 309, 93, 0, 21, "GuideDelimiterSubsection",ExpressionUUID->"98358c5e-83c4-497a-a48a-8aa22e64ebc0"],
+Cell[CellGroupData[{
+Cell[15441, 313, 126, 1, 36, "GuideFunctionsSubsection",ExpressionUUID->"995bc519-4224-4e96-b6a4-2ffab0c522d6",
+ CellID->1456812837],
+Cell[15570, 316, 570, 14, 25, "GuideText",ExpressionUUID->"fbad5f21-59b5-42d4-b3a6-faf6ae7f2f64",
+ CellID->1247996368],
+Cell[16143, 332, 539, 14, 25, "GuideText",ExpressionUUID->"5d1f243b-e44d-409f-aced-1151a2c02294",
+ CellID->1030464659],
+Cell[16685, 348, 548, 14, 25, "GuideText",ExpressionUUID->"dbd946ba-c06b-405f-94c0-1b8fab211164",
+ CellID->2051153527],
+Cell[17236, 364, 532, 14, 25, "GuideText",ExpressionUUID->"e763d057-4d65-41ec-ae93-1da5b778b90d",
+ CellID->306890730],
+Cell[17771, 380, 761, 19, 24, "InlineGuideFunctionListing",ExpressionUUID->"8c972203-c145-46c9-a089-030d4e80bda0",
+ CellID->154045091]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18569, 404, 126, 1, 36, "GuideFunctionsSubsection",ExpressionUUID->"5fbaa007-b0fb-4bbe-9451-d08bb2db2b19",
+ CellID->677268565],
+Cell[18698, 407, 540, 14, 25, "GuideText",ExpressionUUID->"0c7985ec-8dd1-4450-970a-634870fbf557",
+ CellID->1134572752]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19275, 426, 138, 1, 36, "GuideFunctionsSubsection",ExpressionUUID->"1d2224ad-a413-4b01-8627-fed65f117c20",
+ CellID->2005115608],
+Cell[19416, 429, 544, 15, 25, "GuideText",ExpressionUUID->"1639240f-7d0a-4e7e-ab5a-e0e75ee0ae8b",
+ CellID->345388716],
+Cell[19963, 446, 537, 15, 25, "GuideText",ExpressionUUID->"24e8ffd7-de02-479b-85c3-2668b2751bbe",
+ CellID->300267908],
+Cell[20503, 463, 564, 14, 25, "GuideText",ExpressionUUID->"266c1d74-0a40-4821-be88-b40745c576c0",
+ CellID->1089961020],
+Cell[21070, 479, 1582, 40, 24, "InlineGuideFunctionListing",ExpressionUUID->"baf24f74-6072-4bca-9933-ffe2cff74d14",
+ CellID->1623911975]
+}, Open  ]]
+}, Open  ]],
+Cell[22679, 523, 1459, 37, 137, "GuideTutorialsSection",ExpressionUUID->"37e94f13-7382-48e0-b60d-c76d4f3b6d5b"],
+Cell[24141, 562, 78, 0, 24, "FooterCell",ExpressionUUID->"f11eaa18-41f2-4df5-8454-054a51715280"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

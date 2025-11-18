@@ -1,0 +1,722 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     27386,        712]
+NotebookOptionsPosition[     22726,        618]
+NotebookOutlinePosition[     24939,        673]
+CellTagsIndexPosition[     24854,        668]
+WindowTitle->Casimir2
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "edb54e9d-1072-47a8-b181-0e23922feaf3"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "d63ea2e1-e88c-4b49-bc59-e6d3bd9f39d3"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "See Also",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "482d35cb-e309-4899-8d8f-2beacffc45e3"]
+         }],ExpressionUUID->"3cd76dbe-3505-461f-a186-0d1456913e44"],
+         StripOnInput->False],{
+        StyleBox[
+          "\"RepresentationDimension\"", "SeeAlsoRelated", StripOnInput -> 
+           False] :> Documentation`HelpLookup[
+          "paclet:Matchete/ref/RepresentationDimension"], 
+         StyleBox["\"DynkinIndex\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DynkinIndex"], 
+         StyleBox[
+          "\"DualRepresentation\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/DualRepresentation"], 
+         StyleBox["\"FSIndicator\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/FSIndicator"], 
+         StyleBox[
+          "\"RepresentationWeights\"", "SeeAlsoRelated", StripOnInput -> 
+           False] :> Documentation`HelpLookup[
+          "paclet:Matchete/ref/RepresentationWeights"], 
+         StyleBox["\"Alg\"", "SeeAlsoRelated", StripOnInput -> False] :> 
+         Documentation`HelpLookup["paclet:Matchete/ref/Alg"], 
+         StyleBox[
+          "\"RepresentationsUpToDimension\"", "SeeAlsoRelated", StripOnInput -> 
+           False] :> Documentation`HelpLookup[
+          "paclet:Matchete/ref/RepresentationsUpToDimension"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"SeeAlso"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "684c0d62-8f63-4b51-9118-b62d893c7473"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Related Guides",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "0c7722e9-e6d6-4e74-9cd4-5734617b6371"]
+         }],ExpressionUUID->"4bfbaa89-8724-4a10-802b-b8e0240f26b2"],
+         StripOnInput->False],{
+        "\"Matchete\"" :> 
+         Documentation`HelpLookup["paclet:Matchete/guide/Matchete"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"MoreAbout"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "9cfda65d-b901-4afc-b749-b98fea795db9"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Tech Notes",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "1b78ed6d-fb9b-4ed8-8d1a-99784ca85283"]
+         }],ExpressionUUID->"1757b9da-4f49-4b66-bdb0-e07c1facdb7a"],
+         StripOnInput->False],{
+        "\"Group Magic\"" :> 
+         Documentation`HelpLookup["paclet:Matchete/tutorial/GroupMagic"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"Tutorials"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "ddc2a295-9a75-4cd4-abed-c02c681b6004"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "a262dce4-0b37-424c-b6d0-cf26feb7a54c"]
+         }],ExpressionUUID->"cd72a24a-177b-4483-beca-fe7bad547c7b"],
+         StripOnInput->False],{
+        "\"Matchete/ref/Casimir2\"" :> None, 
+         "\"Copy Wolfram Documentation Center URL\"" :> 
+         CopyToClipboard["Matchete/ref/Casimir2"], Delimiter, 
+         "\"Copy web URL\"" :> 
+         Module[{DocumentationSearch`Private`nb$}, 
+           DocumentationSearch`Private`nb$ = 
+            NotebookPut[
+             Notebook[{
+               Cell[BoxData[
+                 MakeBoxes[
+                  Hyperlink[
+                   "http://reference.wolfram.com/language/Matchete/ref/\
+Casimir2.html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, 
+               Visible -> False]]; 
+           SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+           FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+           NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+         "\"Go to web URL\"" :> 
+         FrontEndExecute[{
+           NotebookLocate[{
+             URL[If[TrueQ[False], 
+                 "http://reference.wolfram.com/system-modeler/", 
+                 "http://reference.wolfram.com/language/"] <> 
+               "Matchete/ref/Casimir2" <> ".html"], None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "8380e63b-1912-45c9-a88d-0b4d596253ad"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "0a9aed52-20c5-456c-8b35-89a62b04e8a5"]}
+  }]], "AnchorBarGrid",
+ CellID->1,ExpressionUUID->"5df8d1db-299b-436b-8c7a-7e291b4b91ae"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"e7a37970-14ad-40fd-a9ee-f358571384d0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "Casimir2", "ObjectName",ExpressionUUID->
+      "776acfd5-72f1-4cae-9f16-59fa0c4dcec4"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"f1c9e203-5818-4438-8ed8-41988bc775a4"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "b0fa237e-9b19-4eae-8adc-a7fec6d72ee5"]
+    }],ExpressionUUID->"205e9007-4a76-4648-8a08-7e654c10bfe7"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"6cbe2014-010c-4b07-93aa-\
+ca4acbd7242e"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["Casimir2"]], "paclet:Matchete/ref/Casimir2", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       RowBox[{
+        StyleBox["alg", "TI"], ",", 
+        StyleBox["rep", "TI"]}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "ec4238f5-75e1-4abc-b667-0a982821ff5c"],
+     "\[LineSeparator]returns the quadratic Casimir of a representation."
+    }],ExpressionUUID->"43e8d1ed-2171-4473-b632-ff4afe19d6fd"]}
+  }]], "Usage",
+ CellID->1027908295,ExpressionUUID->"76a27ffe-9540-47fb-879c-344024edba78"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{
+      13.600000000000001`, {-0.1685058593749993, 13.768505859375}}]],
+    ExpressionUUID->"0fadd9cc-1750-498e-bb60-c17ab8c3a105"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"f8402982-cf2f-4873-9eb7-49eb35d22541"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"d3343304-6675-4843-ad82-c83aa3ee84f3"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"61c2373b-188f-42cc-9d15-aa493d21233a"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->1484551022,ExpressionUUID->"96ef761c-5571-4a68-ade4-95d778f921c7"],
+
+Cell[TextData[{
+ "The normalization of the quadratic Casimir operator follows from the ",
+ Cell[BoxData[
+  TemplateBox[{
+    Cell[
+     TextData["DynkinIndex"]], "paclet:Matchete/ref/DynkinIndex", 
+    "Matchete Package Symbol"},
+   "PackageLink",
+   BaseStyle->"InlineFormula"]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "1696cd06-7cb3-443d-b10c-2f21c9e1d0e7"],
+ ".  The Dynkin indices are normalized to 1/2 for fundamental \
+representations, which fixes all other representations. "
+}], "Notes",
+ CellID->1043313733,ExpressionUUID->"9a5542c9-dd2f-4807-9b5c-adb2e72e31f9"],
+
+Cell[TextData[{
+ "The algebra argument must be a valid ",
+ Cell[BoxData[
+  RowBox[{
+   TemplateBox[{
+     Cell[
+      TextData["Alg"]], "paclet:Matchete/ref/Alg", "Matchete Package Symbol"},
+    
+    "PackageLink",
+    BaseStyle->"InlineFormula"], "[", 
+   RowBox[{
+    StyleBox["class", "TI"], ",", " ", 
+    StyleBox["n", "TI"]}], "]"}]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "234e7e16-2491-49ce-a740-a005cc7cfe4a"],
+ " object."
+}], "Notes",
+ CellID->1846763481,ExpressionUUID->"9152c293-326d-4209-8087-14d1fdb64256"],
+
+Cell["\<\
+Representations are labeled with a list of integers corresponding to the \
+Dynkin coefficients of the highest weight in the representation.\
+\>", "Notes",
+ CellID->1780800353,ExpressionUUID->"3383bd82-d3ff-4675-b640-21246e6dd8c4"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"91c28c2c-4d0c-4876-bcfe-d69740d6903a"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"410b85a4-00f2-4329-ae3e-983f8b69b4dd"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "19b7b145-a0f6-4d50-9c5e-32acb980bb8c"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1384015908,ExpressionUUID->"bbf03ef8-ba1b-47b1-8097-ba6b9b7e70c7"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.551318359375001, 9.048681640625}}]],
+  ExpressionUUID->"be2f4482-59fa-483a-a11d-02c2dcbcb822"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"9e3ea7e4-0861-4b35-af08-994cda2eaa42"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "3240200c-8517-4c6b-8505-87bb49a99cd1"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->1759985099,ExpressionUUID->"0bf61a35-1cc3-4a4a-badb-c1dea5151fac"],
+
+Cell[TextData[{
+ "The quadratic Casimir of the two-index symmetric representation of  \
+SU(3)/",
+ Cell[BoxData[
+  SubscriptBox["A", "2"]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "0049404c-ffa2-4699-b58e-91d5dc4511b9"],
+ " (note the use of ",
+ Cell[BoxData[
+  RowBox[{
+   TemplateBox[{
+     Cell[
+      TextData["SU"]], "paclet:Matchete/ref/SU", "Matchete Package Symbol"},
+    "PackageLink",
+    BaseStyle->"InlineFormula"], "[", "3", "]"}]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "ed31a907-1308-4378-a9b4-de829fbdceab"],
+ " as short-hand for the algebra):"
+}], "ExampleText",
+ CellID->1683620586,ExpressionUUID->"32cd49de-9894-4766-9f16-d3ebac2f75ad"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Casimir2", "[", 
+  RowBox[{
+   RowBox[{"SU", "[", "3", "]"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->36365509,ExpressionUUID->"76b018a3-402b-466e-b07e-4dede6ac9b40"],
+
+Cell[BoxData[
+ FractionBox["10", "3"]], "Output",
+ CellLabel->"Out[1]=",
+ CellID->1876453041,ExpressionUUID->"0f4d98d3-f55c-4a27-aed6-5af43989bad7"]
+}, Open  ]],
+
+Cell["\<\
+{2, 0} is the Dynkin coefficients of the (highest weight of the) two-index \
+symmetric representation of SU(3).\
+\>", "ExampleText",
+ CellID->1512774809,ExpressionUUID->"38ae40ee-b84e-4594-8b56-b7165e82d34e"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedFunction.png"]],
+     ImageSizeCache->{50., {26.47265625, 33.52734375}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"See", " ", "Also"}], "SeeAlsoSection"]},
+      {Cell[TextData[{
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["RepresentationDimension"]], 
+           "paclet:Matchete/ref/RepresentationDimension", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "12ee9696-c4e9-4aee-ae56-53c616f18552"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["DynkinIndex"]], "paclet:Matchete/ref/DynkinIndex", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "09bb9f76-00a4-4fb1-b8fc-608026ec754b"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["DualRepresentation"]], 
+           "paclet:Matchete/ref/DualRepresentation", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",
+         CellTags->"62b0466c-b7ea-4590-a90d-07c80bc6bb35",ExpressionUUID->
+         "b734e0be-11b3-4f6c-b25c-a3bbfe7d5e25"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["FSIndicator"]], "paclet:Matchete/ref/FSIndicator", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",
+         CellTags->"0ee06480-9f34-40c2-aadc-8a9bef229a98",ExpressionUUID->
+         "756dc3c0-2585-4d01-86e2-732108b0ce63"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["RepresentationWeights"]], 
+           "paclet:Matchete/ref/RepresentationWeights", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",
+         CellTags->"a7e4a7ac-0a54-4182-87aa-f81a37078e77",ExpressionUUID->
+         "081f97db-0e31-48a4-9ed1-6eb17895f632"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["Alg"]], "paclet:Matchete/ref/Alg", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",
+         CellTags->"31be2cf1-b812-4d6c-8343-6bfd2064c673",ExpressionUUID->
+         "81d201f9-62c1-4407-aaa8-b9f931c9b3ae"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["RepresentationsUpToDimension"]], 
+           "paclet:Matchete/ref/RepresentationsUpToDimension", 
+           "Matchete Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",
+         CellTags->"ec8fa9af-4969-404b-9c27-bad02a577167",ExpressionUUID->
+         "817d303a-de81-4cec-8644-24772eda839b"]
+       }], "SeeAlso",ExpressionUUID->"00a6e730-f4a4-43a7-b804-58f5d4c4cf01"]}
+     }]}
+  }]], "SeeAlsoSection",ExpressionUUID->"f05d70b5-5844-4479-a3be-\
+76346ba0c9cc"],
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedTechNote.png"]],
+     ImageSizeCache->{50., {26.47265625, 33.52734375}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Tech", " ", "Notes"}], "TechNotesSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["Group Magic"]], "paclet:Matchete/tutorial/GroupMagic"},
+          "RefLinkPlain",
+          BaseStyle->{"Tutorials"}]], "Tutorials",ExpressionUUID->
+         "b3baa0a9-a12c-43a4-b762-a1e61a6b85c0"]}]}
+     }]}
+  }]], "TechNotesSection",ExpressionUUID->"d910f268-95a7-4bdf-b495-\
+dc85f483738b"],
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, "RelatedGuide.png"]],
+     ImageSizeCache->{50., {26.47265625, 33.52734375}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Related", " ", "Guides"}], "MoreAboutSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["Matchete"]], "paclet:Matchete/guide/Matchete"},
+          "RefLinkPlain",
+          BaseStyle->{"MoreAbout"}]], "MoreAbout",ExpressionUUID->
+         "6e9aef1a-1053-4bc5-930f-63ec615738cb"]}]}
+     }]}
+  }]], "MoreAboutSection",ExpressionUUID->"72e3166a-b84b-4381-8522-\
+d9c974f1348e"],
+
+Cell[" ", "FooterCell",ExpressionUUID->"78005632-e863-4a92-a4cd-032b555f4e11"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"Casimir2",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed, "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 8, 11.999679}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {"Casimir operator", "Quadratic Casimir"}, 
+    "specialkeywords" -> {}, "tutorialcollectionlinks" -> {}, "index" -> True,
+     "label" -> "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete",
+     "status" -> "None", "summary" -> 
+    "Casimir2[alg, rep] returns the quadratic Casimir of a representation.", 
+    "synonyms" -> {}, "tabletags" -> {}, "title" -> "Casimir2", 
+    "titlemodifier" -> "", "metadescription" -> "", "windowtitle" -> 
+    "Casimir2", "type" -> "Symbol", "uri" -> "Matchete/ref/Casimir2"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"8bbe3bd7-a8b3-4c34-8281-c474a4c2452b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[12298, 327, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"bbf03ef8-ba1b-47b1-8097-ba6b9b7e70c7",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1384015908]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 24653, 661}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[576, 21, 6843, 166, 50, "AnchorBarGrid",ExpressionUUID->"5df8d1db-299b-436b-8c7a-7e291b4b91ae",
+ CellID->1],
+Cell[7422, 189, 91, 0, 22, "ContextNameCell",ExpressionUUID->"e7a37970-14ad-40fd-a9ee-f358571384d0"],
+Cell[CellGroupData[{
+Cell[7538, 193, 551, 14, 57, "ObjectNameGrid",ExpressionUUID->"6cbe2014-010c-4b07-93aa-ca4acbd7242e"],
+Cell[8092, 209, 726, 18, 106, "Usage",ExpressionUUID->"76a27ffe-9540-47fb-879c-344024edba78",
+ CellID->1027908295]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8855, 232, 1917, 48, 34, "NotesSection",ExpressionUUID->"96ef761c-5571-4a68-ade4-95d778f921c7",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->1484551022],
+Cell[10775, 282, 600, 14, 70, "Notes",ExpressionUUID->"9a5542c9-dd2f-4807-9b5c-adb2e72e31f9",
+ CellID->1043313733],
+Cell[11378, 298, 550, 17, 70, "Notes",ExpressionUUID->"9152c293-326d-4209-8087-14d1fdb64256",
+ CellID->1846763481],
+Cell[11931, 317, 240, 4, 70, "Notes",ExpressionUUID->"3383bd82-d3ff-4675-b640-21246e6dd8c4",
+ CellID->1780800353]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[12298, 327, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"bbf03ef8-ba1b-47b1-8097-ba6b9b7e70c7",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1384015908],
+Cell[CellGroupData[{
+Cell[13761, 369, 1416, 37, 29, "ExampleSection",ExpressionUUID->"0bf61a35-1cc3-4a4a-badb-c1dea5151fac",
+ CellID->1759985099],
+Cell[15180, 408, 711, 19, 37, "ExampleText",ExpressionUUID->"32cd49de-9894-4766-9f16-d3ebac2f75ad",
+ CellID->1683620586],
+Cell[CellGroupData[{
+Cell[15916, 431, 265, 7, 28, "Input",ExpressionUUID->"76b018a3-402b-466e-b07e-4dede6ac9b40",
+ CellID->36365509],
+Cell[16184, 440, 148, 3, 49, "Output",ExpressionUUID->"0f4d98d3-f55c-4a27-aed6-5af43989bad7",
+ CellID->1876453041]
+}, Open  ]],
+Cell[16347, 446, 218, 4, 37, "ExampleText",ExpressionUUID->"38ae40ee-b84e-4594-8b56-b7165e82d34e",
+ CellID->1512774809]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[16795, 458, 4393, 115, 115, "SeeAlsoSection",ExpressionUUID->"f05d70b5-5844-4479-a3be-76346ba0c9cc"],
+Cell[21191, 575, 731, 19, 112, "TechNotesSection",ExpressionUUID->"d910f268-95a7-4bdf-b495-dc85f483738b"],
+Cell[21925, 596, 716, 18, 112, "MoreAboutSection",ExpressionUUID->"72e3166a-b84b-4381-8522-d9c974f1348e"],
+Cell[22644, 616, 78, 0, 24, "FooterCell",ExpressionUUID->"78005632-e863-4a92-a4cd-032b555f4e11"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

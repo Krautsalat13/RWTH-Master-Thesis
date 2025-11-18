@@ -1,0 +1,265 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9927,        255]
+NotebookOptionsPosition[      6840,        186]
+NotebookOutlinePosition[      9088,        242]
+CellTagsIndexPosition[      9004,        237]
+WindowTitle->ClebschGordanIndices
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "7b00fe1d-9491-445c-bf38-fc8d0804d5b8"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "b1dca2af-acc5-43c1-9064-d6564600a7e4"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "38d38001-e9f3-4788-bd1c-12e4823ff946"]
+        }],ExpressionUUID->"41e1a716-7fc9-49cb-8b97-27dbfe8ba4ce"],
+        StripOnInput->False],{
+       "\"Matchete/ref/ClebschGordanIndices\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/ClebschGordanIndices"], Delimiter, 
+        "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/\
+ClebschGordanIndices.html"], StandardForm]], "Input", TextClipboardType -> 
+                "PlainText"]}, Visible -> False]]; 
+          SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/ClebschGordanIndices" <> ".html"], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "7d8dd558-06c6-4eb6-9a36-8e8c231820ce"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "cf4d869a-a4d4-48e2-b84b-547f449fc909"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"c1c08779-00b7-40e8-b22b-868dd988f4a8"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"51cf5948-1667-403a-ac35-452fb6dd7c0a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "ClebschGordanIndices", "ObjectName",ExpressionUUID->
+      "2e819786-a3c4-4f82-a82a-e0c752a3a9b5"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"b40e9b7f-2274-41cb-9d91-278053ac7b29"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "665eebe7-c865-4661-8187-d41dd25d7cb3"]
+    }],ExpressionUUID->"f1fc321b-7dbb-4fed-a88f-8c83186344af"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"7e5747da-3d7e-44d2-a20e-\
+d44205ca7264"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["ClebschGordanIndices"]], 
+         "paclet:Matchete/ref/ClebschGordanIndices", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", "CGname", "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "a1af04fd-bc2b-4666-b9cf-930ee14c0cac"],
+     "\[LineSeparator]return the representation of the indices (ordered) for \
+the Clebsch-Gordan coefficient CGname."
+    }],ExpressionUUID->"1a450c98-8389-446c-8074-fb93068e839f"]}
+  }]], "Usage",
+ CellID->1190452750,ExpressionUUID->"ecfe625d-ff19-43f6-8051-c14546820545"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"b25e5392-53b0-4ae5-ae1e-5b9be85bfc11"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"a68f2ac1-7081-4d6e-b18d-264351212455"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "ef3d0634-f0ad-4995-b40c-4d93fee0c2a3"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->492190051,ExpressionUUID->"47d10b21-d726-451a-ad8d-c5fcf356e9ed"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->1671851006,ExpressionUUID->"b5e2dbff-30bf-4eea-8f1b-67a720aecbd1"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"0420f6fd-59b3-45e4-8d11-8aaf434179eb"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"ClebschGordanIndices",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 8, 22.209879}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "ClebschGordanIndices[CGname] return the representation of the indices \
+(ordered) for the Clebsch-Gordan coefficient CGname.", "synonyms" -> {}, 
+    "tabletags" -> {}, "title" -> "ClebschGordanIndices", "titlemodifier" -> 
+    "", "metadescription" -> "", "windowtitle" -> "ClebschGordanIndices", 
+    "type" -> "Symbol", "uri" -> "Matchete/ref/ClebschGordanIndices"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"5de94f3a-9ed3-4733-9d48-da09295c669f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[5002, 136, 1437, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"47d10b21-d726-451a-ad8d-c5fcf356e9ed",
+   CellTags->"PrimaryExamplesSection",
+   CellID->492190051]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 8805, 230}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[588, 21, 2964, 71, 50, "AnchorBarGrid",ExpressionUUID->"c1c08779-00b7-40e8-b22b-868dd988f4a8",
+ CellID->1],
+Cell[3555, 94, 91, 0, 22, "ContextNameCell",ExpressionUUID->"51cf5948-1667-403a-ac35-452fb6dd7c0a"],
+Cell[CellGroupData[{
+Cell[3671, 98, 563, 14, 57, "ObjectNameGrid",ExpressionUUID->"7e5747da-3d7e-44d2-a20e-d44205ca7264"],
+Cell[4237, 114, 728, 17, 106, "Usage",ExpressionUUID->"ecfe625d-ff19-43f6-8051-c14546820545",
+ CellID->1190452750]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5002, 136, 1437, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"47d10b21-d726-451a-ad8d-c5fcf356e9ed",
+ CellTags->"PrimaryExamplesSection",
+ CellID->492190051],
+Cell[6442, 176, 198, 3, 29, "Input",ExpressionUUID->"b5e2dbff-30bf-4eea-8f1b-67a720aecbd1",
+ CellID->1671851006]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[6758, 184, 78, 0, 40, "FooterCell",ExpressionUUID->"0420f6fd-59b3-45e4-8d11-8aaf434179eb"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

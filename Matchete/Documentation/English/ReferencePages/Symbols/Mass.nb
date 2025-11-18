@@ -1,0 +1,293 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11136,        283]
+NotebookOptionsPosition[      7776,        210]
+NotebookOutlinePosition[     10298,        270]
+CellTagsIndexPosition[     10213,        265]
+WindowTitle->Mass
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "2fc776c3-4dac-4548-906e-292c61b0f7de"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "5caefff4-7bae-445b-9e7f-e28ba1e13947"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "55bdffbb-a9f4-48ae-8f0f-b6880cc18ecb"]
+        }],ExpressionUUID->"8606d8e9-6d5e-4e85-a0e7-23554d467bea"],
+        StripOnInput->False],{
+       "\"Matchete/ref/Mass\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/Mass"], Delimiter, "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/Mass.\
+html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible -> 
+              False]]; SelectionMove[
+           DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/Mass" <> ".html"], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "73fd535d-f6ee-4af2-8612-e76b064f67c7"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "886ecdb0-96fe-42c1-b4f0-99fa6592f17d"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"83986e64-eccd-4d02-bdb7-b555e49e7b8c"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"acec73a5-ca3d-4702-9985-e902512a7554"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "Mass", "ObjectName",ExpressionUUID->
+      "7a2f9b5c-b1d2-4f1e-9e6a-307903351420"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"21ff4f98-6100-433a-b11c-5feda6c68e32"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "d7e861c0-91c9-4406-8a19-ba30002c44b3"]
+    }],ExpressionUUID->"d7501029-c047-42d9-9654-557f09004443"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"4ff8245a-2c95-46d6-a5ca-\
+060156a2c51c"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData["Mass"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "d7b5c6d4-86c6-436e-915e-f171019100fe"],
+     "\[LineSeparator]is an option for the routine ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["DefineField"]], "paclet:Matchete/ref/DefineField", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "0f7d58a0-8d51-46dd-8478-120c808f643a"],
+     " that specifies the mass and EFT scaling of the field. The allowed \
+values are either Heavy|Light|0, {Light,0}, {Heavy|Light,mlabel}, or \
+{Heavy|Light,mlabel,{Indices}} where mlabel is a custom label for the mass \
+and ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["Indices"]], "paclet:Matchete/ref/Indices", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "c2fbe6bf-1b84-4586-be9d-6b9f996a71d3"],
+     " must be a subset of the field indices. The default value is \
+Mass->Heavy. ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["If"]], "paclet:ref/If"},
+       "RefLink",
+       BaseStyle->{"InlineFormula"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "545fb011-98a5-41f7-b6de-8a47b40ec2d1"],
+     " no mlabel is given, the default value Mflabel, with flabel being the \
+label of the corresponding field, is used."
+    }],ExpressionUUID->"5f3d6c04-c8c5-4e17-b516-f0743a709858"]}
+  }]], "Usage",
+ CellID->851481501,ExpressionUUID->"9e06c102-8965-4266-b206-c1743249b101"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"8cd01822-d2b8-4807-b58d-b2fc936ad6e1"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"3f85dee3-c665-403a-a432-979253d9e586"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "e9a92a8b-f01c-47e3-8069-2b0164d895d6"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->35475826,ExpressionUUID->"c6a5e02c-e7a7-4563-943a-e069e3d53f15"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->1240566612,ExpressionUUID->"55d33f34-bdf3-4305-ae44-e39454986362"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"9e692ba6-e8a7-45f4-b858-6874b1530526"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"Mass",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 9, 37.444344}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "Mass is an option for the routine DefineField that specifies the mass \
+and EFT scaling of the field. The allowed values are either Heavy|Light|0, \
+{Light,0}, {Heavy|Light,mlabel}, or {Heavy|Light,mlabel,{Indices}} where \
+mlabel is a custom label for the mass and Indices must be a subset of the \
+field indices. The default value is Mass->Heavy. If no mlabel is given, the \
+default value Mflabel, with flabel being the label of the corresponding \
+field, is used.", "synonyms" -> {}, "tabletags" -> {}, "title" -> "Mass", 
+    "titlemodifier" -> "", "metadescription" -> "", "windowtitle" -> "Mass", 
+    "type" -> "Symbol", "uri" -> "Matchete/ref/Mass"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"6dfe5ef8-a121-4fbd-8e65-afd4c9012cb9"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[5939, 160, 1436, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"c6a5e02c-e7a7-4563-943a-e069e3d53f15",
+   CellTags->"PrimaryExamplesSection",
+   CellID->35475826]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 10015, 258}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[572, 21, 2890, 70, 50, "AnchorBarGrid",ExpressionUUID->"83986e64-eccd-4d02-bdb7-b555e49e7b8c",
+ CellID->1],
+Cell[3465, 93, 91, 0, 22, "ContextNameCell",ExpressionUUID->"acec73a5-ca3d-4702-9985-e902512a7554"],
+Cell[CellGroupData[{
+Cell[3581, 97, 547, 14, 57, "ObjectNameGrid",ExpressionUUID->"4ff8245a-2c95-46d6-a5ca-060156a2c51c"],
+Cell[4131, 113, 1771, 42, 167, "Usage",ExpressionUUID->"9e06c102-8965-4266-b206-c1743249b101",
+ CellID->851481501]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5939, 160, 1436, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"c6a5e02c-e7a7-4563-943a-e069e3d53f15",
+ CellTags->"PrimaryExamplesSection",
+ CellID->35475826],
+Cell[7378, 200, 198, 3, 29, "Input",ExpressionUUID->"55d33f34-bdf3-4305-ae44-e39454986362",
+ CellID->1240566612]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[7694, 208, 78, 0, 40, "FooterCell",ExpressionUUID->"9e692ba6-e8a7-45f4-b858-6874b1530526"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

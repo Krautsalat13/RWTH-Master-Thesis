@@ -1,0 +1,664 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     25585,        654]
+NotebookOptionsPosition[     21621,        571]
+NotebookOutlinePosition[     24210,        632]
+CellTagsIndexPosition[     24125,        627]
+WindowTitle->CheckLagrangian
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "8b3c7ecc-4083-43b6-a411-d236835448a9"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "bfa0f379-bb0c-4e9a-8fc6-f78f4567ed00"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "0cd1cf7e-0466-4dc2-9485-dbc5195ec81c"]
+        }],ExpressionUUID->"236bde52-c21a-4955-9232-5de4c45aba9a"],
+        StripOnInput->False],{
+       "\"Matchete/ref/CheckLagrangian\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/CheckLagrangian"], Delimiter, 
+        "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/\
+CheckLagrangian.html"], StandardForm]], "Input", TextClipboardType -> 
+                "PlainText"]}, Visible -> False]]; 
+          SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/CheckLagrangian" <> ".html"], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "829f8350-bd3e-46bd-9574-860ca4bb67df"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "d996d1fa-744e-4e4b-93bc-e8491dae2c48"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"b52fa18e-75a8-4e94-83d5-d6dcc024e0da"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"e4af31bc-400e-459b-87a4-5b4bdfc1d597"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "CheckLagrangian", "ObjectName",ExpressionUUID->
+      "96ded2dd-ccb7-4f2c-815f-1c39dbf52913"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"46bd9709-fc80-4401-b678-2d7ba6423c03"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "871c67f1-8951-4adf-aa3b-156a9239401b"]
+    }],ExpressionUUID->"ca4d36e4-28c4-4fd7-842b-7081c06143cf"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"e2841929-f6e3-40a7-9482-\
+0ae90760f73d"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["CheckLagrangian"]], "paclet:Matchete/ref/CheckLagrangian",
+          "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       RowBox[{"Lagrangian", ",", 
+        StyleBox["options", "TI"]}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "eb915d1c-396a-40f0-824f-290d080671fe"],
+     "\[LineSeparator]performs a series of checks on the input ",
+     Cell[BoxData[
+      StyleBox["Lagrangian", "TI"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "cec34294-6b32-4995-9433-5f0e96acedd4"],
+     ". The ",
+     Cell[BoxData[
+      StyleBox["options", "TI"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "846c4051-81c0-428f-8dab-b0e8c0904745"],
+     " {Hermiticity, ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["ContractedIndices"]], 
+        "paclet:Matchete/ref/ContractedIndices", "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "e4ab07eb-156e-4e15-bde9-f0fd88eec339"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["ClosedSpinChains"]], 
+        "paclet:Matchete/ref/ClosedSpinChains", "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "2c50348e-9e74-4150-bbbf-22e6b38912e8"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["CanonicallyNormalized"]], 
+        "paclet:Matchete/ref/CanonicallyNormalized", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "1b8ac32c-0f65-4d33-824a-b21ae4bdfab7"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["HeavyMassBasis"]], "paclet:Matchete/ref/HeavyMassBasis", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "cc863671-2b82-429a-9b43-72adfbd20b11"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["ChargeNeutral"]], "paclet:Matchete/ref/ChargeNeutral", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "55f3fb8f-6d70-4e55-8b92-4e57f5689ac5"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["FreeofHeavyTadpoles"]], 
+        "paclet:Matchete/ref/FreeofHeavyTadpoles", "Matchete Package Symbol"},
+       
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "09a84065-83d7-4f16-805a-791f96a90d57"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["FreeOfGaugeFields"]], 
+        "paclet:Matchete/ref/FreeOfGaugeFields", "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "6c7aec4d-ed30-4435-9322-d7c4a5bb690b"],
+     ", ",
+     Cell[BoxData[
+      TemplateBox[{
+        Cell[
+         TextData["UndefinedObject"]], "paclet:Matchete/ref/UndefinedObject", 
+        "Matchete Package Symbol"},
+       "PackageLink",
+       BaseStyle->"InlineFormula"]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "3da0d887-4d34-4d69-ade1-7da44861ba36"],
+     ", GaugeAnomalies} take values True/False and determine which of the \
+checks are performed. If the option DetailedOutput->True, an association with \
+the result of each test is returned."
+    }],ExpressionUUID->"45d4a02e-b9b0-4b81-90a7-78f7cb32e8c5"]}
+  }]], "Usage",
+ CellID->1189928884,ExpressionUUID->"b11b2484-a37e-409a-8c8a-4851b486ce9e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{
+      13.600000000000001`, {-0.1685058593749993, 13.768505859375}}]],
+    ExpressionUUID->"b7594797-cd5f-4173-8bb2-23316b09362c"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"67f797ff-f017-4505-867f-acd56b1f8f13"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"91a88d4b-3f75-4adc-9d29-aca726c63d5d"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"7b44b6ff-3936-45f5-8b39-77eff4f77535"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->423928794,ExpressionUUID->"e611d77d-3724-442b-80d2-2086efa080e2"],
+
+Cell["The following options can be given: ", "Notes",
+ CellID->1767032524,ExpressionUUID->"c1c18daf-ca39-4d52-b7b6-ed153df908ea"],
+
+Cell[BoxData[GridBox[{
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "17916163-422b-429c-8e30-5c13c76c3bb3"], 
+    TemplateBox[{
+      Cell[
+       TextData["CanonicallyNormalized"]], 
+      "paclet:Matchete/ref/CanonicallyNormalized", "Matchete Package Symbol"},
+     
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "76a2bd64-87e2-4271-9e42-62df3952a81c"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"aa6e1e4a-a99f-4074-aac3-cddef29b4c5f"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "c903e202-8c98-4a3d-9f1e-0a842f4eabe2"], 
+    TemplateBox[{
+      Cell[
+       TextData["ChargeNeutral"]], "paclet:Matchete/ref/ChargeNeutral", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "416783c4-e66a-411d-88cf-7f948ad9d1f2"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"2abfa862-850f-4723-9fdc-7dd768e51be3"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "852d3397-7eb3-481f-808e-f4530529408e"], 
+    TemplateBox[{
+      Cell[
+       TextData["ContractedIndices"]], 
+      "paclet:Matchete/ref/ContractedIndices", "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "2499280f-67fe-49cc-8e66-3aa396c97b25"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"f1b78c70-bfd3-415c-a59f-87562e281153"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "400f19e6-a0b2-42a1-be1e-a84bd6b40b35"], 
+    TemplateBox[{
+      Cell[
+       TextData["ClosedSpinChains"]], "paclet:Matchete/ref/ClosedSpinChains", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "8bb4fb29-d726-459d-af65-847fbf1fba72"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"1cac786b-9bdf-40b1-be79-11cada4f3867"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "0649b6aa-2782-4953-a837-9b11e7bb93b5"], 
+    TemplateBox[{
+      Cell[
+       TextData["DetailedOutput"]], "paclet:Matchete/ref/DetailedOutput", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["False"]], "paclet:ref/False"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "2cf0c5ec-af68-44a7-9362-5ee863646b85"],
+     " function. It takes the values True/False. An association with the \
+result of each test is returned when set to True."
+    }], "TableText",ExpressionUUID->"7291e9ca-aa0f-4f4e-9890-b44f5a7a9360"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "99c15e83-4ee6-4900-9349-c8579be35415"], 
+    TemplateBox[{
+      Cell[
+       TextData["FreeOfGaugeFields"]], 
+      "paclet:Matchete/ref/FreeOfGaugeFields", "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "41cbb37b-0e12-444f-ab68-ca0ca0805a48"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"020a1202-ba37-4cf2-b9cd-5c107d975895"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "ca9f75f0-f663-4511-8e07-ae01a4ed234a"], 
+    TemplateBox[{
+      Cell[
+       TextData["GaugeAnomalies"]], "paclet:Matchete/ref/GaugeAnomalies", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "82c0473e-c9be-4ef9-9f60-edc459d8e40c"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"8436f77d-5302-4d1d-ac62-375d051804e2"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "08b72f93-004e-4b20-a83c-17a0089b72a9"], 
+    TemplateBox[{
+      Cell[
+       TextData["HeavyMassBasis"]], "paclet:Matchete/ref/HeavyMassBasis", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "b26f3277-5f41-4575-b006-6d32041a17ef"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"53eba15c-7370-4d58-8cfd-67ef5032adeb"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "b881e4ba-6cef-4860-8582-c5d5ebdee7a2"], 
+    TemplateBox[{
+      Cell[
+       TextData["FreeofHeavyTadpoles"]], 
+      "paclet:Matchete/ref/FreeofHeavyTadpoles", "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "b9fbe6f6-2eff-453e-a12c-094d06636da9"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"7f94a899-bde8-4ea1-bbea-92197255a69c"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "a50a0dca-50a8-422d-8cc8-ef56fc96542c"], 
+    TemplateBox[{
+      Cell[
+       TextData["Hermiticity"]], "paclet:Matchete/ref/Hermiticity", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "162d141c-4305-4329-ab92-4754319095f4"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"e6d56236-fc9d-4061-a2ba-d3a891a0db23"]},
+   {Cell["      ", "TableRowIcon",ExpressionUUID->
+     "10494587-6de5-48ce-9f25-0e8b645e539a"], 
+    TemplateBox[{
+      Cell[
+       TextData["UndefinedObject"]], "paclet:Matchete/ref/UndefinedObject", 
+      "Matchete Package Symbol"},
+     "PackageLink",
+     BaseStyle->"3ColumnTableMod"], 
+    TemplateBox[{
+      Cell[
+       TextData["True"]], "paclet:ref/True"},
+     "RefLink",
+     BaseStyle->{"3ColumnTableMod"}], Cell[TextData[{
+     "Option for the ",
+     Cell[BoxData["CheckLagrangian"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "6a409116-9add-4d58-a52e-f05c52d8cefe"],
+     " function. It takes the values True/False to determine whether the \
+check is performed."
+    }], "TableText",ExpressionUUID->"ad787038-b87a-4b39-9d69-2700bb4dcb63"]}
+  }]], "3ColumnTableMod",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, 
+   "Rows" -> {
+    None, None, None, None, None, None, None, None, None, None, {None}}},
+ GridBoxDividers->{
+  "Rows" -> {{
+     True, True, True, True, True, True, True, True, True, True, True, 
+      True}}}},
+ CellID->964276505,ExpressionUUID->"7da1f2c4-73a4-43e8-bc80-183703adc52d"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"fafc474d-ff00-4a8f-99bc-089be472e9bb"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"5b85e193-12ca-4f08-9650-cd8c1fd40baa"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "fc3428b6-9df6-420a-9553-83a6b1050852"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1767983659,ExpressionUUID->"c27c68e5-a5dc-4958-a5e6-bbd87b467d5b"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->2031841539,ExpressionUUID->"1b7da17f-f30e-4b8c-be04-cb64ca608b91"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"86a8fa1a-2f64-46b9-a495-7b7c3073c89c"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"CheckLagrangian",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed, "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 8, 19.622109}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "CheckLagrangian[Lagrangian, options] performs a series of checks on the \
+input Lagrangian. The options {Hermiticity, ContractedIndices, \
+ClosedSpinChains, CanonicallyNormalized, HeavyMassBasis, ChargeNeutral, \
+FreeofHeavyTadpoles, FreeOfGaugeFields, UndefinedObject, GaugeAnomalies} take \
+values True/False and determine which of the checks are performed. If the \
+option DetailedOutput->True, an association with the result of each test is \
+returned.", "synonyms" -> {}, "tabletags" -> {}, "title" -> "CheckLagrangian",
+     "titlemodifier" -> "", "metadescription" -> "", "windowtitle" -> 
+    "CheckLagrangian", "type" -> "Symbol", "uri" -> 
+    "Matchete/ref/CheckLagrangian"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"9b7f5d1f-5d5e-4fa8-a935-d77a0c334d22"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[19782, 521, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"c27c68e5-a5dc-4958-a5e6-bbd87b467d5b",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1767983659]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 23924, 620}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[583, 21, 2944, 71, 50, "AnchorBarGrid",ExpressionUUID->"b52fa18e-75a8-4e94-83d5-d6dcc024e0da",
+ CellID->1],
+Cell[3530, 94, 91, 0, 22, "ContextNameCell",ExpressionUUID->"e4af31bc-400e-459b-87a4-5b4bdfc1d597"],
+Cell[CellGroupData[{
+Cell[3646, 98, 558, 14, 57, "ObjectNameGrid",ExpressionUUID->"e2841929-f6e3-40a7-9482-0ae90760f73d"],
+Cell[4207, 114, 4164, 111, 167, "Usage",ExpressionUUID->"b11b2484-a37e-409a-8c8a-4851b486ce9e",
+ CellID->1189928884]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8408, 230, 1916, 48, 34, "NotesSection",ExpressionUUID->"e611d77d-3724-442b-80d2-2086efa080e2",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->423928794],
+Cell[10327, 280, 129, 1, 70, "Notes",ExpressionUUID->"c1c18daf-ca39-4d52-b7b6-ed153df908ea",
+ CellID->1767032524],
+Cell[10459, 283, 9196, 232, 70, "3ColumnTableMod",ExpressionUUID->"7da1f2c4-73a4-43e8-bc80-183703adc52d",
+ CellID->964276505]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[19782, 521, 1438, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"c27c68e5-a5dc-4958-a5e6-bbd87b467d5b",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1767983659],
+Cell[21223, 561, 198, 3, 29, "Input",ExpressionUUID->"1b7da17f-f30e-4b8c-be04-cb64ca608b91",
+ CellID->2031841539]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[21539, 569, 78, 0, 40, "FooterCell",ExpressionUUID->"86a8fa1a-2f64-46b9-a495-7b7c3073c89c"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

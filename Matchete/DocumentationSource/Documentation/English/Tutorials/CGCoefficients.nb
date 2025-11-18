@@ -1,0 +1,2725 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     96328,       2717]
+NotebookOptionsPosition[     79289,       2343]
+NotebookOutlinePosition[     79834,       2362]
+CellTagsIndexPosition[     79791,       2359]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["CG Coefficients", "Title",
+ CellID->529115844,ExpressionUUID->"36a8a731-d81c-461f-b9ca-d31dc0b24bed"],
+
+Cell["\<\
+Matchete includes a framework for dealing with contractions of Clebsch-Gordan \
+coefficients (CGs) in a pseudo-symbolic manner. The workflow involves \
+associating explicit tensor representations to symbolic each CG. This allows \
+contractions to be evaluated numerically (exact) with tensor contractions \
+before the result is projected onto a basis consisting of the already defined \
+CGs.     \
+\>", "Text",
+ CellID->120207881,ExpressionUUID->"2e21bd4d-6283-4f1e-a7f2-e82d3ea99592"],
+
+Cell[CellGroupData[{
+
+Cell["Setting up CGs", "Section",
+ CellID->1239290677,ExpressionUUID->"61419a22-d63b-4ec7-9795-e89aef97bb9b"],
+
+Cell[CellGroupData[{
+
+Cell["Organizing the symbolic CGs", "Subsection",
+ CellID->1598132758,ExpressionUUID->"2324f8e4-9a2e-4f3f-8802-6cff733e48de"],
+
+Cell[TextData[{
+ "All CGs transform under the action of a particular (gauge) group. It would \
+be absurd to start talking about contracting invariants of ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"SU", "(", "2", ")"}], "L"], TraditionalForm]],ExpressionUUID->
+  "81344a39-8373-4210-b539-8506db12307f"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"SU", "(", "3", ")"}], "c"], TraditionalForm]],ExpressionUUID->
+  "91e48366-25f8-47d6-8948-bd91b57c6faa"],
+ ". Even contractions between two distinct SU(2) groups would not be \
+sensible. To allow for evaluations in scenarios with multiple group indices, \
+as required in realistic QFTs such as the SM, we must first define the \
+symmetry groups and the relevant representations. "
+}], "Text",
+ CellID->751867057,ExpressionUUID->"54818093-567e-4c66-b557-6cb9aca06a63"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     RowBox[{
+      ButtonBox["DefineCGGroup",
+       BaseStyle->"Link",
+       ButtonData->"paclet:Matchete/ref/DefineCGGroup"], "[", 
+      RowBox[{
+       StyleBox["groupName", "TI"], ",", " ", 
+       StyleBox["alg", "TI"]}], "]"}], " "}], Cell[
+    "initializaes a Lie group with a reference name and algebra. ", 
+     "TableText",ExpressionUUID->"5b611532-63e3-4c8b-9526-c882ff5ae7bf"]},
+   {
+    RowBox[{
+     ButtonBox["DefineRepresentation",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/DefineRepresentation"], "[", 
+     RowBox[{
+      StyleBox["repName", "TI"], ",", " ", 
+      StyleBox["groupName", "TI"], ",", " ", 
+      StyleBox["rep", "TI"]}], "]"}], Cell["\<\
+initializes a representation under a group with a representation name and its \
+Dynkin coefficients.\
+\>", "TableText",ExpressionUUID->"a82f97b3-80ca-46cb-9620-12ed8e62c383"]}
+  }]], "DefinitionBox",
+ CellID->121675449,ExpressionUUID->"2c79d0ad-20d9-4b63-bb7b-258c2a910d2e"],
+
+Cell["\<\
+Routines to initializes Lie groups and their representations.\
+\>", "Caption",
+ CellID->594839399,ExpressionUUID->"59ff6ea8-48f6-4cd0-a12d-f9ab473cdc01"],
+
+Cell[TextData[{
+ "A group is initialized by giving it a reference name and specifying its Lie \
+algebra (",
+ Cell[BoxData[
+  ButtonBox["Alg",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Alg"]], "InlineFormula",ExpressionUUID->
+  "50561449-3589-4b13-8f91-8a8ff024b033"],
+ "), which informs all the representation theory associated with said group. \
+The group name is a label that the user should use to refer to that specific \
+group. The use of group names ensures that multiple groups with identical \
+algebra can be discriminated. The user may, thus, define multiple SU(2) \
+groups in the same session. When a group has been defined, one can define \
+representations of that group to be used in Lagrangians of group theory \
+contractions. "
+}], "Text",
+ CellID->1193843836,ExpressionUUID->"53d29ce3-8a46-41fe-bb4a-a6b2c42b65b9"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "We may define a group, by specifying arbitrary group label (",
+ StyleBox["SU3c", "Input"],
+ "),  and an algebra (",
+ Cell[BoxData[
+  RowBox[{
+   ButtonBox["SU",
+    BaseStyle->"Link",
+    ButtonData->"paclet:Matchete/ref/SU"], "[", "3", "]"}]], "InlineFormula",
+  ExpressionUUID->"7bcd5464-bf7a-43cd-b136-bf8aef32e13b"],
+ " in this case).  ",
+ Cell[BoxData[
+  ButtonBox["GetGroups",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/GetGroups"]], "InlineFormula",
+  ExpressionUUID->"0c1d41c1-63b1-49db-9cfe-1c1b9a65fbba"],
+ " can be used to get an association with all the groups that have been \
+defined in the current session."
+}], "MathCaption",
+ CellID->303616520,ExpressionUUID->"80f42a23-ed51-4c9f-95ca-8eb57130fa3b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"DefineCGGroup", "[", 
+  RowBox[{"SU3c", ",", " ", 
+   RowBox[{"SU", "[", "3", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"GetGroups", "[", "]"}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->461706368,ExpressionUUID->"380e4cf4-20ff-43ca-bfe2-cc98987c2ff4"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"SU3c", "\[Rule]", 
+   RowBox[{"Alg", "[", 
+    RowBox[{"\<\"A\"\>", ",", "2"}], "]"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[4]=",
+ CellID->1599503728,ExpressionUUID->"eb432d7b-62c1-42c6-a416-ed90b96f606a"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "We can then add the representations for our SU(3) group that we wish to use \
+in the calculations. ",
+ Cell[BoxData[
+  ButtonBox["DefineRepresentations",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineRepresentations"]], "InlineFormula",
+  ExpressionUUID->"78d61887-c5bd-4cf2-91a2-fd273b928a97"],
+ " takes an arbitrary label used to reference it, the name of the group it \
+belongs to, and the Dynkin coefficients specifying the (highest weight of \
+the) representation in the group algebra. Here we define a fundamental, a \
+2-index symmetric, and an adjoint representations of our SU(3) group, while \
+",
+ Cell[BoxData[
+  ButtonBox["GetRepresentations",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/GetRepresentations"]], "InlineFormula",
+  ExpressionUUID->"61e11d1f-f302-4bfc-9dae-258698cf936f"],
+ " returns an association with details about all representations defined in \
+the current session:   "
+}], "MathCaption",
+ CellID->1390555871,ExpressionUUID->"f4a0a967-1a31-4782-93f3-9260ced57d0f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"DefineRepresentation", "[", 
+  RowBox[{"fund", ",", " ", "SU3c", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DefineRepresentation", "[", 
+  RowBox[{"S2", ",", " ", "SU3c", ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DefineRepresentation", "[", 
+   RowBox[{"adj", ",", " ", "SU3c", ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "1"}], "}"}]}], "]"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"GetRepresentations", "[", "]"}]}], "Input",
+ CellLabel->"In[5]:=",
+ CellID->7993596,ExpressionUUID->"862c3b1c-047d-4157-b4ec-e5114583e299"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"fund", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"GroupName", "\[Rule]", "SU3c"}], ",", 
+      RowBox[{"DynkinCoefficients", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], ",", 
+      RowBox[{"RepDimension", "\[Rule]", "3"}], ",", 
+      RowBox[{"Reality", "\[Rule]", "0"}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"S2", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"GroupName", "\[Rule]", "SU3c"}], ",", 
+      RowBox[{"DynkinCoefficients", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "0"}], "}"}]}], ",", 
+      RowBox[{"RepDimension", "\[Rule]", "6"}], ",", 
+      RowBox[{"Reality", "\[Rule]", "0"}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"adj", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"GroupName", "\[Rule]", "SU3c"}], ",", 
+      RowBox[{"DynkinCoefficients", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1"}], "}"}]}], ",", 
+      RowBox[{"RepDimension", "\[Rule]", "8"}], ",", 
+      RowBox[{"Reality", "\[Rule]", "1"}]}], "\[RightAssociation]"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[8]=",
+ CellID->658863350,ExpressionUUID->"df2214e9-b07f-4cf0-b96d-a78f680cbd4e"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["N.b.",
+  FontWeight->"Bold"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["DefineCGGroup",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineCGGroup"]], "InlineFormula",
+  ExpressionUUID->"84506ef6-4dc8-4575-b282-b81d64505c04"],
+ " is very bare bones for QFT applications. The user is encouraged to use ",
+ Cell[BoxData[
+  ButtonBox["DefineGaugeGroup",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineGaugeGroup"]], "InlineFormula",
+  ExpressionUUID->"a7e94b78-9bd3-4925-9f45-719b77cf0c43"],
+ " or ",
+ Cell[BoxData[
+  ButtonBox["DefineGlobalGroup",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineGlobalGroup"]], "InlineFormula",
+  ExpressionUUID->"78817ab0-3526-491d-a351-be2057b03786"],
+ " instead according to circumstances. These functions specifies important \
+additional information about the QFT to ",
+ ButtonBox["Matchete",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Matchete/guide/Matchete"],
+ " in addition to automatically setting up some common representations and \
+and CGs. "
+}], "Text",
+ CellFrame->{{8, 2}, {2, 2}},
+ CellFrameMargins->{{16, 8}, {8, 8}},
+ CellFrameColor->RGBColor[0, 0.3168, 0.5928],
+ CellFrameStyle->{},
+ CellFrameLabelMargins->6,
+ Background->RGBColor[0.9, 0.9316800000000001, 0.95928],
+ CellID->1581854326,ExpressionUUID->"7af6f9a2-22e1-4384-ba59-bd465edb44c8"],
+
+Cell[TextData[{
+ "Indices in Matchete \[LongDash] for fields, CGs, derivatives, etc. \
+\[LongDash] all have an index type. They are represented internally with ",
+ Cell[BoxData[
+  RowBox[{
+   ButtonBox["Index",
+    BaseStyle->"Link",
+    ButtonData->"paclet:Matchete/ref/Index"], "[", 
+   RowBox[{
+    StyleBox["label", "TI"], ",", " ", 
+    StyleBox["type", "TI"]}], "]"}]], "InlineFormula",ExpressionUUID->
+  "fc35a92d-27be-4f11-bbff-582b06c3b598"],
+ ", and all the representations that have been defined are valid index types. \
+",
+ Cell[BoxData[
+  ButtonBox["Bar",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Bar"]], "InlineFormula",ExpressionUUID->
+  "27ed9a4a-8478-4cf4-9d6a-bfd7d0137ab7"],
+ " is used to denote conjugate indices for indices in pseudoreal or complex \
+representations. Complex and pseudoreal representations are always supposed \
+to contract between conjugate indices with the same label. "
+}], "Text",
+ CellID->1274985093,ExpressionUUID->"eac5eada-2689-472c-b05d-439390226f4d"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Indices with label ",
+ StyleBox["'a'",
+  FontWeight->"Bold"],
+ " of the SU(3) fundamental representation we defined here are  (for the \
+ordinary index and its conjugate) "
+}], "MathCaption",
+ CellID->982528278,ExpressionUUID->"5cf91441-ac82-4b48-88ce-383c2a4f14c4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Index", "[", 
+   RowBox[{"a", ",", "fund"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Bar", "@", " ", 
+   RowBox[{"Index", "[", 
+    RowBox[{"a", ",", "fund"}], "]"}]}], ";"}]}], "Input",
+ CellLabel->"In[9]:=",
+ CellID->1351006563,ExpressionUUID->"929552f9-2c67-4d04-854b-41c09bfb2311"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Defining CGs", "Subsection",
+ CellID->1893821422,ExpressionUUID->"283b4670-6231-4a63-af5c-5acc987e8daf"],
+
+Cell["\<\
+Having defined groups and representations it becomes possible to define new \
+CGs for use in calculations. Matchete needs information about the \
+representation of all indices on the CG symbol and should have an exact \
+numerical tensor to substitute in for the symbol when performing contractions \
+with other CGs. Currently, there are two ways for the user to specify a new \
+CG symbol to the program.\
+\>", "Text",
+ CellID->1839337075,ExpressionUUID->"7b8599a6-25e3-4384-9afe-399163c086bf"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     ButtonBox["DefineCG",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/DefineCG"], "[", 
+     RowBox[{
+      StyleBox["cgName", "TI"], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        SubscriptBox[
+         StyleBox["rep", "TI"], 
+         StyleBox["1", "TR"]], ",", " ", 
+        SubscriptBox[
+         StyleBox["rep", "TI"], 
+         StyleBox["2", "TR"]], ",", " ", "\[Ellipsis]"}], "}"}], ",", " ", 
+      StyleBox["tensor", "TI"]}], "]"}], Cell["\<\
+defines a CG symbol with indices in the the representations from a numerical \
+tensor. \
+\>", "TableText",ExpressionUUID->"6f53499c-3325-4d7b-b427-c0281cac5e7f"]},
+   {
+    RowBox[{
+     ButtonBox["DefineCompositeCG",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/DefineCompositeCG"], "[", 
+     RowBox[{
+      StyleBox["cgName", "TI"], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        SubscriptBox[
+         StyleBox["cg", "TI"], 
+         StyleBox["1", "TR"]], ",", " ", 
+        SubscriptBox[
+         StyleBox["cg", "TI"], 
+         StyleBox["2", "TR"]], ",", "\[Ellipsis]"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        SubscriptBox[
+         StyleBox["indices", "TI"], 
+         StyleBox["1", "TR"]], ",", " ", 
+        SubscriptBox[
+         StyleBox["indices", "TI"], 
+         StyleBox["2", "TR"]], ",", "\[Ellipsis]"}], "}"}]}], "]"}], 
+    Cell["\<\
+defines a CG symbol as a contraction (Einstein summation) of known CGs.\
+\>", "TableText",ExpressionUUID->"74b05ac4-b5ff-4439-abd9-aefc1a4e0137"]}
+  }]], "DefinitionBox",
+ CellID->1728747875,ExpressionUUID->"86fd653c-56cd-46c5-b649-d696cf021db9"],
+
+Cell["Routines for defining new CG symbols in a session.", "Caption",
+ CellID->1759274862,ExpressionUUID->"6de890b1-af30-4ef4-8cbb-9b435b7e4faa"],
+
+Cell[TextData[{
+ "The most direct way of defining a CG is to use ",
+ Cell[BoxData[
+  ButtonBox["DefineCG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineCG"]], "InlineFormula",
+  ExpressionUUID->"d6fe0afd-5e8b-4490-b55c-d54b96596454"],
+ ". It requires 3 arguments: a label, a list of the representations of the \
+indices, and an explicit sparse array with the numerical values for the \
+tensor. Typically, the functions made available for the group invariants are \
+used to construct/find explicit invariant tensors as detailed in ",
+ ButtonBox["Group Magic",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Matchete/tutorial/GroupMagic"],
+ "."
+}], "Text",
+ CellID->1615462772,ExpressionUUID->"1de036c7-a5b7-46f5-b1df-0af0a6ed43d2"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Returning to the example of the adjoint representation ",
+ StyleBox["adj",
+  FontWeight->"Bold"],
+ " for our SU(3) group ",
+ StyleBox["SU3c",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox[" ",
+  FontWeight->"Bold"],
+ " ",
+ "we may define various CG coefficient corresponding to different invariant \
+contractions of those indices. Here we define a Kronecker delta, the \
+structure constants and the three-index symmetric invariant: "
+}], "MathCaption",
+ CellID->1403574612,ExpressionUUID->"0c8b6678-e0ed-4bd2-a2fb-3c52889f4367"],
+
+Cell[BoxData[{
+ RowBox[{"DefineCG", "[", 
+  RowBox[{"f3", ",", 
+   RowBox[{"{", 
+    RowBox[{"adj", ",", "adj", ",", "adj"}], "}"}], ",", 
+   RowBox[{"StructureConstants", "@", 
+    RowBox[{"SU", "[", "3", "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DefineCG", "[", 
+  RowBox[{"d3", ",", 
+   RowBox[{"{", 
+    RowBox[{"adj", ",", "adj", ",", "adj"}], "}"}], ",", 
+   RowBox[{"First", "@", 
+    RowBox[{"InvariantTensors", "[", 
+     RowBox[{
+      RowBox[{"SU", "[", "3", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", 
+      RowBox[{"SymmetricIndices", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], ",", " ", 
+      RowBox[{"Normalization", "\[Rule]", 
+       RowBox[{"40", "/", "3"}]}]}], "]"}]}]}], " ", "]"}]}], "Input",
+ CellLabel->"In[11]:=",
+ CellID->1918125236,ExpressionUUID->"efb5431e-d015-4a58-9463-e5a78ceaa104"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Here we have used ",
+ Cell[BoxData[
+  ButtonBox["InvariantTensors",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/InvariantTensors"]], "InlineFormula",
+  ExpressionUUID->"53648e88-1f2e-4a13-9980-98eddb739f46"],
+ " and ",
+ Cell[BoxData[
+  ButtonBox["StructureConstants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/StructureConstants"]], "InlineFormula",
+  ExpressionUUID->"45ad3a9b-617f-46f2-9c78-ab49066dff5b"],
+ " to obtain the appropriate numerical tensor for each CG.  A Kronecker delta \
+CG for the adjoint representation, named ",
+ StyleBox["del[adj]",
+  FontWeight->"Bold"],
+ ", was automatically initialized when we defined the representation. At any \
+time we can check the numerical tensor associated with a CG with ",
+ Cell[BoxData[
+  ButtonBox["GetCGTensor",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/GetCGTensor"]], "InlineFormula",
+  ExpressionUUID->"d6061f42-ab46-4efe-b548-af8f7602ee60"],
+ ":"
+}], "MathCaption",
+ CellID->1472525733,ExpressionUUID->"6d8f5e27-919f-4c41-9f7e-7164bcd7cdba"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"TensorRank", "@", 
+  RowBox[{"GetCGTensor", "@", "f3"}]}], "\[IndentingNewLine]", 
+ RowBox[{"GetCGTensor", "@", 
+  RowBox[{"del", "[", "adj", "]"}]}]}], "Input",
+ CellLabel->"In[13]:=",
+ CellID->1628922480,ExpressionUUID->"ded58649-6126-4951-8ab5-d4d9be8a77b1"],
+
+Cell[BoxData["3"], "Output",
+ CellLabel->"Out[13]=",
+ CellID->1090639518,ExpressionUUID->"149a9ea8-b918-4dac-bf21-71ccd2a98de1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["SparseArray",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             RasterBox[CompressedData["
+1:eJxTTMoPSmVmYGDggGIQ26p8d9wspXP2c4wXbTH/ccX+xSLFx4GrXtkPNvGd
+3QauO7e8sL/hvnxdzbS39icjcv/Ff30/6s5Rd466c9Sdo+4kUxwA1lA39Q==
+
+              "], {{0, 0}, {8, 8}}, {0, 1}], AspectRatio -> 1, Axes -> False, 
+             Frame -> False, FrameLabel -> {None, None}, FrameStyle -> 
+             Directive[
+               Opacity[0.5], 
+               Thickness[Tiny], 
+               RGBColor[0.368417, 0.506779, 0.709798]], 
+             FrameTicks -> {{None, None}, {None, None}}, GridLinesStyle -> 
+             Directive[
+               GrayLevel[0.5, 0.4]], ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], 
+             Method -> {
+              "GridLinesInFront" -> True, "AxisPadding" -> Scaled[0.02], 
+               "DefaultBoundaryStyle" -> Automatic, 
+               "DefaultGraphicsInteraction" -> {
+                "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                 "Effects" -> {
+                  "Highlight" -> {"ratio" -> 2}, 
+                   "HighlightPoint" -> {"ratio" -> 2}, 
+                   "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+               "DefaultPlotStyle" -> Automatic, "DomainPadding" -> 
+               Scaled[0.02], "RangePadding" -> Scaled[0.05]}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["8", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    RowBox[{"8", ",", "8"}], "}"}], "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             RasterBox[CompressedData["
+1:eJxTTMoPSmVmYGDggGIQ26p8d9wspXP2c4wXbTH/ccX+xSLFx4GrXtkPNvGd
+3QauO7e8sL/hvnxdzbS39icjcv/Ff30/6s5Rd466c9Sdo+4kUxwA1lA39Q==
+
+              "], {{0, 0}, {8, 8}}, {0, 1}], AspectRatio -> 1, Axes -> False, 
+             Frame -> False, FrameLabel -> {None, None}, FrameStyle -> 
+             Directive[
+               Opacity[0.5], 
+               Thickness[Tiny], 
+               RGBColor[0.368417, 0.506779, 0.709798]], 
+             FrameTicks -> {{None, None}, {None, None}}, GridLinesStyle -> 
+             Directive[
+               GrayLevel[0.5, 0.4]], ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], 
+             Method -> {
+              "GridLinesInFront" -> True, "AxisPadding" -> Scaled[0.02], 
+               "DefaultBoundaryStyle" -> Automatic, 
+               "DefaultGraphicsInteraction" -> {
+                "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+                 "Effects" -> {
+                  "Highlight" -> {"ratio" -> 2}, 
+                   "HighlightPoint" -> {"ratio" -> 2}, 
+                   "Droplines" -> {
+                    "freeformCursorMode" -> True, 
+                    "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+               "DefaultPlotStyle" -> Automatic, "DomainPadding" -> 
+               Scaled[0.02], "RangePadding" -> Scaled[0.05]}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Specified elements: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["8", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    RowBox[{"8", ",", "8"}], "}"}], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Default: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["0", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Density: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["0.125`", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Elements:\"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["\"\"", "SummaryItem"]}]}, {
+               TagBox[
+                TagBox[
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    "1", ContentPadding -> False, FrameMargins -> 0, 
+                    StripOnInput -> True, BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "2"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    "1", ContentPadding -> False, FrameMargins -> 0, 
+                    StripOnInput -> True, BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"3", ",", "3"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    "1", ContentPadding -> False, FrameMargins -> 0, 
+                    StripOnInput -> True, BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "4"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    "1", ContentPadding -> False, FrameMargins -> 0, 
+                    StripOnInput -> True, BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    ItemBox[
+                    "\"\[VerticalEllipsis]\"", Alignment -> Center, 
+                    StripOnInput -> False]}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+                 "Column"], "SummaryItem"]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  SparseArray[
+  Automatic, {8, 8}, 0, {
+   1, {{0, 1, 2, 3, 4, 5, 6, 7, 8}, {{1}, {2}, {3}, {4}, {5}, {6}, {7}, {
+     8}}}, {1, 1, 1, 1, 1, 1, 1, 1}}],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellLabel->"Out[14]=",
+ CellID->1605451881,ExpressionUUID->"167f153b-4842-4f1f-8caa-ae65784ae3ed"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "For indices of non-real representations, we need to distinguish between the \
+indices and the conjugates. For instance, the Kronecker delta ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    SuperscriptBox["\[Delta]", "i"], "j"], TraditionalForm]],ExpressionUUID->
+  "99dee97b-2cae-4c08-bcd8-94be85ae622d"],
+ " of the with fundamental and anti-fundamental indices of SU(3) contracts \
+(is an invariant of) an anti-fundamental and a fundamental representations: \
+the order is reversed. We may specify that an index of a CG belongs to the \
+conjugate representation by applying a ",
+ Cell[BoxData[
+  ButtonBox["Bar",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Bar"]], "InlineFormula",ExpressionUUID->
+  "aed611f8-559b-4f8c-a47a-df1c9dad813a"],
+ " to the representation name. "
+}], "Text",
+ CellID->1563912461,ExpressionUUID->"b88ad71b-2924-4391-b674-d45ffde7de6f"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The Kronecker delta of the ",
+ StyleBox["fund",
+  FontWeight->"Bold"],
+ " representation of ",
+ StyleBox["SU3c",
+  FontWeight->"Bold"],
+ " is automatically defined with the representation and is named ",
+ StyleBox["del[fund]",
+  FontWeight->"Bold"],
+ ". If the user wanted to define such a delta themself, it might look like "
+}], "MathCaption",
+ CellID->662124805,ExpressionUUID->"476376dc-5b87-4268-a142-6b66e043ad5b"],
+
+Cell[BoxData[
+ RowBox[{"DefineCG", "[", 
+  RowBox[{"\[Delta]fund", ",", 
+   RowBox[{"{", 
+    RowBox[{"fund", ",", 
+     RowBox[{"Bar", "[", "fund", "]"}]}], "}"}], ",", 
+   RowBox[{"First", "@", 
+    RowBox[{"InvariantTensors", "[", 
+     RowBox[{
+      RowBox[{"SU", "[", "3", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"CRep", "[", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0"}], "}"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], "]"}]}]}], "]"}]], "Input",\
+
+ CellLabel->"In[15]:=",
+ CellID->71338881,ExpressionUUID->"8c487f90-76fc-40b2-ad84-9d5d4d6116b9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The first index is fundamental and the second anti-fundamental. Valid \
+contractions should always contract fundamental and anti-fundamental indices \
+to ensure proper covariance, since the representation is complex. Also the ",
+ Cell[BoxData[
+  ButtonBox["InvariantTensors",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/InvariantTensors"]], "InlineFormula",
+  ExpressionUUID->"fbc440ee-d854-4b7d-9ce5-6f71e69d8bfa"],
+ " call needs to discriminate between the two indices by invoking the \
+conjugate representation with ",
+ Cell[BoxData[
+  ButtonBox["CRep",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CRep"]], "InlineFormula",ExpressionUUID->
+  "8a051705-691d-4623-9530-6fd2b33078a3"],
+ ". Also the generators of the fundamental representation comes with a \
+fundamental and an anti-fundamental index. It can be initializes as "
+}], "MathCaption",
+ CellID->2030367325,ExpressionUUID->"77242d69-bd9c-4c9f-8137-29b270c33c63"],
+
+Cell[BoxData[
+ RowBox[{"DefineCG", "[", 
+  RowBox[{"t3", ",", 
+   RowBox[{"{", 
+    RowBox[{"adj", ",", "fund", ",", 
+     RowBox[{"Bar", "@", "fund"}]}], "}"}], ",", 
+   RowBox[{"Generators", "[", 
+    RowBox[{
+     RowBox[{"SU", "@", "3"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], "]"}]}], "]"}]], "Input",
+ CellLabel->"In[16]:=",
+ CellID->868480445,ExpressionUUID->"191a8300-3c52-4636-92bd-c6fff5daeacd"]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["N.b.",
+  FontWeight->"Bold"],
+ "  The user has a lot of flexibility when defining new CGs, but it also \
+requires meticulous care to get it right. We encourage the user to perform \
+cross checks, to make sure that their CGs behave as expected."
+}], "Text",
+ CellFrame->{{8, 2}, {2, 2}},
+ CellFrameMargins->{{16, 8}, {8, 8}},
+ CellFrameColor->RGBColor[0, 0.3168, 0.5928],
+ CellFrameStyle->{},
+ CellFrameLabelMargins->6,
+ Background->RGBColor[0.9, 0.9316800000000001, 0.95928],
+ CellID->1168667819,ExpressionUUID->"579501a3-fcaf-4ff6-9b58-0fccbc497053"],
+
+Cell[TextData[{
+ "Clearly, many other invariants can be constructed, but ",
+ Cell[BoxData[
+  ButtonBox["DefineCG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineCG"]], "InlineFormula",
+  ExpressionUUID->"cc986d86-eb7e-45d4-a963-dccbd33b0135"],
+ " will already be sufficient for most purposes. Sometimes it can be useful \
+to construct new CGs from contractions of previously defined CGs, rather than \
+use the rather less transparent ",
+ Cell[BoxData[
+  ButtonBox["InvariantTensors",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/InvariantTensors"]], "InlineFormula",
+  ExpressionUUID->"de5a48cf-aa70-4590-9bd7-2a9d921e6b99"],
+ " function to obtain a suitable numeric tensor. In such cases we can use the \
+",
+ Cell[BoxData[
+  ButtonBox["DefineCompositeCG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineCompositeCG"]], "InlineFormula",
+  ExpressionUUID->"a20ffd00-1ba1-48db-87a8-0b107058fa8c"],
+ "  to initialize the CG. The first argument is the CG label; the second \
+argument is a list of CGs to be included in this tensor; and the third and \
+last argument is a list of list of index labels for each of the CGs, with \
+repeated indices being contracted and the rest open. "
+}], "Text",
+ CellID->1447681770,ExpressionUUID->"733359a1-f45c-4e9b-95b5-24c5a5a4f34f"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "For instance, there are 8 invariants of 4 adjoint SU(3) representations if \
+there are no restrictions from tensor symmetries. A good basis CG could be \
+taken as the trace of fundamental generators ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["T", 
+     RowBox[{"a", " ", "b", " ", "c", " ", "d"}]], "=", 
+    RowBox[{"Tr", "[", 
+     RowBox[{
+      SuperscriptBox["t", "a"], " ", 
+      SuperscriptBox["t", "b"], " ", 
+      SuperscriptBox["t", "c"], " ", 
+      SuperscriptBox["t", "d"]}], "]"}]}], TraditionalForm]],ExpressionUUID->
+  "9caf20cf-071a-4800-adad-a8d4b433e7e8"],
+ ", which has 6 unique permutations of indices making up 6 linearly \
+independent invariants. We define this CG with   "
+}], "MathCaption",
+ CellID->1692376651,ExpressionUUID->"d2e313dc-8fd3-4f55-b852-d1333b86183d"],
+
+Cell[BoxData[
+ RowBox[{"DefineCompositeCG", "[", 
+  RowBox[{"Tr4", ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"t3", ",", "t3", ",", "t3", ",", "t3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "i", ",", "j"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", " ", "j", ",", " ", "k"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", " ", "k", ",", "l"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"d", ",", " ", "l", ",", " ", "i"}], "}"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellLabel->"In[17]:=",
+ CellID->353468842,ExpressionUUID->"996459ff-364d-405b-821c-4d8b892806e7"]
+}, Open  ]],
+
+Cell[TextData[{
+ "The above input corresponds to the assignment ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["Tr4", 
+     RowBox[{"a", " ", "b", " ", "c", " ", "d"}]], "=", " ", 
+    RowBox[{
+     SubscriptBox[
+      SuperscriptBox["t3", 
+       RowBox[{"a", " ", "i"}]], "j"], 
+     SubscriptBox[
+      SuperscriptBox["t3", 
+       RowBox[{"b", " ", "j"}]], "k"], 
+     SubscriptBox[
+      SuperscriptBox["t3", 
+       RowBox[{"c", " ", "k"}]], "l"], 
+     SubscriptBox[
+      SuperscriptBox["t3", 
+       RowBox[{"d", " ", "l"}]], "i"]}]}], TraditionalForm]],ExpressionUUID->
+  "e65f06e7-40e1-4815-8860-4be49cb453c9"],
+ ". "
+}], "MathCaption",
+ CellID->1341583228,ExpressionUUID->"957a2563-d0d1-4c67-978a-8b9ab4a86ac4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The CG object", "Subsection",
+ CellID->2121769318,ExpressionUUID->"c4584013-f2ae-472e-a14b-4998a43ac984"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     RowBox[{
+      ButtonBox["CG",
+       BaseStyle->"Link",
+       ButtonData->"paclet:Matchete/ref/CG"], "[", 
+      RowBox[{
+       StyleBox["cgName", "TI"], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         SubscriptBox[
+          StyleBox["index", "TI"], 
+          StyleBox["1", "TR"]], ",", " ", 
+         SubscriptBox[
+          StyleBox["index", "TI"], 
+          StyleBox["2", "TR"]], ",", "\[Ellipsis]"}], "}"}]}], "]"}], " "}], 
+    Cell["represents a CG with two or more indices.", "TableText",
+     ExpressionUUID->"849c1dcf-4816-4a0d-88e2-4834b1a2ec21"]}
+  }]], "DefinitionBox",
+ CellID->868302416,ExpressionUUID->"dba98ba7-a027-49c1-b72a-cd2566ec5c1e"],
+
+Cell[TextData[{
+ "The ",
+ ButtonBox["Matchete",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Matchete/guide/Matchete"],
+ "  form of the CG object. "
+}], "Caption",
+ CellID->1407324347,ExpressionUUID->"b82cc08f-4022-4806-8d5e-28d5cf1be86f"],
+
+Cell[TextData[{
+ "The basic object in computations involving CGs is the ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "d6a41343-b6e9-447b-bf58-2913cb5bda67"],
+ " head. The first argument of ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "c95a41d9-ae90-474d-8a12-baa610d39410"],
+ " determines specifies the specific tensor (its label); the second argument \
+is a list of its indices. For convenience we can enter a CG by specifying \
+only the labels of the indices rather than entering them as ",
+ Cell[BoxData[
+  ButtonBox["Index",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Index"]], "InlineFormula",ExpressionUUID->
+  "2bc55334-944a-4243-943a-a6c9e117865e"],
+ " objects. The full indices are automatically constructed based on the CG \
+object. One can only enter CG objects that have already been initialized in \
+the current session. Thus, Matchete never encounters unknown CGs. The ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "c8405323-1031-4e82-b067-af60590e84e0"],
+ " objects are conveniently formatted under ",
+ Cell[BoxData[
+  ButtonBox["NiceForm",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/NiceForm"]], "InlineFormula",
+  ExpressionUUID->"0a503e91-7780-4efc-bd27-be5148ff7ced"],
+ ", so that the user doesn't have to see the internal representation."
+}], "Text",
+ CellID->1474741865,ExpressionUUID->"0a586b0a-5d5d-4038-8ea0-be88a1ae3442"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The generator of the ",
+ StyleBox["fund",
+  FontWeight->"Bold"],
+ " representation of ",
+ StyleBox["SU3c",
+  FontWeight->"Bold"],
+ " can be entered as"
+}], "MathCaption",
+ CellID->1727372414,ExpressionUUID->"580fa12b-01da-4b14-9bfe-7d5a71133251"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"CG", "[", 
+  RowBox[{"t3", ",", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "NiceForm"}]}], "Input",
+ CellLabel->"In[18]:=",
+ CellID->116738305,ExpressionUUID->"eb33b2c3-38a6-4046-a669-289240e008c2"],
+
+Cell[BoxData[
+ RowBox[{"CG", "[", 
+  RowBox[{"t3", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Index", "[", 
+      RowBox[{"a", ",", "adj"}], "]"}], ",", 
+     RowBox[{"Index", "[", 
+      RowBox[{"i", ",", "fund"}], "]"}], ",", 
+     RowBox[{"Bar", "[", 
+      RowBox[{"Index", "[", 
+       RowBox[{"j", ",", "fund"}], "]"}], "]"}]}], "}"}]}], "]"}]], "Output",
+ CellLabel->"Out[18]=",
+ CellID->1845223059,ExpressionUUID->"171fade6-46df-44cb-83b6-eb718542e61a"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SubsuperscriptBox["t3", 
+    StyleBox["j",
+     FontSize->10], 
+    StyleBox[
+     TemplateBox[{"a", "i"},
+      "RowDefault"],
+     FontSize->10]], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[19]//NiceForm=",
+ CellID->852606286,ExpressionUUID->"b589bbd8-016c-4804-bebe-feac1165099c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "Other than constructing the indices, ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "43d9d2b0-3c76-4b9a-afb4-ad988a8913a7"],
+ " does not do any evaluation: there is nothing to evaluate. Rather it is \
+just the internal representation of a CG tensor. Sometimes one might wish to \
+use the complex conjugate CG. ",
+ Cell[BoxData[
+  ButtonBox["Bar",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Bar"]], "InlineFormula",ExpressionUUID->
+  "61fd226d-feb2-44a0-834a-7f232ccb195e"],
+ " can be applied to CGs to get the complex conjugate.  "
+}], "Text",
+ CellID->1464852780,ExpressionUUID->"070e7aa2-59a8-428a-8e78-45e425267732"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Since the the fundamental generators are Hermitian, we observe that ",
+ Cell[BoxData[
+  ButtonBox["Bar",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Bar"]], "InlineFormula",ExpressionUUID->
+  "b900f8c1-e948-4aff-91a6-a27b24151e67"],
+ " simplifies away: "
+}], "MathCaption",
+ CellID->1915966080,ExpressionUUID->"93423e07-815c-46a0-b748-b467b4fd0a5e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Bar", "@", 
+  RowBox[{"CG", "[", 
+   RowBox[{"t3", ",", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "NiceForm"}]}], "Input",
+ CellLabel->"In[20]:=",
+ CellID->124619795,ExpressionUUID->"f8455a3c-42b3-484f-b2d0-a92a87075fda"],
+
+Cell[BoxData[
+ RowBox[{"CG", "[", 
+  RowBox[{"t3", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Index", "[", 
+      RowBox[{"a", ",", "adj"}], "]"}], ",", 
+     RowBox[{"Index", "[", 
+      RowBox[{"j", ",", "fund"}], "]"}], ",", 
+     RowBox[{"Bar", "[", 
+      RowBox[{"Index", "[", 
+       RowBox[{"i", ",", "fund"}], "]"}], "]"}]}], "}"}]}], "]"}]], "Output",
+ CellLabel->"Out[20]=",
+ CellID->1742956018,ExpressionUUID->"911c6b3e-4917-441e-a655-66cb7b8f365d"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SubsuperscriptBox["t3", 
+    StyleBox["i",
+     FontSize->10], 
+    StyleBox[
+     TemplateBox[{"a", "j"},
+      "RowDefault"],
+     FontSize->10]], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[21]//NiceForm=",
+ CellID->37365799,ExpressionUUID->"6fc873d7-70b6-4fe8-8b4a-012278c638fe"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["N.b.",
+  FontWeight->"Bold"],
+ "  When applying ",
+ Cell[BoxData[
+  ButtonBox["Bar",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/Bar"]], "InlineFormula",ExpressionUUID->
+  "d4c8cf4b-4e43-4df2-826c-f376d3c51a98"],
+ " to a ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "f91b6000-db0f-4c90-a391-d89fd7feb192"],
+ " it turns the indices of any non-real representation into indices of the \
+conjugate representation and vice versa."
+}], "Text",
+ CellFrame->{{8, 2}, {2, 2}},
+ CellFrameMargins->{{16, 8}, {8, 8}},
+ CellFrameColor->RGBColor[0, 0.3168, 0.5928],
+ CellFrameStyle->{},
+ CellFrameLabelMargins->6,
+ Background->RGBColor[0.9, 0.9316800000000001, 0.95928],
+ CellID->200448401,ExpressionUUID->"40cc57c1-ea4e-47fa-805b-9f289f854734"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Clean up", "Subsection",
+ CellID->1313888525,ExpressionUUID->"91abe987-5724-4ad5-a914-4ee94bc65ebd"],
+
+Cell[TextData[{
+ "Several functions are available to remove already loaded definitions of \
+groups, representations, and CGs. When removing any of these, the functions \
+automatically removes all associated definitions that rely on the one \
+removed. These functions can be convenient when making mistakes during the \
+setup of a model or something similar. In most other cases, the user may \
+simply rely on ",
+ Cell[BoxData[
+  ButtonBox["ResetAll",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ResetAll"]], "InlineFormula",
+  ExpressionUUID->"84898c55-ac19-40a1-871f-3211a07b2581"],
+ ", which also removes all group definitions."
+}], "Text",
+ CellID->1213726680,ExpressionUUID->"c73ad3bb-87eb-4f35-87b6-d9b9a9536a91"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     ButtonBox["RemoveCG",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/RemoveCG"], "[", 
+     StyleBox["cgName", "TI"], "]"}], Cell[
+    "removes the definition of a CG symbol.", "TableText",ExpressionUUID->
+     "37a974d5-2fd8-4abb-8796-759372db2fbb"]},
+   {
+    RowBox[{
+     ButtonBox["RemoveRepresentation",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/RemoveRepresentation"], "[", 
+     StyleBox["repName", "TI"], "]"}], Cell["\<\
+removes the definition of a representation and all associated CGs.\
+\>", "TableText",ExpressionUUID->"1c03c23e-890a-4159-9ec7-93a2897e4b96"]},
+   {
+    RowBox[{
+     ButtonBox["RemoveGroup",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/RemoveGroup"], "[", 
+     StyleBox["groupName", "TI"], "]"}], Cell["\<\
+removes the definition of a group and all associated representations.\
+\>", "TableText",ExpressionUUID->"c2344284-9b31-478f-bcd8-b6c655e50fa9"]},
+   {
+    RowBox[{
+     ButtonBox["ClearGroups",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/ClearGroups"], "[", "]"}], Cell[
+    "Removes all defined groups, representations and CGs.", "TableText",
+     ExpressionUUID->"c3aaae97-6342-42e4-8aad-665cca3891da"]}
+  }]], "DefinitionBox",
+ CellID->500697427,ExpressionUUID->"68366f02-1b4c-47f1-903a-ee42d6cc1aa3"],
+
+Cell["\<\
+Functions to remove previously defined group, representation, and CG symbols.\
+\
+\>", "Caption",
+ CellID->1380726643,ExpressionUUID->"366ba8c6-bbed-492a-be09-86b1ab173275"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Contracting CGs", "Section",
+ CellID->659413397,ExpressionUUID->"65d00db8-5cbb-438b-a6e4-0e2dfab133f6"],
+
+Cell[CellGroupData[{
+
+Cell["Evaluating CG contractions ", "Subsection",
+ CellID->908394077,ExpressionUUID->"4254af29-1eaa-4f2c-84b4-3994956d3c3a"],
+
+Cell[TextData[{
+ "To evaluate contractions between CGs, we use the function ",
+ Cell[BoxData[
+  ButtonBox["ContractCGs",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ContractCGs"]], "InlineFormula",
+  ExpressionUUID->"93f7cdda-5127-48fc-a47b-070af4d00d5f"],
+ " , which will evaluate ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "35b94f67-8427-4dea-8b7e-26b7d2b29c77"],
+ " contractions appearing in all terms of an expression. That is ",
+ Cell[BoxData[
+  ButtonBox["ContractCGs",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ContractCGs"]], "InlineFormula",
+  ExpressionUUID->"3737c925-bc66-4017-8b87-e21db4dd3e48"],
+ " carries out all Einstein summation between CGs,  producing a result with \
+no dummy-index contractions between CGs . To see how this works in practice, \
+consider the following examples:  "
+}], "Text",
+ CellID->850818125,ExpressionUUID->"194a1dbc-39f9-4470-9042-93812b19b0f2"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The quadratic Casimir operator formed by two ",
+ StyleBox["fund",
+  FontWeight->"Bold"],
+ " generators of ",
+ StyleBox["SU3c",
+  FontWeight->"Bold"],
+ ":"
+}], "MathCaption",
+ CellID->1319449335,ExpressionUUID->"755f3358-f096-493e-b4d1-f04eed05bd85"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CG", "[", 
+    RowBox[{"t3", ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"t3", ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "j", ",", "k"}], "}"}]}], "]"}]}], "//", 
+  "ContractCGs"}]], "Input",
+ CellLabel->"In[22]:=",
+ CellID->1068834423,ExpressionUUID->"6509929b-bbc8-45e2-a920-4c65717b61cc"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["4", "3"], " ", 
+  RowBox[{"CG", "[", 
+   RowBox[{
+    RowBox[{"del", "[", "fund", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Index", "[", 
+       RowBox[{"i", ",", "fund"}], "]"}], ",", 
+      RowBox[{"Bar", "[", 
+       RowBox[{"Index", "[", 
+        RowBox[{"k", ",", "fund"}], "]"}], "]"}]}], "}"}]}], 
+   "]"}]}]], "Output",
+ CellLabel->"Out[22]=",
+ CellID->941758869,ExpressionUUID->"6e02e44b-6917-4b7d-99a1-7d40311336a7"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Various contractions between three-index adjoint representations\
+\>", "MathCaption",
+ CellID->1211304113,ExpressionUUID->"855139f3-4763-49a8-9e5b-cd72afebde54"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "j", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "k", ",", "i"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"d3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "j", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "k", ",", "i"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]}], "Input",
+ CellLabel->"In[23]:=",
+ CellID->243253631,ExpressionUUID->"cbfe4be4-f015-4079-bf03-f32ee5dc5e88"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    FractionBox["3", "2"], 
+    SuperscriptBox["f3", 
+     StyleBox[
+      TemplateBox[{"a", "b", "c"},
+       "RowDefault"],
+      FontSize->10]]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[23]//NiceForm=",
+ CellID->1186832893,ExpressionUUID->"8cc4ac75-c534-4d01-9844-bcf3a3477c85"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"-", 
+    FractionBox["3", "2"], 
+    SuperscriptBox["d3", 
+     StyleBox[
+      TemplateBox[{"a", "b", "c"},
+       "RowDefault"],
+      FontSize->10]]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[24]//NiceForm=",
+ CellID->1272319315,ExpressionUUID->"2aa6b65c-dcf5-4c7e-94c4-114790de740b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fully contracted combinations of CGs evaluate to numbers:", \
+"MathCaption",
+ CellID->891841631,ExpressionUUID->"90009e20-5f20-43ac-90da-a6527b9aba9b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", "j", ",", "k"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", "k", ",", "l"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"e", ",", "l", ",", "i"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "i2", ",", "j2"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", "j2", ",", "k2"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", "k2", ",", "l2"}], "}"}]}], "]"}], 
+   RowBox[{"CG", "[", 
+    RowBox[{"f3", ",", 
+     RowBox[{"{", 
+      RowBox[{"e", ",", "l2", ",", "i2"}], "}"}]}], "]"}]}], " ", "//", 
+  "ContractCGs"}]], "Input",
+ CellLabel->"In[25]:=",
+ CellID->1893919804,ExpressionUUID->"5c28b5b7-3692-40e0-9d54-a90249bc2448"],
+
+Cell[BoxData["189"], "Output",
+ CellLabel->"Out[25]=",
+ CellID->1376054026,ExpressionUUID->"7b8712dd-e476-4171-8116-6e556564cb72"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["ContractCGs",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ContractCGs"]], "InlineFormula",
+  ExpressionUUID->"0ac494b8-2a50-4d4b-b3f7-a93b3045bc6a"],
+ " is not restricted to simple products of CGs, but works on generic \
+expressions, such as "
+}], "MathCaption",
+ CellID->1970580728,ExpressionUUID->"904bbc67-c788-4241-8b05-d3140b330db5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"m1", " ", 
+     RowBox[{"CG", "[", 
+      RowBox[{"f3", ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b", ",", "e"}], "}"}]}], "]"}], " ", 
+     RowBox[{"CG", "[", 
+      RowBox[{"t3", ",", 
+       RowBox[{"{", 
+        RowBox[{"e", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+     RowBox[{"CG", "[", 
+      RowBox[{"t3", ",", 
+       RowBox[{"{", 
+        RowBox[{"c", ",", "j", ",", "i"}], "}"}]}], "]"}]}], "+", 
+    RowBox[{"3", "M2", " ", 
+     RowBox[{"CG", "[", 
+      RowBox[{"t3", ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+     RowBox[{"CG", "[", 
+      RowBox[{"t3", ",", 
+       RowBox[{"{", 
+        RowBox[{"b", ",", "j", ",", "k"}], "}"}]}], "]"}], 
+     RowBox[{"CG", "[", 
+      RowBox[{"t3", ",", 
+       RowBox[{"{", 
+        RowBox[{"c", ",", "k", ",", "i"}], "}"}]}], "]"}]}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[26]:=",
+ CellID->1057491462,ExpressionUUID->"dc008118-263f-4bdb-9272-f5b057cfdb5f"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"3", "M2", " ", 
+     FormBox[
+      StyleBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          FractionBox["1", "4"], 
+          SuperscriptBox["d3", 
+           StyleBox[
+            TemplateBox[{"a", "b", "c"},
+             "RowDefault"],
+            FontSize->10]]}], "+", 
+         RowBox[{
+          FractionBox["\[ImaginaryI]", "4"], 
+          SuperscriptBox["f3", 
+           StyleBox[
+            TemplateBox[{"a", "b", "c"},
+             "RowDefault"],
+            FontSize->10]]}]}], ")"}],
+       SpanSymmetric->False],
+      StandardForm]}], "+", 
+    RowBox[{
+     FractionBox["1", "2"], "m1", 
+     SuperscriptBox["f3", 
+      StyleBox[
+       TemplateBox[{"a", "b", "c"},
+        "RowDefault"],
+       FontSize->10]]}]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[26]//NiceForm=",
+ CellID->1088620439,ExpressionUUID->"0a1ce752-3f45-433c-939a-f441cb3fc382"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "We can quickly see that the Tr4 tensor is implemented correctly implemented \
+as a trace of four generators of the ",
+ StyleBox["fund",
+  FontWeight->"Bold"],
+ " representation:"
+}], "MathCaption",
+ CellID->69614546,ExpressionUUID->"2dac69fe-3340-4ce9-bc63-4b40bcde6032"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "j", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "k", ",", "l"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "l", ",", "i"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[27]:=",
+ CellID->1780570654,ExpressionUUID->"8cf0ad40-2182-4b14-b58c-c28eca8f372b"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SuperscriptBox["Tr4", 
+    StyleBox[
+     TemplateBox[{"b", "a", "d", "c"},
+      "RowDefault"],
+     FontSize->10]], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[27]//NiceForm=",
+ CellID->2030529480,ExpressionUUID->"7a43a60e-dd85-4b61-8d61-b077ca37afee"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+It can also identify tensor products in contractions, e.g., in \
+\>", "MathCaption",
+ CellID->540146888,ExpressionUUID->"8f4be64c-0bab-4749-ad68-c4c8666ea3f9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "j", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "k", ",", "l"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"f3", ",", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "l", ",", "i"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[28]:=",
+ CellID->835370747,ExpressionUUID->"ef6d994d-ceea-4c7a-96a2-db7d5114bef8"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"3", 
+     SuperscriptBox["Tr4", 
+      StyleBox[
+       TemplateBox[{"b", "a", "d", "c"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{"3", 
+     SuperscriptBox["Tr4", 
+      StyleBox[
+       TemplateBox[{"b", "c", "d", "a"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{
+     FractionBox["1", "2"], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"a", "d"},
+        "RowDefault"],
+       FontSize->10]], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"b", "c"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{
+     FractionBox["1", "2"], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"a", "c"},
+        "RowDefault"],
+       FontSize->10]], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"b", "d"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{
+     FractionBox["1", "2"], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"b", "a"},
+        "RowDefault"],
+       FontSize->10]], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"d", "c"},
+        "RowDefault"],
+       FontSize->10]]}]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[28]//NiceForm=",
+ CellID->1446335883,ExpressionUUID->"d3aeae68-9c38-4a78-84d6-9b5b7f2528de"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["or the Fierz identity for fundamental generators", "MathCaption",
+ CellID->1498261629,ExpressionUUID->"eac3b6af-41a5-4467-9e61-255c0b6b0313"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "j"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "k", ",", "l"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[29]:=",
+ CellID->2037437528,ExpressionUUID->"53a7f9fa-6d6a-4950-b6d9-f689fc1f49bc"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     SubsuperscriptBox["\[Delta]", 
+      StyleBox["l",
+       FontSize->10], 
+      StyleBox["i",
+       FontSize->10]], 
+     SubsuperscriptBox["\[Delta]", 
+      StyleBox["j",
+       FontSize->10], 
+      StyleBox["k",
+       FontSize->10]]}], "-", 
+    RowBox[{
+     FractionBox["1", "6"], 
+     SubsuperscriptBox["\[Delta]", 
+      StyleBox["j",
+       FontSize->10], 
+      StyleBox["i",
+       FontSize->10]], 
+     SubsuperscriptBox["\[Delta]", 
+      StyleBox["l",
+       FontSize->10], 
+      StyleBox["k",
+       FontSize->10]]}]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[29]//NiceForm=",
+ CellID->1199785188,ExpressionUUID->"b50da113-72c6-4bd2-8eff-8c0fa050a9de"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["ContractCGs",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ContractCGs"]], "InlineFormula",
+  ExpressionUUID->"f297971e-4de2-412b-a713-8b4bc010c37f"],
+ " is a versatile implementation of all manner of CG contractions. This \
+versatility is due to contractions being performed numerically, a technique \
+that is generally applicable to all possible CG contractions. However, \
+numerical contractions of tensors can be computationally expensive, \
+especially if the representations are large. "
+}], "Text",
+ CellID->1027299401,ExpressionUUID->"ad37c4a6-e6d2-4356-998f-6ea98c121c1a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Going outside the basis", "Subsection",
+ CellID->1397868064,ExpressionUUID->"53ffb04a-3263-4d44-a2a1-397908c7ffa4"],
+
+Cell[TextData[{
+ "Finally, we see what happens when the predefined CGs are insufficient to \
+identify a CG showing up in a product. In that case a new CG will simply be \
+added and a message is displayed to inform the user about it. Any new CG \
+defined this way can be used in ",
+ Cell[BoxData[
+  ButtonBox["CG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CG"]], "InlineFormula",ExpressionUUID->
+  "1d74b341-ab77-4334-8798-a590d35473e0"],
+ " objects same as any user defined CGs."
+}], "Text",
+ CellID->149962616,ExpressionUUID->"28b9abf7-f0f2-494b-9d44-23570178f48f"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "An example of going outside the CG basis derived from the previously \
+defined CGs is  the generator product ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["T", "A"], 
+       SuperscriptBox["T", "B"]}], ")"}], "i"], "j"], TraditionalForm]],
+  ExpressionUUID->"9b9b193b-89ee-4297-b2db-d7f10e5185e2"],
+ " of two generators of the ",
+ StyleBox["fund",
+  FontWeight->"Bold"],
+ " representation of ",
+ StyleBox["SU3c",
+  FontWeight->"Bold"],
+ ": "
+}], "MathCaption",
+ CellID->1326063212,ExpressionUUID->"00a6d355-80c6-47c3-85a4-a57062dddae4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "k", ",", "j"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[30]:=",
+ CellID->559115518,ExpressionUUID->"9faa9767-d6c2-4c03-910c-bd369138935b"],
+
+Cell[BoxData[
+ InterpretationBox["\<\"Added new CG \\!\\(\\*RowBox[{\\\"cg1\\\"}]\\) with \
+indices \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"adj\\\", \\\",\\\", \
+\\\"fund\\\", \\\",\\\", \\\"adj\\\", \\\",\\\", RowBox[{\\\"Bar\\\", \\\"[\\\
+\", \\\"fund\\\", \\\"]\\\"}]}], \\\"}\\\"}]\\)\"\>",
+  StringForm[
+  "Added new CG `1` with indices `2`", $CellContext`cg1, {
+   Matchete`adj, Matchete`fund, Matchete`adj, 
+    Matchete`Bar[Matchete`fund]}],
+  Editable->False]], "Echo",
+ CellID->2065693033,ExpressionUUID->"ac3eac02-4c1b-4942-a5df-07fcf640344e"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SubsuperscriptBox["cg1", 
+    StyleBox["j",
+     FontSize->10], 
+    StyleBox[
+     TemplateBox[{"a", "i", "b"},
+      "RowDefault"],
+     FontSize->10]], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[30]//NiceForm=",
+ CellID->1882168229,ExpressionUUID->"794f272d-724f-4f6e-a925-b2a1bffeaa66"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The new CG gets a generic name, ",
+ StyleBox["cg1",
+  FontWeight->"Bold"],
+ " in this case, the user might therefore wish to rename it for easier \
+reference with ",
+ Cell[BoxData[
+  ButtonBox["RenameCG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/RenameCG"]], "InlineFormula",
+  ExpressionUUID->"f38ae256-d26c-4233-b964-5e37bae612d1"],
+ "; however, this purely optional and not required to use the CG."
+}], "MathCaption",
+ CellID->1561233747,ExpressionUUID->"d307db0f-2ffa-4e9c-9507-6dc560ffe68c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"RenameCG", "[", 
+  RowBox[{"cg1", "\[Rule]", "t3t3"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "k", ",", "j"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]}], "Input",
+ CellLabel->"In[31]:=",
+ CellID->1700386783,ExpressionUUID->"d6f8be89-b924-4cb9-9a81-848d659f5f4b"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SubsuperscriptBox["t3t3", 
+    StyleBox["j",
+     FontSize->10], 
+    StyleBox[
+     TemplateBox[{"a", "i", "b"},
+      "RowDefault"],
+     FontSize->10]], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[32]//NiceForm=",
+ CellID->1167304493,ExpressionUUID->"558313b1-d247-4778-a955-35568f14d93c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "Some detective work is typically required to figure out what a new CG is. \
+Particularly if it got defined deep in some Matchete calculation outside the \
+control of the user. It can also happen that a CG is defined during the \
+course The first clue is to look at the message informing about the creation \
+of the new CG, which provides a list of the representation of all the indices \
+of the new CG. In some simple cases the use might be able to identify the CG \
+through the explicit tensor representation with ",
+ Cell[BoxData[
+  ButtonBox["GetCGTensor",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/GetCGTensor"]], "InlineFormula",
+  ExpressionUUID->"7799b95d-3fe7-48c9-81e4-ce72837e1aa7"],
+ ", although more often than not this is next to meaningless to humans. More \
+commonly, the new CG can be traced back by using ",
+ Cell[BoxData[
+  RowBox[{
+   ButtonBox["ReplaceCGs",
+    BaseStyle->"Link",
+    ButtonData->"paclet:Matchete/ref/ReplaceCGs"], "[", 
+   StyleBox["expr", "TI"], "]"}]], "InlineFormula",ExpressionUUID->
+  "dbea7d1d-9329-472d-9dd9-3f44a7fcbe16"],
+ " to re expand the By default ",
+ Cell[BoxData[
+  ButtonBox["ReplaceCGs",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ReplaceCGs"]], "InlineFormula",
+  ExpressionUUID->"98526eda-5847-42af-968f-2231a039b36e"],
+ " replaces all, composite CGs created either by the user or automatic. Using \
+the option ",
+ Cell[BoxData[
+  ButtonBox["CGsToReplace",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CGsToReplace"]], "InlineFormula",
+  ExpressionUUID->"237cacc1-9e0e-4338-81a8-f0bb35391a22"],
+ " (default ",
+ Cell[BoxData[
+  ButtonBox["All",
+   BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+  "ca23ac90-d826-46e6-a523-c2eecaa72720"],
+ "), only the specified CGs will be replaced in an expression."
+}], "Text",
+ CellID->786367001,ExpressionUUID->"105f349f-b8ec-4371-b7bc-189d549dbd9e"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The composite CGs ",
+ StyleBox["Tr4",
+  FontWeight->"Bold"],
+ " (defined by the user with ",
+ Cell[BoxData[
+  ButtonBox["DefineCompositeCG",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DefineCompositeCG"]], "InlineFormula",
+  ExpressionUUID->"d0fa461b-93b5-465a-b6e5-9e77b73bcdc7"],
+ ") and ",
+ StyleBox["t3t3",
+  FontWeight->"Bold"],
+ " (defined automatically during ",
+ Cell[BoxData[
+  ButtonBox["ContractCGs",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/ContractCGs"]], "InlineFormula",
+  ExpressionUUID->"f6e3bfcd-8a43-4227-aa76-302560649d83"],
+ ") can be replaced simultaneously or one at a time to reveal the underlying \
+contraction of CGs: "
+}], "MathCaption",
+ CellID->949318001,ExpressionUUID->"a80c4787-958b-4a04-8b8f-d57fbd91bd02"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ReplaceCGs", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"CG", "[", 
+       RowBox[{"Tr4", ",", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", "b", ",", "c", ",", "e"}], "}"}]}], "]"}], ",", 
+      RowBox[{"CG", "[", 
+       RowBox[{"t3t3", ",", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", "i", ",", "b", ",", "j"}], "}"}]}], "]"}]}], "}"}],
+     "]"}], "//", "RelabelIndices"}], "//", "NiceForm"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ReplaceCGs", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"CG", "[", 
+        RowBox[{"Tr4", ",", 
+         RowBox[{"{", 
+          RowBox[{"a", ",", "b", ",", "c", ",", "e"}], "}"}]}], "]"}], ",", 
+       RowBox[{"CG", "[", 
+        RowBox[{"t3t3", ",", 
+         RowBox[{"{", 
+          RowBox[{"a", ",", "i", ",", "b", ",", "j"}], "}"}]}], "]"}]}], 
+      "}"}], ",", 
+     RowBox[{"CGsToReplace", "\[Rule]", 
+      RowBox[{"{", "t3t3", "}"}]}]}], "]"}], "//", "RelabelIndices"}], "//", 
+  "NiceForm"}]}], "Input",
+ CellLabel->"In[33]:=",
+ CellID->1531629244,ExpressionUUID->"3e035f93-eb9e-410e-a2f6-a10e5b9aea3d"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubsuperscriptBox["t3", 
+       StyleBox["y",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"a", "x"},
+         "RowDefault"],
+        FontSize->10]], 
+      SubsuperscriptBox["t3", 
+       StyleBox["z",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"b", "y"},
+         "RowDefault"],
+        FontSize->10]], 
+      SubsuperscriptBox["t3", 
+       StyleBox[
+        SubscriptBox["x", "1"],
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"c", "z"},
+         "RowDefault"],
+        FontSize->10]], 
+      SubsuperscriptBox["t3", 
+       StyleBox["x",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"e", 
+          SubscriptBox["x", "1"]},
+         "RowDefault"],
+        FontSize->10]]}], ",", 
+     RowBox[{
+      SubsuperscriptBox["t3", 
+       StyleBox["x",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"a", "i"},
+         "RowDefault"],
+        FontSize->10]], 
+      SubsuperscriptBox["t3", 
+       StyleBox["j",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"b", "x"},
+         "RowDefault"],
+        FontSize->10]]}]}], "}"}], "StandardForm"], 
+  Matchete`NiceForm]], "Output",
+ CellLabel->"Out[33]//NiceForm=",
+ CellID->1623498506,ExpressionUUID->"590dcc35-2e02-45d7-9dc3-538b1362288d"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["Tr4", 
+      StyleBox[
+       TemplateBox[{"a", "b", "c", "e"},
+        "RowDefault"],
+       FontSize->10]], ",", 
+     RowBox[{
+      SubsuperscriptBox["t3", 
+       StyleBox["x",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"a", "i"},
+         "RowDefault"],
+        FontSize->10]], 
+      SubsuperscriptBox["t3", 
+       StyleBox["j",
+        FontSize->10], 
+       StyleBox[
+        TemplateBox[{"b", "x"},
+         "RowDefault"],
+        FontSize->10]]}]}], "}"}], "StandardForm"], 
+  Matchete`NiceForm]], "Output",
+ CellLabel->"Out[34]//NiceForm=",
+ CellID->212171560,ExpressionUUID->"243a53c4-3ef6-4607-84da-a7d93201845d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+The user might wonder what then is the reason for adding the new CG at all if \
+we simply wish to deconstruct it again. The benefit is that it simplifies the \
+expression, and removes all internal index contractions, which helps identify \
+and collect terms in complicated expressions.\
+\>", "Text",
+ CellID->2098098696,ExpressionUUID->"25e1ada2-b121-4c69-acf1-3d042f754d91"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Having defined ",
+ StyleBox["t3t3", "Input",
+  FontWeight->"Bold"],
+ ", it becomes active in the CG basis and it can be identified in other CG \
+contractions, such as"
+}], "MathCaption",
+ CellID->1890811392,ExpressionUUID->"c5bf062e-dbcb-44ce-931a-484ebac5771f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "k", ",", "l"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "l", ",", "m"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "m", ",", "j"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[35]:=",
+ CellID->404057038,ExpressionUUID->"63a4afe7-dc41-4f90-bbd7-e6ed8ff3f5f3"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"-", 
+    FractionBox["1", "6"], 
+    SubsuperscriptBox["t3t3", 
+     StyleBox["j",
+      FontSize->10], 
+     StyleBox[
+      TemplateBox[{"a", "i", "b"},
+       "RowDefault"],
+      FontSize->10]]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[35]//NiceForm=",
+ CellID->1144554900,ExpressionUUID->"6466ace4-0ec1-4c14-8a66-a3bd06658848"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+When dealing with new composite CGs showing up in a calculation, it can at \
+times be beneficial to co back to the beginning and add a specific suitable \
+CG to the basis (with defined symmetries) rather than relying on those that \
+are automatically defined. Matchete will not assign new CGs in a clever \
+manner but takes the first new contraction that goes outside its basis as a \
+new basis element with no consideration for further practicalities. \
+\>", "Text",
+ CellID->447073332,ExpressionUUID->"4611f3dd-eaba-4479-b156-6f630d135909"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "In place of the contraction of two ",
+ StyleBox["fund",
+  FontWeight->"Bold"],
+ " generators, which does not poses any definite symmetry between the two \
+adjoint indices, we might instead contract the generator with the ",
+ StyleBox["f3",
+  FontWeight->"Bold"],
+ " or ",
+ StyleBox["d3",
+  FontWeight->"Bold"],
+ " tensors. So we remove the automatically defined tensor (removing it from \
+the basis) and define the two new tensors"
+}], "MathCaption",
+ CellID->7963293,ExpressionUUID->"f1abdeb8-5748-4f5f-b044-1968ad3b33fd"],
+
+Cell[BoxData[{
+ RowBox[{"RemoveCG", "[", "t3t3", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DefineCompositeCG", "[", 
+  RowBox[{"tf3", ",", 
+   RowBox[{"{", 
+    RowBox[{"f3", ",", "t3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b", ",", "c"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", "i", ",", "j"}], "}"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DefineCompositeCG", "[", 
+  RowBox[{"td3", ",", 
+   RowBox[{"{", 
+    RowBox[{"d3", ",", "t3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b", ",", "c"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", "i", ",", "j"}], "}"}]}], "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[36]:=",
+ CellID->695079337,ExpressionUUID->"c7183d38-53d9-4128-b685-b118ecd9ed9b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+This time the projection of the generator product onto the basis space is \
+done exclusively in terms of CGs that we have manually defined: CGs with \
+definite symmetries between the adjoint indices:\
+\>", "MathCaption",
+ CellID->1449729939,ExpressionUUID->"097974dc-a0d3-4d9a-b334-41a15a099905"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "i", ",", "k"}], "}"}]}], "]"}], 
+    RowBox[{"CG", "[", 
+     RowBox[{"t3", ",", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "k", ",", "j"}], "}"}]}], "]"}]}], "//", 
+   "ContractCGs"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[39]:=",
+ CellID->261625911,ExpressionUUID->"3b2f21f8-3bf9-46fb-aa48-aab13742698b"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     SubsuperscriptBox["td3", 
+      StyleBox["j",
+       FontSize->10], 
+      StyleBox[
+       TemplateBox[{"a", "b", "i"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{
+     FractionBox["\[ImaginaryI]", "2"], 
+     SubsuperscriptBox["tf3", 
+      StyleBox["j",
+       FontSize->10], 
+      StyleBox[
+       TemplateBox[{"a", "b", "i"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{
+     FractionBox["1", "6"], 
+     SuperscriptBox["\[Delta]", 
+      StyleBox[
+       TemplateBox[{"a", "b"},
+        "RowDefault"],
+       FontSize->10]], 
+     SubsuperscriptBox["\[Delta]", 
+      StyleBox["j",
+       FontSize->10], 
+      StyleBox["i",
+       FontSize->10]]}]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[39]//NiceForm=",
+ CellID->1523178121,ExpressionUUID->"c36be8c7-d4e0-4483-8667-7992a484ca2d"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Guides", "TutorialMoreAboutSection",
+ CellID->1748017139,ExpressionUUID->"0eee191a-6537-4bba-971e-8009689ef7c5"],
+
+Cell[TextData[ButtonBox["Matchete",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Matchete/guide/Matchete"]], "TutorialMoreAbout",
+ CellID->1347764213,ExpressionUUID->"eda2abe3-4616-49d9-85a2-754b251405b8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Tech Notes", "RelatedTutorialsSection",
+ CellID->215619335,ExpressionUUID->"0d76d326-ceec-4555-a6fe-03b82072b848"],
+
+Cell[TextData[ButtonBox["Group Magic",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Matchete/tutorial/GroupMagic"]], "RelatedTutorials",
+ CellID->1109250856,ExpressionUUID->"8d94a6f4-dd65-494c-96c5-4ab863d383b7"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Metadata", "MetadataSection",
+ CellID->873597185,ExpressionUUID->"b4622c64-6ff2-4249-8cdd-e9c0a3214ba5"],
+
+Cell[TextData[{
+ "New in: ",
+ Cell["XX", "HistoryData",
+  CellTags->"New",ExpressionUUID->"46c88257-d95d-4a24-a034-00613e4df21f"],
+ " | Modified in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Modified",ExpressionUUID->"27ee26ed-0ae3-4d2d-b217-bd19f4de5e38"],
+ " | Obsolete in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Obsolete",ExpressionUUID->
+  "59a4e42e-8603-4487-acdd-37816e883e7f"]
+}], "History",
+ CellID->202193756,ExpressionUUID->"127533ba-6036-4131-a885-cd4f6655eb93"],
+
+Cell[CellGroupData[{
+
+Cell["Categorization", "CategorizationSection",
+ CellID->951327538,ExpressionUUID->"fa124117-8ce1-4271-b6c4-c111e68916e3"],
+
+Cell["Tech Note", "Categorization",
+ CellLabel->"Entity Type",
+ CellID->946179251,ExpressionUUID->"f90711da-0a6d-476f-8ea4-17fb583b4bb9"],
+
+Cell["Matchete", "Categorization",
+ CellLabel->"Paclet Name",
+ CellID->318265522,ExpressionUUID->"5ce63ad1-e90d-44a1-ba91-324554b94e80"],
+
+Cell["Matchete`", "Categorization",
+ CellLabel->"Context",
+ CellID->1854347224,ExpressionUUID->"39c067a6-db89-4c73-a8e9-6ee390722597"],
+
+Cell["Matchete/tutorial/CGCoefficients", "Categorization",
+ CellLabel->"URI",
+ CellID->1731108504,ExpressionUUID->"1cf4842f-e3aa-4180-904e-3a24d58f4c47"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Keywords", "KeywordsSection",
+ CellID->632177172,ExpressionUUID->"4910afb2-404f-4d57-aeba-e21868f6eb73"],
+
+Cell["Clebsch-Gordan", "Keywords",
+ CellID->1400128095,ExpressionUUID->"bbb203ca-b27f-42bc-8f55-fc57aefc51f7"],
+
+Cell["Coefficients", "Keywords",
+ CellID->244822253,ExpressionUUID->"4117d6cb-6766-4f2f-be76-0110cca186d6"],
+
+Cell["Group invariants", "Keywords",
+ CellID->2126649039,ExpressionUUID->"e21be410-4820-418d-a282-4af949ca5eaf"],
+
+Cell["CG", "Keywords",
+ CellID->1200557740,ExpressionUUID->"c2b248b1-0b14-4f5c-aa23-a4fa6074c6ce"],
+
+Cell["Contraction", "Keywords",
+ CellID->1762424272,ExpressionUUID->"4dffb137-30f5-4f54-b429-011e8e065cdb"],
+
+Cell["Basis", "Keywords",
+ CellID->491563198,ExpressionUUID->"c6db1d52-e9bf-40ca-b56d-8b29498d6957"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{756, 916},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+TaggingRules-><|"Paclet" -> "Matchete"|>,
+TrackCellChangeTimes->False,
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "TechNotePageStylesExt.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"eb201f8d-af3c-4ce7-a995-753023b2e5e2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 107, 1, 114, "Title",ExpressionUUID->"36a8a731-d81c-461f-b9ca-d31dc0b24bed",
+ CellID->529115844],
+Cell[690, 25, 495, 8, 82, "Text",ExpressionUUID->"2e21bd4d-6283-4f1e-a7f2-e82d3ea99592",
+ CellID->120207881],
+Cell[CellGroupData[{
+Cell[1210, 37, 109, 1, 45, "Section",ExpressionUUID->"61419a22-d63b-4ec7-9795-e89aef97bb9b",
+ CellID->1239290677],
+Cell[CellGroupData[{
+Cell[1344, 42, 125, 1, 42, "Subsection",ExpressionUUID->"2324f8e4-9a2e-4f3f-8802-6cff733e48de",
+ CellID->1598132758],
+Cell[1472, 45, 852, 19, 84, "Text",ExpressionUUID->"54818093-567e-4c66-b557-6cb9aca06a63",
+ CellID->751867057],
+Cell[2327, 66, 1012, 25, 94, "DefinitionBox",ExpressionUUID->"2c79d0ad-20d9-4b63-bb7b-258c2a910d2e",
+ CellID->121675449],
+Cell[3342, 93, 163, 3, 30, "Caption",ExpressionUUID->"59ff6ea8-48f6-4cd0-a12d-f9ab473cdc01",
+ CellID->594839399],
+Cell[3508, 98, 845, 16, 105, "Text",ExpressionUUID->"53d29ce3-8a46-41fe-bb4a-a6b2c42b65b9",
+ CellID->1193843836],
+Cell[CellGroupData[{
+Cell[4378, 118, 749, 19, 83, "MathCaption",ExpressionUUID->"80f42a23-ed51-4c9f-95ca-8eb57130fa3b",
+ CellID->303616520],
+Cell[CellGroupData[{
+Cell[5152, 141, 285, 6, 47, "Input",ExpressionUUID->"380e4cf4-20ff-43ca-bfe2-cc98987c2ff4",
+ CellID->461706368],
+Cell[5440, 149, 283, 7, 26, "Output",ExpressionUUID->"eb432d7b-62c1-42c6-a416-ed90b96f606a",
+ CellID->1599503728]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5772, 162, 1045, 21, 134, "MathCaption",ExpressionUUID->"f4a0a967-1a31-4782-93f3-9260ced57d0f",
+ CellID->1390555871],
+Cell[CellGroupData[{
+Cell[6842, 187, 683, 16, 85, "Input",ExpressionUUID->"862c3b1c-047d-4157-b4ec-e5114583e299",
+ CellID->7993596],
+Cell[7528, 205, 1335, 32, 103, "Output",ExpressionUUID->"df2214e9-b07f-4cf0-b96d-a78f680cbd4e",
+ CellID->658863350]
+}, Open  ]]
+}, Open  ]],
+Cell[8890, 241, 1358, 35, 110, "Text",ExpressionUUID->"7af6f9a2-22e1-4384-ba59-bd465edb44c8",
+ CellID->1581854326],
+Cell[10251, 278, 1015, 23, 109, "Text",ExpressionUUID->"eac5eada-2689-472c-b05d-439390226f4d",
+ CellID->1274985093],
+Cell[CellGroupData[{
+Cell[11291, 305, 284, 7, 58, "MathCaption",ExpressionUUID->"5cf91441-ac82-4b48-88ce-383c2a4f14c4",
+ CellID->982528278],
+Cell[11578, 314, 340, 9, 47, "Input",ExpressionUUID->"929552f9-2c67-4d04-854b-41c09bfb2311",
+ CellID->1351006563]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11967, 329, 110, 1, 42, "Subsection",ExpressionUUID->"283b4670-6231-4a63-af5c-5acc987e8daf",
+ CellID->1893821422],
+Cell[12080, 332, 503, 8, 82, "Text",ExpressionUUID->"7b8599a6-25e3-4384-9afe-399163c086bf",
+ CellID->1839337075],
+Cell[12586, 342, 1671, 47, 136, "DefinitionBox",ExpressionUUID->"86fd653c-56cd-46c5-b649-d696cf021db9",
+ CellID->1728747875],
+Cell[14260, 391, 145, 1, 30, "Caption",ExpressionUUID->"6de890b1-af30-4ef4-8cbb-9b435b7e4faa",
+ CellID->1759274862],
+Cell[14408, 394, 745, 16, 86, "Text",ExpressionUUID->"1de036c7-a5b7-46f5-b1df-0af0a6ed43d2",
+ CellID->1615462772],
+Cell[CellGroupData[{
+Cell[15178, 414, 539, 15, 92, "MathCaption",ExpressionUUID->"0c8b6678-e0ed-4bd2-a2fb-3c52889f4367",
+ CellID->1403574612],
+Cell[15720, 431, 1088, 29, 85, "Input",ExpressionUUID->"efb5431e-d015-4a58-9463-e5a78ceaa104",
+ CellID->1918125236]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16845, 465, 1064, 26, 117, "MathCaption",ExpressionUUID->"6d8f5e27-919f-4c41-9f7e-7164bcd7cdba",
+ CellID->1472525733],
+Cell[CellGroupData[{
+Cell[17934, 495, 286, 6, 47, "Input",ExpressionUUID->"ded58649-6126-4951-8ab5-d4d9be8a77b1",
+ CellID->1628922480],
+Cell[18223, 503, 128, 2, 26, "Output",ExpressionUUID->"149a9ea8-b918-4dac-bf21-71ccd2a98de1",
+ CellID->1090639518],
+Cell[18354, 507, 9944, 211, 53, "Output",ExpressionUUID->"167f153b-4842-4f1f-8caa-ae65784ae3ed",
+ CellID->1605451881]
+}, Open  ]]
+}, Open  ]],
+Cell[28325, 722, 895, 19, 108, "Text",ExpressionUUID->"b88ad71b-2924-4391-b674-d45ffde7de6f",
+ CellID->1563912461],
+Cell[CellGroupData[{
+Cell[29245, 745, 438, 12, 75, "MathCaption",ExpressionUUID->"476376dc-5b87-4268-a142-6b66e043ad5b",
+ CellID->662124805],
+Cell[29686, 759, 637, 19, 47, "Input",ExpressionUUID->"8c487f90-76fc-40b2-ad84-9d5d4d6116b9",
+ CellID->71338881]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30360, 783, 969, 19, 134, "MathCaption",ExpressionUUID->"77242d69-bd9c-4c9f-8137-29b270c33c63",
+ CellID->2030367325],
+Cell[31332, 804, 432, 12, 27, "Input",ExpressionUUID->"191a8300-3c52-4636-92bd-c6fff5daeacd",
+ CellID->868480445]
+}, Open  ]],
+Cell[31779, 819, 578, 13, 83, "Text",ExpressionUUID->"579501a3-fcaf-4ff6-9b58-0fccbc497053",
+ CellID->1168667819],
+Cell[32360, 834, 1314, 27, 132, "Text",ExpressionUUID->"733359a1-f45c-4e9b-95b5-24c5a5a4f34f",
+ CellID->1447681770],
+Cell[CellGroupData[{
+Cell[33699, 865, 828, 19, 98, "MathCaption",ExpressionUUID->"d2e313dc-8fd3-4f55-b852-d1333b86183d",
+ CellID->1692376651],
+Cell[34530, 886, 646, 17, 47, "Input",ExpressionUUID->"996459ff-364d-405b-821c-4d8b892806e7",
+ CellID->353468842]
+}, Open  ]],
+Cell[35191, 906, 736, 23, 44, "MathCaption",ExpressionUUID->"957a2563-d0d1-4c67-978a-8b9ab4a86ac4",
+ CellID->1341583228]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35964, 934, 111, 1, 42, "Subsection",ExpressionUUID->"c4584013-f2ae-472e-a14b-4998a43ac984",
+ CellID->2121769318],
+Cell[36078, 937, 718, 20, 46, "DefinitionBox",ExpressionUUID->"dba98ba7-a027-49c1-b72a-cd2566ec5c1e",
+ CellID->868302416],
+Cell[36799, 959, 237, 7, 30, "Caption",ExpressionUUID->"b82cc08f-4022-4806-8d5e-28d5cf1be86f",
+ CellID->1407324347],
+Cell[37039, 968, 1648, 37, 136, "Text",ExpressionUUID->"0a586b0a-5d5d-4038-8ea0-be88a1ae3442",
+ CellID->1474741865],
+Cell[CellGroupData[{
+Cell[38712, 1009, 264, 9, 41, "MathCaption",ExpressionUUID->"580fa12b-01da-4b14-9bfe-7d5a71133251",
+ CellID->1727372414],
+Cell[CellGroupData[{
+Cell[39001, 1022, 300, 8, 47, "Input",ExpressionUUID->"eb33b2c3-38a6-4046-a669-289240e008c2",
+ CellID->116738305],
+Cell[39304, 1032, 468, 13, 26, "Output",ExpressionUUID->"171fade6-46df-44cb-83b6-eb718542e61a",
+ CellID->1845223059],
+Cell[39775, 1047, 344, 11, 31, "Output",ExpressionUUID->"b589bbd8-016c-4804-bebe-feac1165099c",
+ CellID->852606286]
+}, Open  ]]
+}, Open  ]],
+Cell[40146, 1062, 741, 17, 71, "Text",ExpressionUUID->"070e7aa2-59a8-428a-8e78-45e425267732",
+ CellID->1464852780],
+Cell[CellGroupData[{
+Cell[40912, 1083, 381, 9, 45, "MathCaption",ExpressionUUID->"93423e07-815c-46a0-b748-b467b4fd0a5e",
+ CellID->1915966080],
+Cell[CellGroupData[{
+Cell[41318, 1096, 329, 9, 47, "Input",ExpressionUUID->"f8455a3c-42b3-484f-b2d0-a92a87075fda",
+ CellID->124619795],
+Cell[41650, 1107, 468, 13, 26, "Output",ExpressionUUID->"911c6b3e-4917-441e-a655-66cb7b8f365d",
+ CellID->1742956018],
+Cell[42121, 1122, 343, 11, 30, "Output",ExpressionUUID->"6fc873d7-70b6-4fe8-8b4a-012278c638fe",
+ CellID->37365799]
+}, Open  ]]
+}, Open  ]],
+Cell[42491, 1137, 863, 24, 68, "Text",ExpressionUUID->"40cc57c1-ea4e-47fa-805b-9f289f854734",
+ CellID->200448401]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43391, 1166, 106, 1, 42, "Subsection",ExpressionUUID->"91abe987-5724-4ad5-a914-4ee94bc65ebd",
+ CellID->1313888525],
+Cell[43500, 1169, 732, 14, 105, "Text",ExpressionUUID->"c73ad3bb-87eb-4f35-87b6-d9b9a9536a91",
+ CellID->1213726680],
+Cell[44235, 1185, 1367, 33, 168, "DefinitionBox",ExpressionUUID->"68366f02-1b4c-47f1-903a-ee42d6cc1aa3",
+ CellID->500697427],
+Cell[45605, 1220, 182, 4, 30, "Caption",ExpressionUUID->"366ba8c6-bbed-492a-be09-86b1ab173275",
+ CellID->1380726643]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45836, 1230, 109, 1, 45, "Section",ExpressionUUID->"65d00db8-5cbb-438b-a6e4-0e2dfab133f6",
+ CellID->659413397],
+Cell[CellGroupData[{
+Cell[45970, 1235, 124, 1, 42, "Subsection",ExpressionUUID->"4254af29-1eaa-4f2c-84b4-3994956d3c3a",
+ CellID->908394077],
+Cell[46097, 1238, 1012, 23, 90, "Text",ExpressionUUID->"194a1dbc-39f9-4470-9042-93812b19b0f2",
+ CellID->850818125],
+Cell[CellGroupData[{
+Cell[47134, 1265, 267, 9, 41, "MathCaption",ExpressionUUID->"755f3358-f096-493e-b4d1-f04eed05bd85",
+ CellID->1319449335],
+Cell[CellGroupData[{
+Cell[47426, 1278, 419, 13, 27, "Input",ExpressionUUID->"6509929b-bbc8-45e2-a920-4c65717b61cc",
+ CellID->1068834423],
+Cell[47848, 1293, 483, 15, 41, "Output",ExpressionUUID->"6e02e44b-6917-4b7d-99a1-7d40311336a7",
+ CellID->941758869]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48380, 1314, 171, 3, 41, "MathCaption",ExpressionUUID->"855139f3-4763-49a8-9e5b-cd72afebde54",
+ CellID->1211304113],
+Cell[CellGroupData[{
+Cell[48576, 1321, 1078, 34, 66, "Input",ExpressionUUID->"cbfe4be4-f015-4079-bf03-f32ee5dc5e88",
+ CellID->243253631],
+Cell[49657, 1357, 355, 11, 41, "Output",ExpressionUUID->"8cc4ac75-c534-4d01-9844-bcf3a3477c85",
+ CellID->1186832893],
+Cell[50015, 1370, 360, 11, 41, "Output",ExpressionUUID->"2aa6b65c-dcf5-4c7e-94c4-114790de740b",
+ CellID->1272319315]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50424, 1387, 157, 2, 41, "MathCaption",ExpressionUUID->"90009e20-5f20-43ac-90da-a6527b9aba9b",
+ CellID->891841631],
+Cell[CellGroupData[{
+Cell[50606, 1393, 1176, 37, 66, "Input",ExpressionUUID->"5c28b5b7-3692-40e0-9d54-a90249bc2448",
+ CellID->1893919804],
+Cell[51785, 1432, 130, 2, 26, "Output",ExpressionUUID->"7b8712dd-e476-4171-8116-6e556564cb72",
+ CellID->1376054026]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[51964, 1440, 396, 9, 62, "MathCaption",ExpressionUUID->"904bbc67-c788-4241-8b05-d3140b330db5",
+ CellID->1970580728],
+Cell[CellGroupData[{
+Cell[52385, 1453, 1063, 32, 66, "Input",ExpressionUUID->"dc008118-263f-4bdb-9272-f5b057cfdb5f",
+ CellID->1057491462],
+Cell[53451, 1487, 973, 33, 41, "Output",ExpressionUUID->"0a1ce752-3f45-433c-939a-f441cb3fc382",
+ CellID->1088620439]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54473, 1526, 289, 7, 58, "MathCaption",ExpressionUUID->"2dac69fe-3340-4ce9-bc63-4b40bcde6032",
+ CellID->69614546],
+Cell[CellGroupData[{
+Cell[54787, 1537, 716, 22, 47, "Input",ExpressionUUID->"8cf0ad40-2182-4b14-b58c-c28eca8f372b",
+ CellID->1780570654],
+Cell[55506, 1561, 314, 9, 29, "Output",ExpressionUUID->"7a43a60e-dd85-4b61-8d61-b077ca37afee",
+ CellID->2030529480]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55869, 1576, 169, 3, 41, "MathCaption",ExpressionUUID->"8f4be64c-0bab-4749-ad68-c4c8666ea3f9",
+ CellID->540146888],
+Cell[CellGroupData[{
+Cell[56063, 1583, 715, 22, 47, "Input",ExpressionUUID->"ef6d994d-ceea-4c7a-96a2-db7d5114bef8",
+ CellID->835370747],
+Cell[56781, 1607, 1424, 53, 41, "Output",ExpressionUUID->"d3aeae68-9c38-4a78-84d6-9b5b7f2528de",
+ CellID->1446335883]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58254, 1666, 147, 1, 41, "MathCaption",ExpressionUUID->"eac3b6af-41a5-4467-9e61-255c0b6b0313",
+ CellID->1498261629],
+Cell[CellGroupData[{
+Cell[58426, 1671, 460, 14, 27, "Input",ExpressionUUID->"53a7f9fa-6d6a-4950-b6d9-f689fc1f49bc",
+ CellID->2037437528],
+Cell[58889, 1687, 791, 29, 41, "Output",ExpressionUUID->"b50da113-72c6-4bd2-8eff-8c0fa050a9de",
+ CellID->1199785188]
+}, Open  ]]
+}, Open  ]],
+Cell[59707, 1720, 637, 12, 86, "Text",ExpressionUUID->"ad37c4a6-e6d2-4356-998f-6ea98c121c1a",
+ CellID->1027299401]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60381, 1737, 121, 1, 42, "Subsection",ExpressionUUID->"53ffb04a-3263-4d44-a2a1-397908c7ffa4",
+ CellID->1397868064],
+Cell[60505, 1740, 583, 12, 67, "Text",ExpressionUUID->"28b9abf7-f0f2-494b-9d44-23570178f48f",
+ CellID->149962616],
+Cell[CellGroupData[{
+Cell[61113, 1756, 630, 20, 63, "MathCaption",ExpressionUUID->"00a6d355-80c6-47c3-85a4-a57062dddae4",
+ CellID->1326063212],
+Cell[CellGroupData[{
+Cell[61768, 1780, 459, 14, 27, "Input",ExpressionUUID->"9faa9767-d6c2-4c03-910c-bd369138935b",
+ CellID->559115518],
+Cell[62230, 1796, 554, 10, 22, "Echo",ExpressionUUID->"ac3eac02-4c1b-4942-a5df-07fcf640344e",
+ CellID->2065693033],
+Cell[62787, 1808, 351, 11, 31, "Output",ExpressionUUID->"794f272d-724f-4f6e-a925-b2a1bffeaa66",
+ CellID->1882168229]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63187, 1825, 531, 13, 79, "MathCaption",ExpressionUUID->"d307db0f-2ffa-4e9c-9507-6dc560ffe68c",
+ CellID->1561233747],
+Cell[CellGroupData[{
+Cell[63743, 1842, 558, 16, 47, "Input",ExpressionUUID->"d6f8be89-b924-4cb9-9a81-848d659f5f4b",
+ CellID->1700386783],
+Cell[64304, 1860, 352, 11, 31, "Output",ExpressionUUID->"558313b1-d247-4778-a955-35568f14d93c",
+ CellID->1167304493]
+}, Open  ]]
+}, Open  ]],
+Cell[64683, 1875, 1914, 42, 189, "Text",ExpressionUUID->"105f349f-b8ec-4371-b7bc-189d549dbd9e",
+ CellID->786367001],
+Cell[CellGroupData[{
+Cell[66622, 1921, 789, 22, 83, "MathCaption",ExpressionUUID->"a80c4787-958b-4a04-8b8f-d57fbd91bd02",
+ CellID->949318001],
+Cell[CellGroupData[{
+Cell[67436, 1947, 1145, 34, 85, "Input",ExpressionUUID->"3e035f93-eb9e-410e-a2f6-a10e5b9aea3d",
+ CellID->1531629244],
+Cell[68584, 1983, 1373, 53, 33, "Output",ExpressionUUID->"590dcc35-2e02-45d7-9dc3-538b1362288d",
+ CellID->1623498506],
+Cell[69960, 2038, 734, 27, 33, "Output",ExpressionUUID->"243a53c4-3ef6-4607-84da-a7d93201845d",
+ CellID->212171560]
+}, Open  ]]
+}, Open  ]],
+Cell[70721, 2069, 385, 6, 63, "Text",ExpressionUUID->"25e1ada2-b121-4c69-acf1-3d042f754d91",
+ CellID->2098098696],
+Cell[CellGroupData[{
+Cell[71131, 2079, 280, 7, 58, "MathCaption",ExpressionUUID->"c5bf062e-dbcb-44ce-931a-484ebac5771f",
+ CellID->1890811392],
+Cell[CellGroupData[{
+Cell[71436, 2090, 715, 22, 47, "Input",ExpressionUUID->"63a4afe7-dc41-4f90-bbd7-e6ed8ff3f5f3",
+ CellID->404057038],
+Cell[72154, 2114, 406, 13, 41, "Output",ExpressionUUID->"6466ace4-0ec1-4c14-8a66-a3bd06658848",
+ CellID->1144554900]
+}, Open  ]]
+}, Open  ]],
+Cell[72587, 2131, 552, 8, 101, "Text",ExpressionUUID->"4611f3dd-eaba-4479-b156-6f630d135909",
+ CellID->447073332],
+Cell[CellGroupData[{
+Cell[73164, 2143, 541, 14, 92, "MathCaption",ExpressionUUID->"f1abdeb8-5748-4f5f-b044-1968ad3b33fd",
+ CellID->7963293],
+Cell[73708, 2159, 832, 24, 66, "Input",ExpressionUUID->"c7183d38-53d9-4128-b685-b118ecd9ed9b",
+ CellID->695079337]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[74577, 2188, 306, 5, 75, "MathCaption",ExpressionUUID->"097974dc-a0d3-4d9a-b334-41a15a099905",
+ CellID->1449729939],
+Cell[CellGroupData[{
+Cell[74908, 2197, 459, 14, 27, "Input",ExpressionUUID->"3b2f21f8-3bf9-46fb-aa48-aab13742698b",
+ CellID->261625911],
+Cell[75370, 2213, 956, 35, 41, "Output",ExpressionUUID->"c36be8c7-d4e0-4483-8667-7992a484ca2d",
+ CellID->1523178121]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76399, 2256, 126, 1, 74, "TutorialMoreAboutSection",ExpressionUUID->"0eee191a-6537-4bba-971e-8009689ef7c5",
+ CellID->1748017139],
+Cell[76528, 2259, 201, 3, 24, "TutorialMoreAbout",ExpressionUUID->"eda2abe3-4616-49d9-85a2-754b251405b8",
+ CellID->1347764213]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76766, 2267, 128, 1, 74, "RelatedTutorialsSection",ExpressionUUID->"0d76d326-ceec-4555-a6fe-03b82072b848",
+ CellID->215619335],
+Cell[76897, 2270, 208, 3, 24, "RelatedTutorials",ExpressionUUID->"8d94a6f4-dd65-494c-96c5-4ab863d383b7",
+ CellID->1109250856]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[77154, 2279, 110, 1, 72, "MetadataSection",ExpressionUUID->"b4622c64-6ff2-4249-8cdd-e9c0a3214ba5",
+ CellID->873597185],
+Cell[77267, 2282, 476, 12, 26, "History",ExpressionUUID->"127533ba-6036-4131-a885-cd4f6655eb93",
+ CellID->202193756],
+Cell[CellGroupData[{
+Cell[77768, 2298, 122, 1, 21, "CategorizationSection",ExpressionUUID->"fa124117-8ce1-4271-b6c4-c111e68916e3",
+ CellID->951327538],
+Cell[77893, 2301, 137, 2, 34, "Categorization",ExpressionUUID->"f90711da-0a6d-476f-8ea4-17fb583b4bb9",
+ CellID->946179251],
+Cell[78033, 2305, 136, 2, 34, "Categorization",ExpressionUUID->"5ce63ad1-e90d-44a1-ba91-324554b94e80",
+ CellID->318265522],
+Cell[78172, 2309, 134, 2, 34, "Categorization",ExpressionUUID->"39c067a6-db89-4c73-a8e9-6ee390722597",
+ CellID->1854347224],
+Cell[78309, 2313, 153, 2, 34, "Categorization",ExpressionUUID->"1cf4842f-e3aa-4180-904e-3a24d58f4c47",
+ CellID->1731108504]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[78499, 2320, 110, 1, 21, "KeywordsSection",ExpressionUUID->"4910afb2-404f-4d57-aeba-e21868f6eb73",
+ CellID->632177172],
+Cell[78612, 2323, 110, 1, 20, "Keywords",ExpressionUUID->"bbb203ca-b27f-42bc-8f55-fc57aefc51f7",
+ CellID->1400128095],
+Cell[78725, 2326, 107, 1, 20, "Keywords",ExpressionUUID->"4117d6cb-6766-4f2f-be76-0110cca186d6",
+ CellID->244822253],
+Cell[78835, 2329, 112, 1, 20, "Keywords",ExpressionUUID->"e21be410-4820-418d-a282-4af949ca5eaf",
+ CellID->2126649039],
+Cell[78950, 2332, 98, 1, 20, "Keywords",ExpressionUUID->"c2b248b1-0b14-4f5c-aa23-a4fa6074c6ce",
+ CellID->1200557740],
+Cell[79051, 2335, 107, 1, 20, "Keywords",ExpressionUUID->"4dffb137-30f5-4f54-b429-011e8e065cdb",
+ CellID->1762424272],
+Cell[79161, 2338, 100, 1, 20, "Keywords",ExpressionUUID->"c6db1d52-e9bf-40ca-b56d-8b29498d6957",
+ CellID->491563198]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

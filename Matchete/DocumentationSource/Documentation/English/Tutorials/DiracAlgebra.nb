@@ -1,0 +1,1298 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     45589,       1290]
+NotebookOptionsPosition[     35764,       1078]
+NotebookOutlinePosition[     36333,       1097]
+CellTagsIndexPosition[     36290,       1094]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Dirac Algebra", "Title",
+ CellFrame->{{0, 0}, {2, 0}},
+ CellFrameColor->GrayLevel[0.75],
+ CellID->1191446566,ExpressionUUID->"94e78f90-799a-4df5-83df-faf57a8d394d"],
+
+Cell[TextData[{
+ "This note discusses the details of the \[ScriptD]-dimensional Dirac algebra \
+as implemented in Matchete. At present Matchete operates with an \
+anti-commuting implementation of ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",ExpressionUUID->
+  "b2f9c320-5914-41a9-94c5-ebc7e210c3a2"],
+ " (Naive Dimensional Regularization), which implies that the ",
+ StyleBox["Dirac trace is non-cyclic",
+  FontSlant->"Italic"],
+ " in order to avoid mathematical inconsistencies."
+}], "Text",
+ CellID->1504910134,ExpressionUUID->"dbebc0c8-bc89-40cd-93a0-a97baa8e2e72"],
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[Cell[BoxData[
+     FormBox[Cell[TextData[Cell[BoxData[
+       FormBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           SubscriptBox["\[Gamma]", "\[Mu]"], ",", 
+           SubscriptBox["\[Gamma]", "\[Nu]"]}], "}"}], " ", "=", " ", 
+         RowBox[{"2", " ", 
+          SubscriptBox["g", "\[Mu]\[Nu]"]}]}], TraditionalForm]], 
+       "InlineFormula",ExpressionUUID->
+       "c4a15262-fe15-430e-bf7f-07e098ff48b4"]],ExpressionUUID->
+       "fc0ddc4f-1653-40ce-a669-d4da03dae7bc"], TraditionalForm]], 
+     "InlineFormula",ExpressionUUID->"48b81155-e79e-4050-aeb1-d77580beec70"]],
+     ExpressionUUID->"2e6d6f1a-beb7-474a-a10d-1529fc950cb0"], Cell[TextData[
+    Cell[BoxData[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        SubscriptBox["\[Gamma]", "\[Mu]"], ",", " ", 
+        SubscriptBox["\[Gamma]", "5"]}], "}"}], " ", "=", " ", "0"}]], 
+     "InlineFormula",ExpressionUUID->"1190598c-f8ef-4b5f-9d8a-191bd828cb57"]],
+     ExpressionUUID->"2494da2e-096d-4931-9d9c-97515370a87f"], Cell[TextData[
+    Cell[BoxData[
+     RowBox[{
+      SuperscriptBox[
+       SubscriptBox["\[Gamma]", "5"], "2"], " ", "=", " ", "1"}]], 
+     "InlineFormula",ExpressionUUID->"f21591d4-aa01-4f55-a79e-4e473352db02"]],
+      "TableText",ExpressionUUID->"3f083792-8575-4d88-8521-4201ff912555"]}
+  }]], "DefinitionBox3Col",
+ CellID->1631537412,ExpressionUUID->"2a9eb469-e75d-4c2b-9c9f-bece0f48c1b2"],
+
+Cell["\<\
+Definitions for the \[ScriptD]-dimensional continuation of the Dirac algebra.\
+\
+\>", "Caption",
+ CellID->30594941,ExpressionUUID->"dd8d98dd-ac47-4810-a96f-d731711f33db"],
+
+Cell[TextData[{
+ "Thus, ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",ExpressionUUID->
+  "9a98fdd1-4f55-4a69-bea7-6f54171197bd"],
+ " is treated as a purely symbolic object and does not equate to an \
+antisymmetric combination of four ordinary Dirac matrices. "
+}], "Text",
+ CellID->1012962278,ExpressionUUID->"7d2fbc67-28df-4ee6-b8da-ff5820df0b83"],
+
+Cell["\<\
+There are primarily two methods relevant for the Dirac algebra: \
+\>", "Text",
+ CellID->192973095,ExpressionUUID->"63a2b4ca-1a39-4779-a4d6-d47c9c81516b"],
+
+Cell[BoxData[GridBox[{
+   {
+    ButtonBox["RefineDiracProducts",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/RefineDiracProducts"], 
+    StyleBox[
+     RowBox[{
+     "decomposes", " ", "products", " ", "of", " ", "Dirac", " ", "matrices", 
+      " ", "to", " ", "a", " ", "basis"}], "MathCaption"]},
+   {
+    ButtonBox["DiracTrace",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/DiracTrace"], 
+    StyleBox[
+     RowBox[{
+     "performs", " ", "the", " ", "Dirac", " ", "trace", " ", "of", " ", "an",
+       " ", "expression", " "}], "MathCaption"]}
+  }]], "DefinitionBox",
+ CellID->659457158,ExpressionUUID->"7041987b-498d-48eb-8be0-4d042465f005"],
+
+Cell["\<\
+Functions to simplify and evaluate Dirac algebra expressions.\
+\>", "Caption",
+ CellID->333352339,ExpressionUUID->"57a9e6fa-da54-476f-8e14-66f566af0608"],
+
+Cell[CellGroupData[{
+
+Cell["Objects of the Dirac algebra", "Section",
+ CellID->1202457294,ExpressionUUID->"b24d03c1-7ae7-4994-ab73-ea8a4bb9ae3a"],
+
+Cell[BoxData[GridBox[{
+   {
+    StyleBox[
+     RowBox[{"Short", " ", "hand"}], "MathCaption"], 
+    StyleBox[
+     RowBox[{"Internal", " ", "object"}], "MathCaption"], Cell[TextData[
+    StyleBox["Description", "MathCaption"]], "TableText",ExpressionUUID->
+     "b9136701-f3aa-4ed0-a580-a69c5ebffba9"]},
+   {
+    ButtonBox[
+     ButtonBox[
+      ButtonBox[
+       RowBox[{"\[Gamma]", "[", 
+        RowBox[{"\[Mu]", ",", "\[Ellipsis]"}], "]"}],
+       BaseStyle->"Link",
+       ButtonData->"paclet:Matchete/ref/"],
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/Gamma"],
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/Gamma"], 
+    ButtonBox["GammaM",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/GammaM"], Cell[TextData[Cell[BoxData[
+    Cell[TextData[{
+      Cell[BoxData[
+       SubscriptBox["\[Gamma]", "\[Mu]"]], "InlineFormula",
+       FormatType->StandardForm,ExpressionUUID->
+       "687b7170-cac2-4751-8f48-96277ad6715a"],
+      " matrix and anti-symmtrized products of the same"
+     }], "TableText",ExpressionUUID->"4dbaa6ac-7b0d-4e74-b744-01a290cc0033"]],
+     
+     CellChangeTimes->{{3.9422283407554493`*^9, 3.942228399878103*^9}, {
+      3.942228617519314*^9, 3.942228984946012*^9}, {3.943085642223205*^9, 
+      3.943085743843797*^9}},ExpressionUUID->
+     "3b9310c4-1863-446e-8600-fd28906d5f4c"]], "TableText",ExpressionUUID->
+     "125c5fdb-6411-40a1-ae1c-a8414f9d6efd"]},
+   {
+    ButtonBox[
+     ButtonBox[
+      RowBox[{"\[Gamma]", "[", "5", "]"}],
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/Gamma"],
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/Gamma5"], 
+    ButtonBox["Gamma5",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/Gamma5"], Cell[TextData[Cell[BoxData[
+    Cell[TextData[{
+      Cell[BoxData[
+       SubscriptBox["\[Gamma]", "5"]], "InlineFormula",ExpressionUUID->
+       "15e5fbbf-9b94-4281-a5a6-395c1ada5804"],
+      " matrix"
+     }], "TableText",ExpressionUUID->"0dc18683-06c8-48cd-a038-f33e5b91c7ec"]],
+     
+     CellChangeTimes->{{3.9422283407554493`*^9, 3.942228399878103*^9}, {
+      3.942228617519314*^9, 3.942228984946012*^9}, {3.943085642223205*^9, 
+      3.943085743843797*^9}},ExpressionUUID->
+     "0e47669a-da63-4515-9b7a-f0943085ce2f"]], "TableText",ExpressionUUID->
+     "9c7d5999-96f5-408c-a1e2-e9ab541cb2e3"]},
+   {
+    RowBox[{
+     ButtonBox["PL",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/PL"], ",", " ", 
+     ButtonBox["PR",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/PR"], " "}], 
+    ButtonBox["Proj",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/Proj"], Cell[TextData[{
+     "Projection matrices ",
+     Cell[BoxData[
+      RowBox[{
+       SubscriptBox["P", 
+        RowBox[{"L", ",", "R"}]], "=", 
+       RowBox[{
+        FractionBox["1", "2"], 
+        RowBox[{"(", 
+         RowBox[{"1", "\[MinusPlus]", 
+          SubscriptBox["\[Gamma]", "5"]}], ")"}]}]}]], "InlineFormula",
+      ExpressionUUID->"33781eef-d82c-46e8-af40-4e04a3ed7af3"]
+    }], "TableText",ExpressionUUID->"90d82e0d-7274-414c-9ed8-6be2a423840d"]},
+   {
+    RowBox[{
+     ButtonBox["CC",
+      BaseStyle->"Link",
+      ButtonData->"paclet:Matchete/ref/CC"], " "}], 
+    ButtonBox["GammaCC",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/GammaCC"], Cell[TextData[Cell[BoxData[
+    Cell[TextData[{
+      "The charge conjugation matric ",
+      Cell[BoxData[
+      "C"], "InlineFormula",ExpressionUUID->
+       "bf2a3aee-c4a5-4985-b48e-29eb50550aa9"]
+     }], "TableText",ExpressionUUID->"f5726e68-d0b3-45a9-830c-28d50566614e"]],
+     
+     CellChangeTimes->{{3.9422283407554493`*^9, 3.942228399878103*^9}, {
+      3.942228617519314*^9, 3.942228984946012*^9}, {3.943085642223205*^9, 
+      3.943085743843797*^9}},ExpressionUUID->
+     "6949e350-eb3f-425d-86de-d5c84cd7d2ee"]], "TableText",ExpressionUUID->
+     "812b55f6-fc47-4593-9cbf-e4a73b1ee210"]},
+   {
+    ButtonBox["\[Sigma]",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/Sigma"], 
+    ButtonBox["GammaM",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Matchete/ref/GammaM"], Cell[TextData[{
+     Cell[BoxData[
+      SubscriptBox["\[Sigma]", "\[Mu]\[Nu]"]], "InlineFormula",
+      FormatType->StandardForm,ExpressionUUID->
+      "28ba844e-25ca-4456-96b6-24af0298d914"],
+     " matrix"
+    }], "TableText",ExpressionUUID->"54583eed-72f3-4362-b72e-ee798252defc"]}
+  }]], "DefinitionBox3Col",
+ CellID->153748130,ExpressionUUID->"dbbd4ec4-16e2-402d-ae50-07dbb210707c"],
+
+Cell["\<\
+Basic objects of the Dirac algebra with their convenient user-exposed \
+notation and their internal representation.\
+\>", "Caption",
+ CellID->621993569,ExpressionUUID->"db0c29c0-d30e-44d5-a9b3-4645f30617fc"],
+
+Cell[TextData[{
+ "Matrix multiplication in the space of Dirac algebra is done with ",
+ ButtonBox["NonCommutativeMultiply",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Matchete/ref/NonCommutativeMultiply"],
+ ", which can be input with the in build Mathematica notation \"",
+ StyleBox["**", "Input"],
+ ".\" This Dirac spinors in the form of fermion fields, can also multiply in \
+to the spin chains, created with ",
+ ButtonBox["NonCommutativeMultiply",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Matchete/ref/NonCommutativeMultiply"],
+ ". All Dirac matrices in a spin chain get merged into a ",
+ Cell[BoxData[
+  ButtonBox["DiracProduct",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DiracProduct"]], "InlineFormula",
+  ExpressionUUID->"30cee8c1-bb21-4397-b465-133411d987b6"],
+ " head."
+}], "Text",
+ CellID->60265350,ExpressionUUID->"5a8bb25a-3d80-44e9-b4ff-2420d841a49f"],
+
+Cell[CellGroupData[{
+
+Cell["An example of a Dirac product contraction is", "MathCaption",
+ CellID->1450927200,ExpressionUUID->"cd4b5d0e-4eff-490a-a936-b2094525c4b2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}], "**", 
+  "PL"}], "\[IndentingNewLine]", 
+ RowBox[{"%", "//", "NiceForm"}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->1056638715,ExpressionUUID->"a90562e0-8a34-4922-9587-04b34e96a717"],
+
+Cell[BoxData[
+ RowBox[{"NonCommutativeMultiply", "[", 
+  RowBox[{"DiracProduct", "[", 
+   RowBox[{
+    RowBox[{"GammaM", "[", 
+     RowBox[{"Index", "[", 
+      RowBox[{"\[Mu]", ",", "Lorentz"}], "]"}], "]"}], ",", 
+    RowBox[{"Proj", "[", 
+     RowBox[{"-", "1"}], "]"}]}], "]"}], "]"}]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->251864891,ExpressionUUID->"88115c31-a854-4fd2-811a-ca91795449ab"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    SubscriptBox["\[Gamma]", 
+     StyleBox["\[Mu]",
+      FontSize->10]], 
+    SubscriptBox["P", "L"]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[4]//NiceForm=",
+ CellID->402954800,ExpressionUUID->"c3e2f837-b13e-4772-8f7a-7851cbec872b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Some simplifications happen automatically when Diarc matrices are contracted. \
+Some examples are\
+\>", "MathCaption",
+ CellID->1867528290,ExpressionUUID->"76143bc6-2ad1-4a37-ac90-1f72ca88d778"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PL", "**", 
+   RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}]}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->2074469125,ExpressionUUID->"8944e670-6e48-44d7-8255-c2a8cc8c1901"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    SubscriptBox["\[Gamma]", 
+     StyleBox["\[Mu]",
+      FontSize->10]], 
+    SubscriptBox["P", "R"]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[5]//NiceForm=",
+ CellID->1445384609,ExpressionUUID->"a7001227-1eaa-4694-ba92-042f4b6d9f12"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CC", "**", 
+   RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}], "**", "CC"}], "//", 
+  "NiceForm"}]], "Input",
+ CellLabel->"In[6]:=",
+ CellID->1005607572,ExpressionUUID->"d8416f77-2c47-4410-a464-48755cbced3e"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SuperscriptBox[
+    SubscriptBox["\[Gamma]", 
+     StyleBox["\[Mu]",
+      FontSize->10]], "T"], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[6]//NiceForm=",
+ CellID->244108599,ExpressionUUID->"00f87280-4bed-442f-8673-6c60f8410d2d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "The charge conjugation matrices, ",
+ Cell[BoxData[
+  ButtonBox["CC",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/CC"]], "InlineFormula",ExpressionUUID->
+  "a6765da8-102d-4219-9f37-83910519a4ec"],
+ "/",
+ Cell[BoxData[
+  ButtonBox["GammaCC",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/GammaCC"]], "InlineFormula",
+  ExpressionUUID->"7cb5073b-dc45-4616-a53c-a57b32c0b346"],
+ ", in \[ScriptD]-dimensions, are defined by the properties "
+}], "Text",
+ CellID->1484938474,ExpressionUUID->"53f6ea5d-2dd4-4d6a-8701-7187043a5fad"],
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[Cell[BoxData[
+     FormBox[
+      RowBox[{
+       SuperscriptBox["C", 
+        RowBox[{"-", "1"}]], "=", 
+       RowBox[{
+        SuperscriptBox["C", "T"], "=", 
+        RowBox[{"-", "C"}]}]}], TraditionalForm]], "InlineFormula",
+     FormatType->TraditionalForm,ExpressionUUID->
+     "f4f6ac8f-0238-4fec-a13b-1d00b55858dc"]],ExpressionUUID->
+     "5e24c796-4699-4f0b-8a20-63c7e328af57"], Cell[TextData[Cell[BoxData[
+     FormBox[
+      RowBox[{
+       RowBox[{
+        SubscriptBox["C\[Gamma]", "\[Mu]"], "C"}], "=", 
+       SubsuperscriptBox["\[Gamma]", "\[Mu]", "T"]}], TraditionalForm]], 
+     "InlineFormula",
+     FormatType->TraditionalForm,ExpressionUUID->
+     "7b859f84-d333-44d4-8c9d-84b89c2d5164"]],ExpressionUUID->
+     "89c9e449-31e5-4db0-8229-f4ec8ca3be59"], Cell[TextData[Cell[BoxData[
+    Cell[TextData[Cell[BoxData[
+      FormBox[
+       RowBox[{
+        RowBox[{
+         SubscriptBox["C\[Gamma]", "5"], "C"}], "=", 
+        RowBox[{"-", 
+         SubsuperscriptBox["\[Gamma]", "5", "T"]}]}], TraditionalForm]], 
+      "InlineFormula",ExpressionUUID->
+      "1965435c-8767-4db7-a431-07678ed7a13c"]],ExpressionUUID->
+      "56688645-a5ed-49af-a4c8-8f6f1b7afa9d"]],ExpressionUUID->
+     "7d52603f-b3f0-4d00-be58-1375aac16627"]], "TableText",ExpressionUUID->
+     "b96cb324-2e5a-4eb1-adbb-2d0d26044d30"]}
+  }]], "DefinitionBox3Col",
+ CellID->1203310694,ExpressionUUID->"54d2a55c-89bd-4087-b666-e97a7e08ac22"],
+
+Cell["Properties of the charge conjugation matrix.", "Caption",
+ CellID->1189330259,ExpressionUUID->"a6cd2ccc-13b3-4a7d-b6e8-929fdb8f4414"],
+
+Cell["\<\
+These properties are a continuation of the four-dimensional identities (with \
+the choice of a real C)\
+\>", "Text",
+ CellID->1727980790,ExpressionUUID->"16c061e3-d03c-476a-bd28-1de3c97fbe72"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Simplifying \[ScriptD]-dimensional Dirac products ", "Section",
+ CellID->1827763707,ExpressionUUID->"dd76ae8e-11ef-469f-8a66-146c811c4d8f"],
+
+Cell["\<\
+The basis for the \[ScriptD]-dimensional Dirac algebra is infinite \
+dimensional. A suitable basis is formed by all anti-symmetrized products of \
+the gamma matrices. We use the notation \
+\>", "Text",
+ CellID->546840777,ExpressionUUID->"20185cc4-ba15-4cdf-bdc4-fd714c3d723a"],
+
+Cell[TextData[{
+ "\[RawEscape]",
+ Cell[BoxData[
+  RowBox[{
+   SubscriptBox["\[CapitalGamma]", 
+    RowBox[{
+     SubscriptBox["\[Mu]", "1"], 
+     SubscriptBox["\[Ellipsis]\[Mu]", "n"]}]], "=", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"n", "!"}]], 
+    RowBox[{
+     UnderscriptBox["\[Sum]", "\[Sigma]"], 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"-", "1"}], ")"}], "\[Sigma]"], " ", 
+      SubscriptBox["\[Gamma]", 
+       SubscriptBox["\[Mu]", 
+        RowBox[{"\[Sigma]", 
+         RowBox[{"(", "1", ")"}]}]]], 
+      SubscriptBox["\[Ellipsis]\[Gamma]", 
+       SubscriptBox["\[Mu]", 
+        RowBox[{"\[Sigma]", 
+         RowBox[{"(", "n", ")"}]}]]]}]}]}]}]], "InlineFormula",ExpressionUUID->
+  "c180635b-8d0f-4c73-82e5-f11b2442996e"]
+}], "DisplayMath",
+ CellID->1938153869,ExpressionUUID->"e2d34472-74c1-436f-94ce-50a158c0ce53"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+for these basis tensors, and they can be entered conveniently as, e.g.,  \
+\>", "Text",
+ CellID->1384749460,ExpressionUUID->"877e2244-0230-4ab4-b747-be5563b582df"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Gamma]", "[", 
+   RowBox[{"\[Mu]", ",", "\[Nu]"}], "]"}], "//", "NiceForm"}]], "Input",
+ CellLabel->"In[7]:=",
+ CellID->626937853,ExpressionUUID->"a14e92d6-9f9e-40a6-92dd-c323d6553525"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   SubscriptBox["\[CapitalGamma]", 
+    StyleBox[
+     TemplateBox[{"\[Mu]", "\[Nu]"},
+      "RowDefault"],
+     FontSize->10]], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[7]//NiceForm=",
+ CellID->1039457623,ExpressionUUID->"8e8c3a5e-10e9-4ce1-9d27-01e8c5a894fe"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "Matchete, therefore, do not operator with the familiar sigma tensor, but \
+rather uses  ",
+ Cell[BoxData[
+  RowBox[{
+   SubscriptBox["\[CapitalGamma]", "\[Mu]\[Nu]"], "=", " ", 
+   RowBox[{
+    RowBox[{"-", "\[ImaginaryI]"}], " ", 
+    SubscriptBox["\[Sigma]", "\[Mu]\[Nu]"]}]}]], "InlineFormula",
+  ExpressionUUID->"a972c18c-427c-4020-bf58-6f87f8721cd7"],
+ ".  "
+}], "Text",
+ CellID->925673649,ExpressionUUID->"f4e124fb-0ffd-42a0-9b9a-bfbad28059ad"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Any product of Dirac matrices can be expressed as a sum of the \
+anti-symmetric basis tensors. This is done automatically with ",
+ Cell[BoxData[
+  ButtonBox["RefineDiracProducts",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/RefineDiracProducts"]], "InlineFormula",
+  ExpressionUUID->"b8d4ac65-733f-4556-9c72-fc7972a6c1a9"],
+ ": "
+}], "MathCaption",
+ CellID->1883303921,ExpressionUUID->"a04b704a-a5f4-4fcf-b15c-23fd95ef55f1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Gamma]", "[", 
+     RowBox[{"\[Mu]", ",", "\[Nu]"}], "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Rho]", "]"}]}], "//", "RefineDiracProducts"}],
+   "//", "NiceForm"}]], "Input",
+ CellLabel->"In[8]:=",
+ CellID->927527114,ExpressionUUID->"fe3195ef-b592-46e3-a30d-e5dbb3a09f2d"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[Gamma]", 
+      StyleBox["\[Mu]",
+       FontSize->10]], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Nu]", "\[Rho]"},
+        "RowDefault"],
+       FontSize->10]]}], "-", 
+    RowBox[{
+     SubscriptBox["\[Gamma]", 
+      StyleBox["\[Nu]",
+       FontSize->10]], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Mu]", "\[Rho]"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    SubscriptBox["\[CapitalGamma]", 
+     StyleBox[
+      TemplateBox[{"\[Mu]", "\[Nu]", "\[Rho]"},
+       "RowDefault"],
+      FontSize->10]]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[8]//NiceForm=",
+ CellID->384801416,ExpressionUUID->"cbd92cbc-cbe1-4a46-b6ce-99c2015df328"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+This function can also be used in cases where some of the Lorentz indices are \
+contracted with each other:\
+\>", "MathCaption",
+ CellID->1733982266,ExpressionUUID->"d79f927d-278d-4486-99c5-e43409259e14"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[Gamma]", "[", 
+       RowBox[{"a", ",", "b"}], "]"}], "**", 
+      RowBox[{"\[Gamma]", "[", 
+       RowBox[{"b", ",", "c", ",", "d"}], "]"}], "**", "PL"}], "//", 
+     "RefineDiracProducts"}], "//", "ContractMetric"}], "//", "Simplify"}], "//",
+   "NiceForm"}]], "Input",
+ CellLabel->"In[9]:=",
+ CellID->591454702,ExpressionUUID->"25392bb9-cae9-4e62-9ff9-edd533af6187"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", " ", 
+      FormBox[
+       StyleBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "2"}], "+", "\[ScriptD]"}], ")"}],
+        SpanSymmetric->False],
+       StandardForm]}], 
+     RowBox[{
+      SubscriptBox["\[Gamma]", 
+       StyleBox["c",
+        FontSize->10]], 
+      SubscriptBox["P", "L"]}], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"a", "d"},
+        "RowDefault"],
+       FontSize->10]]}], "+", " ", 
+    RowBox[{
+     FormBox[
+      StyleBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "2"}], "+", "\[ScriptD]"}], ")"}],
+       SpanSymmetric->False],
+      StandardForm], 
+     RowBox[{
+      SubscriptBox["\[Gamma]", 
+       StyleBox["d",
+        FontSize->10]], 
+      SubscriptBox["P", "L"]}], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"a", "c"},
+        "RowDefault"],
+       FontSize->10]]}], "+", " ", 
+    RowBox[{
+     FormBox[
+      StyleBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "3"}], "+", "\[ScriptD]"}], ")"}],
+       SpanSymmetric->False],
+      StandardForm], 
+     RowBox[{
+      SubscriptBox["\[CapitalGamma]", 
+       StyleBox[
+        TemplateBox[{"a", "c", "d"},
+         "RowDefault"],
+        FontSize->10]], 
+      SubscriptBox["P", "L"]}]}]}], "StandardForm"], 
+  Matchete`NiceForm]], "Output",
+ CellLabel->"Out[9]//NiceForm=",
+ CellID->1284137595,ExpressionUUID->"16c62e86-cbe5-4039-b286-386d6199487d"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Dirac traces", "Section",
+ CellID->405537326,ExpressionUUID->"2a91632b-9119-42b6-9534-4f0970e74fbb"],
+
+Cell[TextData[{
+ "Dirac traces of a product of Dirac matrices can be performed with ",
+ Cell[BoxData[
+  ButtonBox["DiracTrace",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Matchete/ref/DiracTrace"]], "InlineFormula",
+  ExpressionUUID->"422c46df-b1b1-4177-a413-60ff5fc15c3c"],
+ ". Dirac tracing using anti-commuting ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",
+  FormatType->StandardForm,ExpressionUUID->
+  "a147915f-68c5-47a8-8b16-36dd27af2264"],
+ " is known to cause mathematical ambiguities."
+}], "Text",
+ CellID->955253495,ExpressionUUID->"6b7b9a81-e9fb-4ef6-8f07-9ba02c3c12b9"],
+
+Cell[TextData[{
+ "For traces with and even number of ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",
+  FormatType->StandardForm,ExpressionUUID->
+  "e2ff63e4-74a4-44a9-ba41-f78a822e0b94"],
+ " matrices, the ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",
+  FormatType->StandardForm,ExpressionUUID->
+  "4bb6f499-145b-4f57-93fc-afd1ac883eca"],
+ " matrices can be anti-commuted until they are next to each other and \
+produce the identity. These traces are unambiguous and reproduce the \
+Four-dimensional result, but with \[ScriptD]-dimensional metrics (unless some \
+of the indices are contracted)."
+}], "Text",
+ CellID->1082175686,ExpressionUUID->"8fbc98dd-f228-4df6-98ee-e6f226cbe4dd"],
+
+Cell[CellGroupData[{
+
+Cell["A classic example is the trace of four gamma matrices. ", "MathCaption",
+ CellID->1672194018,ExpressionUUID->"01a5f47d-acca-414b-ad0c-8f07aeab337e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Nu]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Rho]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Sigma]", "]"}]}], "//", "DiracTrace"}], "//", 
+  "NiceForm"}]], "Input",
+ CellLabel->"In[10]:=",
+ CellID->1745838717,ExpressionUUID->"ae1b50f7-740d-4c7a-933d-385c975c94df"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"4", 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Mu]", "\[Sigma]"},
+        "RowDefault"],
+       FontSize->10]], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Nu]", "\[Rho]"},
+        "RowDefault"],
+       FontSize->10]]}], "-", 
+    RowBox[{"4", 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Mu]", "\[Rho]"},
+        "RowDefault"],
+       FontSize->10]], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Nu]", "\[Sigma]"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{"4", 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Mu]", "\[Nu]"},
+        "RowDefault"],
+       FontSize->10]], 
+     SubscriptBox["g", 
+      StyleBox[
+       TemplateBox[{"\[Rho]", "\[Sigma]"},
+        "RowDefault"],
+       FontSize->10]]}]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[10]//NiceForm=",
+ CellID->289906815,ExpressionUUID->"d1aab598-3013-42f6-81cf-4f564f279017"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ "In traces with an odd number of ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",ExpressionUUID->
+  "b1bb65eb-78d8-496f-a3a1-cb88c4c1d0b0"],
+ " matrices, mathematical consistency can be obtained only by giving up on \
+trace cyclicity; that is, in traces with six or more ordinary Dirac matrices \
+in addition to ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",ExpressionUUID->
+  "fa01f01a-03c8-4cc5-8712-7627d3434087"],
+ ", we cannot freely cycle matrices in the trace. This introduces an \
+ambiguous ",
+ Cell[BoxData[
+  RowBox[{"\[ScriptCapitalO]", 
+   RowBox[{"(", "\[Epsilon]", ")"}]}]], "InlineFormula",ExpressionUUID->
+  "fd18b1df-d553-45ec-aeaf-bd57dc767395"],
+ " piece of the trace, which depends on where the trace is started.  A \
+definite value is assigned to the ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",ExpressionUUID->
+  "90f20c7a-db89-41b4-a5b7-9fc6d305721f"],
+ "-odd traces following from the ",
+ ButtonBox["KKS prescription",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://inspirehep.net/literature/318268"], None}],
+ ". This prescription relies on the unique projection of gamma matrices onto \
+the basis of anti-symmetric combinations, ",
+ Cell[BoxData[
+  SubscriptBox["\[CapitalGamma]", 
+   RowBox[{
+    SubscriptBox["\[Mu]", "1"], 
+    SubscriptBox["\[Mu]", "2"], "\[Ellipsis]"}]]], "InlineFormula",
+  ExpressionUUID->"fb09f971-3d4e-41ad-8c56-5264a3d45bc9"],
+ ". We define "
+}], "Text",
+ CellID->119067779,ExpressionUUID->"a98ee4d6-7e63-48db-ab51-64d8ab4fc653"],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{"Tr", "[", 
+    RowBox[{
+     SubscriptBox["\[CapitalGamma]", 
+      RowBox[{
+       SubscriptBox["\[Mu]", "1"], 
+       SubscriptBox["\[Ellipsis]\[Mu]", "n"]}]], 
+     SubscriptBox["\[Gamma]", "5"]}], "]"}], "=", 
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          RowBox[{
+           RowBox[{"-", "4"}], 
+           SubscriptBox["\[ImaginaryI]\[CurlyEpsilon]", 
+            RowBox[{
+             SubscriptBox["\[Mu]", "1"], 
+             SubscriptBox["\[Mu]", "2"], 
+             SubscriptBox["\[Mu]", "3"], 
+             SubscriptBox["\[Mu]", "4"]}]]}], 
+          RowBox[{
+           RowBox[{"for", " ", "n"}], "=", "4"}]},
+         {"0", 
+          RowBox[{
+           RowBox[{"for", " ", "n"}], "\[NotEqual]", "4"}]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True]}], TraditionalForm]], "InlineFormula",
+ FormatType->
+  TraditionalForm,ExpressionUUID->"7a319852-514e-4715-84da-103ef5be9c8b"]], \
+"DisplayMath",
+ CellID->1465942553,ExpressionUUID->"3a6b1a06-7c30-4bd6-b495-28591b039b68"],
+
+Cell[TextData[{
+ "which is consistent with other NDR manipulation of the Dirac matrices \
+inside the trace (though of course ",
+ StyleBox["not",
+  FontSlant->"Italic"],
+ " cyclicity!). As any product of Dirac matrices can be written in terms of \
+the anti-symmetric products, the trace of ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",
+  FormatType->StandardForm,ExpressionUUID->
+  "e9e66768-4eee-4e8d-81a4-ee6e10e91353"],
+ "-odd products follows.  "
+}], "Text",
+ CellID->1441873540,ExpressionUUID->"fabd20dc-f037-4a1a-8e75-b5d38339fc17"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "We obtain the usual result for the trace with 4 ordinary Dirac matrices and \
+",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",
+  FormatType->StandardForm,ExpressionUUID->
+  "e35bd5d2-da88-4d69-9f8c-6adebb470b1a"]
+}], "MathCaption",
+ CellID->2086889666,ExpressionUUID->"d7fbc617-4e18-4470-aa3e-91def3546947"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Nu]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Rho]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Sigma]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "@", "5"}]}], "//", "DiracTrace"}], "//", 
+  "NiceForm"}]], "Input",
+ CellLabel->"In[11]:=",
+ CellID->1651693658,ExpressionUUID->"854f677e-8767-4a34-9b2a-c0715c2d27a1"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"-", 
+    RowBox[{"4", " ", "\[ImaginaryI]"}], 
+    SubscriptBox["\[CurlyEpsilon]", 
+     StyleBox[
+      TemplateBox[{"\[Mu]", "\[Nu]", "\[Rho]", "\[Sigma]"},
+       "RowDefault"],
+      FontSize->10]]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[11]//NiceForm=",
+ CellID->1970928309,ExpressionUUID->"85ed8bec-dd06-4466-8505-8fdff3fd66dd"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The non-cyclicity of ",
+ Cell[BoxData[
+  SubscriptBox["\[Gamma]", "5"]], "InlineFormula",
+  FormatType->StandardForm,ExpressionUUID->
+  "a0841ce6-b8f0-4d9c-920d-504d8d8b019e"],
+ "-odd traces with 6 or more ordinary Dirac matrices readily appear in, e.g., \
+the difference between the two traces"
+}], "MathCaption",
+ CellID->74835986,ExpressionUUID->"85ecab24-23a4-4f53-acdc-cc53ae34210f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Nu]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Rho]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Sigma]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Alpha]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "[", "\[Alpha]", "]"}], "**", 
+    RowBox[{"\[Gamma]", "@", "5"}]}], "//", "DiracTrace"}], "//", 
+  "NiceForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{
+     RowBox[{"\[Gamma]", "[", "\[Alpha]", "]"}], "**", 
+     RowBox[{"\[Gamma]", "[", "\[Mu]", "]"}], "**", 
+     RowBox[{"\[Gamma]", "[", "\[Nu]", "]"}], "**", 
+     RowBox[{"\[Gamma]", "[", "\[Rho]", "]"}], "**", 
+     RowBox[{"\[Gamma]", "[", "\[Sigma]", "]"}], "**", 
+     RowBox[{"\[Gamma]", "[", "\[Alpha]", "]"}], "**", 
+     RowBox[{"\[Gamma]", "@", "5"}]}]}], "//", "DiracTrace"}], "//", 
+  "NiceForm"}]}], "Input",
+ CellLabel->"In[12]:=",
+ CellID->1490483207,ExpressionUUID->"04af4250-dd88-4707-ac65-4e0effd32dab"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"-", 
+    RowBox[{"4", " ", "\[ImaginaryI]"}], "\[ScriptD]", 
+    SubscriptBox["\[CurlyEpsilon]", 
+     StyleBox[
+      TemplateBox[{"\[Mu]", "\[Nu]", "\[Rho]", "\[Sigma]"},
+       "RowDefault"],
+      FontSize->10]]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[12]//NiceForm=",
+ CellID->456834388,ExpressionUUID->"ab0b843a-2a47-46dd-8cc4-fad5da2470fd"],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"-", 
+    RowBox[{
+     RowBox[{"32", " ", "\[ImaginaryI]"}], 
+     SubscriptBox["\[CurlyEpsilon]", 
+      StyleBox[
+       TemplateBox[{"\[Mu]", "\[Nu]", "\[Rho]", "\[Sigma]"},
+        "RowDefault"],
+       FontSize->10]]}], "+", 
+    RowBox[{
+     RowBox[{"4", " ", "\[ImaginaryI]"}], "\[ScriptD]", 
+     SubscriptBox["\[CurlyEpsilon]", 
+      StyleBox[
+       TemplateBox[{"\[Mu]", "\[Nu]", "\[Rho]", "\[Sigma]"},
+        "RowDefault"],
+       FontSize->10]]}]}], "StandardForm"], Matchete`NiceForm]], "Output",
+ CellLabel->"Out[13]//NiceForm=",
+ CellID->761521091,ExpressionUUID->"abf6e59a-2b3f-4d64-91ec-07be364f06be"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Guides", "TutorialMoreAboutSection",
+ CellID->939604442,ExpressionUUID->"e9aaac50-4fbb-4387-a7e5-a00580a96fd5"],
+
+Cell[TextData[ButtonBox["Matchete",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Matchete/guide/Matchete"]], "TutorialMoreAbout",
+ CellID->1484600303,ExpressionUUID->"b75f8d03-b6dd-4105-9c28-ac8fde942042"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Tech Notes", "RelatedTutorialsSection",
+ CellID->64798028,ExpressionUUID->"cb763110-5fe3-4eb3-a4a8-0b89acfe9ba6"],
+
+Cell["XXXX", "RelatedTutorials",
+ CellID->286247567,ExpressionUUID->"048c0116-216a-461f-bdb6-12efc31c42cc"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Metadata", "MetadataSection",
+ CellID->599489289,ExpressionUUID->"164c96e4-fd64-4303-bb39-d6aa06629991"],
+
+Cell[TextData[{
+ "New in: ",
+ Cell["XX", "HistoryData",
+  CellTags->"New",ExpressionUUID->"6aab653b-6afb-47d0-8645-998c2301af59"],
+ " | Modified in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Modified",ExpressionUUID->"1842752e-ffa5-45dd-af03-3290d7376a52"],
+ " | Obsolete in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Obsolete",ExpressionUUID->
+  "78673be7-a431-4f7a-ac01-497d00924cbc"]
+}], "History",
+ CellID->1770692146,ExpressionUUID->"d627e70d-da4a-4f25-b0f2-4ced280c0d59"],
+
+Cell[CellGroupData[{
+
+Cell["Categorization", "CategorizationSection",
+ CellID->194517696,ExpressionUUID->"a9478638-5d8a-4ccb-8e62-a794034d0452"],
+
+Cell["Tech Note", "Categorization",
+ CellLabel->"Entity Type",
+ CellID->788805938,ExpressionUUID->"9cde8dbd-0fc4-4db8-8465-f9d7a46f3ece"],
+
+Cell["Matchete", "Categorization",
+ CellLabel->"Paclet Name",
+ CellID->1044847035,ExpressionUUID->"986365d7-407c-45a5-94cd-5833a1257e9d"],
+
+Cell["Matchete`", "Categorization",
+ CellLabel->"Context",
+ CellID->770335726,ExpressionUUID->"cd387cdc-75ef-44c7-ade4-d3008742fbe8"],
+
+Cell["Matchete/tutorial/DiracAlgebra", "Categorization",
+ CellLabel->"URI",
+ CellID->2001122766,ExpressionUUID->"5e72d40c-b3ce-4d50-8ab2-a28ed758b2a5"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Keywords", "KeywordsSection",
+ CellID->1128932495,ExpressionUUID->"101f4aed-04ed-4410-86ae-cc00d9b89cf5"],
+
+Cell["Dirac", "Keywords",
+ CellID->950422220,ExpressionUUID->"c73cdbb3-b44c-45a6-a8a8-e09f266290ab"],
+
+Cell["Dirac algebra", "Keywords",
+ CellID->1642897006,ExpressionUUID->"acef1777-a57c-4ed5-b57c-139c23530d2d"],
+
+Cell["Gamma matrices", "Keywords",
+ CellID->1788909395,ExpressionUUID->"978f1202-5d0a-4c8c-b9c1-ddce7842ca5e"],
+
+Cell["Gamma", "Keywords",
+ CellID->1520331951,ExpressionUUID->"30f9f255-7f34-4724-9c41-900923ca90af"],
+
+Cell["Gamma 5 ", "Keywords",
+ CellID->991007785,ExpressionUUID->"fa11d544-edfe-47a5-8b3e-cf2b9ddf42a6"],
+
+Cell["Dirac trace", "Keywords",
+ CellID->853166276,ExpressionUUID->"87ac2010-18b1-48c4-af2c-fb7fe63760de"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{756, 916},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+TaggingRules-><|"Paclet" -> "Matchete", "TryRealOnly" -> False|>,
+TrackCellChangeTimes->False,
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "TechNotePageStylesExt.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"b90441d5-0b56-4ccd-9ae2-76844ba41ecd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 170, 3, 124, "Title",ExpressionUUID->"94e78f90-799a-4df5-83df-faf57a8d394d",
+ CellID->1191446566],
+Cell[753, 27, 591, 12, 65, "Text",ExpressionUUID->"dbebc0c8-bc89-40cd-93a0-a97baa8e2e72",
+ CellID->1504910134],
+Cell[1347, 41, 1447, 31, 54, "DefinitionBox3Col",ExpressionUUID->"2a9eb469-e75d-4c2b-9c9f-bece0f48c1b2",
+ CellID->1631537412],
+Cell[2797, 74, 180, 4, 30, "Caption",ExpressionUUID->"dd8d98dd-ac47-4810-a96f-d731711f33db",
+ CellID->30594941],
+Cell[2980, 80, 370, 8, 46, "Text",ExpressionUUID->"7d2fbc67-28df-4ee6-b8da-ff5820df0b83",
+ CellID->1012962278],
+Cell[3353, 90, 163, 3, 25, "Text",ExpressionUUID->"63a2b4ca-1a39-4779-a4d6-d47c9c81516b",
+ CellID->192973095],
+Cell[3519, 95, 682, 18, 72, "DefinitionBox",ExpressionUUID->"7041987b-498d-48eb-8be0-4d042465f005",
+ CellID->659457158],
+Cell[4204, 115, 163, 3, 30, "Caption",ExpressionUUID->"57a9e6fa-da54-476f-8e14-66f566af0608",
+ CellID->333352339],
+Cell[CellGroupData[{
+Cell[4392, 122, 123, 1, 45, "Section",ExpressionUUID->"b24d03c1-7ae7-4994-ab73-ea8a4bb9ae3a",
+ CellID->1202457294],
+Cell[4518, 125, 4547, 116, 222, "DefinitionBox3Col",ExpressionUUID->"dbbd4ec4-16e2-402d-ae50-07dbb210707c",
+ CellID->153748130],
+Cell[9068, 243, 217, 4, 30, "Caption",ExpressionUUID->"db0c29c0-d30e-44d5-a9b3-4645f30617fc",
+ CellID->621993569],
+Cell[9288, 249, 881, 20, 86, "Text",ExpressionUUID->"5a8bb25a-3d80-44e9-b4ff-2420d841a49f",
+ CellID->60265350],
+Cell[CellGroupData[{
+Cell[10194, 273, 143, 1, 41, "MathCaption",ExpressionUUID->"cd4b5d0e-4eff-490a-a936-b2094525c4b2",
+ CellID->1450927200],
+Cell[CellGroupData[{
+Cell[10362, 278, 252, 6, 47, "Input",ExpressionUUID->"a90562e0-8a34-4922-9587-04b34e96a717",
+ CellID->1056638715],
+Cell[10617, 286, 398, 10, 26, "Output",ExpressionUUID->"88115c31-a854-4fd2-811a-ca91795449ab",
+ CellID->251864891],
+Cell[11018, 298, 309, 9, 29, "Output",ExpressionUUID->"c3e2f837-b13e-4772-8f7a-7851cbec872b",
+ CellID->402954800]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11376, 313, 204, 4, 58, "MathCaption",ExpressionUUID->"76143bc6-2ad1-4a37-ac90-1f72ca88d778",
+ CellID->1867528290],
+Cell[CellGroupData[{
+Cell[11605, 321, 221, 5, 27, "Input",ExpressionUUID->"8944e670-6e48-44d7-8255-c2a8cc8c1901",
+ CellID->2074469125],
+Cell[11829, 328, 310, 9, 29, "Output",ExpressionUUID->"a7001227-1eaa-4694-ba92-042f4b6d9f12",
+ CellID->1445384609]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12176, 342, 236, 6, 27, "Input",ExpressionUUID->"d8416f77-2c47-4410-a464-48755cbced3e",
+ CellID->1005607572],
+Cell[12415, 350, 291, 8, 29, "Output",ExpressionUUID->"00f87280-4bed-442f-8673-6c60f8410d2d",
+ CellID->244108599]
+}, Open  ]]
+}, Open  ]],
+Cell[12733, 362, 567, 15, 29, "Text",ExpressionUUID->"53f6ea5d-2dd4-4d6a-8701-7187043a5fad",
+ CellID->1484938474],
+Cell[13303, 379, 1465, 34, 52, "DefinitionBox3Col",ExpressionUUID->"54d2a55c-89bd-4087-b666-e97a7e08ac22",
+ CellID->1203310694],
+Cell[14771, 415, 139, 1, 30, "Caption",ExpressionUUID->"a6cd2ccc-13b3-4a7d-b6e8-929fdb8f4414",
+ CellID->1189330259],
+Cell[14913, 418, 202, 4, 25, "Text",ExpressionUUID->"16c061e3-d03c-476a-bd28-1de3c97fbe72",
+ CellID->1727980790]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15152, 427, 145, 1, 45, "Section",ExpressionUUID->"dd76ae8e-11ef-469f-8a66-146c811c4d8f",
+ CellID->1827763707],
+Cell[15300, 430, 286, 5, 44, "Text",ExpressionUUID->"20185cc4-ba15-4cdf-bdc4-fd714c3d723a",
+ CellID->546840777],
+Cell[15589, 437, 872, 27, 35, "DisplayMath",ExpressionUUID->"e2d34472-74c1-436f-94ce-50a158c0ce53",
+ CellID->1938153869],
+Cell[CellGroupData[{
+Cell[16486, 468, 173, 3, 25, "Text",ExpressionUUID->"877e2244-0230-4ab4-b747-be5563b582df",
+ CellID->1384749460],
+Cell[CellGroupData[{
+Cell[16684, 475, 222, 5, 27, "Input",ExpressionUUID->"a14e92d6-9f9e-40a6-92dd-c323d6553525",
+ CellID->626937853],
+Cell[16909, 482, 321, 9, 30, "Output",ExpressionUUID->"8e8c3a5e-10e9-4ce1-9d27-01e8c5a894fe",
+ CellID->1039457623]
+}, Open  ]]
+}, Open  ]],
+Cell[17257, 495, 468, 12, 29, "Text",ExpressionUUID->"f4e124fb-0ffd-42a0-9b9a-bfbad28059ad",
+ CellID->925673649],
+Cell[CellGroupData[{
+Cell[17750, 511, 456, 10, 62, "MathCaption",ExpressionUUID->"a04b704a-a5f4-4fcf-b15c-23fd95ef55f1",
+ CellID->1883303921],
+Cell[CellGroupData[{
+Cell[18231, 525, 338, 9, 27, "Input",ExpressionUUID->"fe3195ef-b592-46e3-a30d-e5dbb3a09f2d",
+ CellID->927527114],
+Cell[18572, 536, 801, 28, 29, "Output",ExpressionUUID->"cbd92cbc-cbe1-4a46-b6ce-99c2015df328",
+ CellID->384801416]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19422, 570, 214, 4, 58, "MathCaption",ExpressionUUID->"d79f927d-278d-4486-99c5-e43409259e14",
+ CellID->1733982266],
+Cell[CellGroupData[{
+Cell[19661, 578, 460, 13, 47, "Input",ExpressionUUID->"25392bb9-cae9-4e62-9ff9-edd533af6187",
+ CellID->591454702],
+Cell[20124, 593, 1512, 58, 26, "Output",ExpressionUUID->"16c62e86-cbe5-4039-b286-386d6199487d",
+ CellID->1284137595]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21697, 658, 106, 1, 45, "Section",ExpressionUUID->"2a91632b-9119-42b6-9534-4f0970e74fbb",
+ CellID->405537326],
+Cell[21806, 661, 606, 14, 50, "Text",ExpressionUUID->"6b7b9a81-e9fb-4ef6-8f07-9ba02c3c12b9",
+ CellID->955253495],
+Cell[22415, 677, 726, 16, 65, "Text",ExpressionUUID->"8fbc98dd-f228-4df6-98ee-e6f226cbe4dd",
+ CellID->1082175686],
+Cell[CellGroupData[{
+Cell[23166, 697, 154, 1, 41, "MathCaption",ExpressionUUID->"01a5f47d-acca-414b-ad0c-8f07aeab337e",
+ CellID->1672194018],
+Cell[CellGroupData[{
+Cell[23345, 702, 408, 10, 27, "Input",ExpressionUUID->"ae1b50f7-740d-4c7a-933d-385c975c94df",
+ CellID->1745838717],
+Cell[23756, 714, 1043, 38, 29, "Output",ExpressionUUID->"d1aab598-3013-42f6-81cf-4f564f279017",
+ CellID->289906815]
+}, Open  ]]
+}, Open  ]],
+Cell[24826, 756, 1577, 37, 133, "Text",ExpressionUUID->"a98ee4d6-7e63-48db-ab51-64d8ab4fc653",
+ CellID->119067779],
+Cell[26406, 795, 2062, 58, 50, "DisplayMath",ExpressionUUID->"3a6b1a06-7c30-4bd6-b495-28591b039b68",
+ CellID->1465942553],
+Cell[28471, 855, 560, 13, 65, "Text",ExpressionUUID->"fabd20dc-f037-4a1a-8e75-b5d38339fc17",
+ CellID->1441873540],
+Cell[CellGroupData[{
+Cell[29056, 872, 345, 8, 43, "MathCaption",ExpressionUUID->"d7fbc617-4e18-4470-aa3e-91def3546947",
+ CellID->2086889666],
+Cell[CellGroupData[{
+Cell[29426, 884, 451, 11, 27, "Input",ExpressionUUID->"854f677e-8767-4a34-9b2a-c0715c2d27a1",
+ CellID->1651693658],
+Cell[29880, 897, 410, 11, 29, "Output",ExpressionUUID->"85ed8bec-dd06-4466-8505-8fdff3fd66dd",
+ CellID->1970928309]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30339, 914, 406, 9, 60, "MathCaption",ExpressionUUID->"85ecab24-23a4-4f53-acdc-cc53ae34210f",
+ CellID->74835986],
+Cell[CellGroupData[{
+Cell[30770, 927, 1052, 25, 47, "Input",ExpressionUUID->"04af4250-dd88-4707-ac65-4e0effd32dab",
+ CellID->1490483207],
+Cell[31825, 954, 423, 11, 29, "Output",ExpressionUUID->"ab0b843a-2a47-46dd-8cc4-fad5da2470fd",
+ CellID->456834388],
+Cell[32251, 967, 670, 19, 29, "Output",ExpressionUUID->"abf6e59a-2b3f-4d64-91ec-07be364f06be",
+ CellID->761521091]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32982, 993, 125, 1, 74, "TutorialMoreAboutSection",ExpressionUUID->"e9aaac50-4fbb-4387-a7e5-a00580a96fd5",
+ CellID->939604442],
+Cell[33110, 996, 201, 3, 24, "TutorialMoreAbout",ExpressionUUID->"b75f8d03-b6dd-4105-9c28-ac8fde942042",
+ CellID->1484600303]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33348, 1004, 127, 1, 74, "RelatedTutorialsSection",ExpressionUUID->"cb763110-5fe3-4eb3-a4a8-0b89acfe9ba6",
+ CellID->64798028],
+Cell[33478, 1007, 107, 1, 24, "RelatedTutorials",ExpressionUUID->"048c0116-216a-461f-bdb6-12efc31c42cc",
+ CellID->286247567]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33634, 1014, 110, 1, 72, "MetadataSection",ExpressionUUID->"164c96e4-fd64-4303-bb39-d6aa06629991",
+ CellID->599489289],
+Cell[33747, 1017, 477, 12, 26, "History",ExpressionUUID->"d627e70d-da4a-4f25-b0f2-4ced280c0d59",
+ CellID->1770692146],
+Cell[CellGroupData[{
+Cell[34249, 1033, 122, 1, 21, "CategorizationSection",ExpressionUUID->"a9478638-5d8a-4ccb-8e62-a794034d0452",
+ CellID->194517696],
+Cell[34374, 1036, 137, 2, 70, "Categorization",ExpressionUUID->"9cde8dbd-0fc4-4db8-8465-f9d7a46f3ece",
+ CellID->788805938],
+Cell[34514, 1040, 137, 2, 70, "Categorization",ExpressionUUID->"986365d7-407c-45a5-94cd-5833a1257e9d",
+ CellID->1044847035],
+Cell[34654, 1044, 133, 2, 70, "Categorization",ExpressionUUID->"cd387cdc-75ef-44c7-ade4-d3008742fbe8",
+ CellID->770335726],
+Cell[34790, 1048, 151, 2, 70, "Categorization",ExpressionUUID->"5e72d40c-b3ce-4d50-8ab2-a28ed758b2a5",
+ CellID->2001122766]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[34978, 1055, 111, 1, 21, "KeywordsSection",ExpressionUUID->"101f4aed-04ed-4410-86ae-cc00d9b89cf5",
+ CellID->1128932495],
+Cell[35092, 1058, 100, 1, 20, "Keywords",ExpressionUUID->"c73cdbb3-b44c-45a6-a8a8-e09f266290ab",
+ CellID->950422220],
+Cell[35195, 1061, 109, 1, 20, "Keywords",ExpressionUUID->"acef1777-a57c-4ed5-b57c-139c23530d2d",
+ CellID->1642897006],
+Cell[35307, 1064, 110, 1, 20, "Keywords",ExpressionUUID->"978f1202-5d0a-4c8c-b9c1-ddce7842ca5e",
+ CellID->1788909395],
+Cell[35420, 1067, 101, 1, 20, "Keywords",ExpressionUUID->"30f9f255-7f34-4724-9c41-900923ca90af",
+ CellID->1520331951],
+Cell[35524, 1070, 103, 1, 20, "Keywords",ExpressionUUID->"fa11d544-edfe-47a5-8b3e-cf2b9ddf42a6",
+ CellID->991007785],
+Cell[35630, 1073, 106, 1, 20, "Keywords",ExpressionUUID->"87ac2010-18b1-48c4-af2c-fb7fe63760de",
+ CellID->853166276]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

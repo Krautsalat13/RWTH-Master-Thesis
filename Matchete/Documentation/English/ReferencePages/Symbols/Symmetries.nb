@@ -1,0 +1,316 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     11642,        306]
+NotebookOptionsPosition[      8486,        236]
+NotebookOutlinePosition[     10803,        293]
+CellTagsIndexPosition[     10718,        288]
+WindowTitle->Symmetries
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["MATCHETE SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "f4fa5345-1c89-45fc-aeff-1b4960116f17"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "d8f3185f-4ab9-41e0-8c02-9609142ae97d"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "3fe469e0-6be9-40d3-921d-fcdc2c94ff1e"]
+        }],ExpressionUUID->"6f99634e-abad-419e-8f8a-540fbfddde8c"],
+        StripOnInput->False],{
+       "\"Matchete/ref/Symmetries\"" :> None, 
+        "\"Copy Wolfram Documentation Center URL\"" :> 
+        CopyToClipboard["Matchete/ref/Symmetries"], Delimiter, 
+        "\"Copy web URL\"" :> 
+        Module[{DocumentationSearch`Private`nb$}, 
+          DocumentationSearch`Private`nb$ = 
+           NotebookPut[
+            Notebook[{
+              Cell[BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                  "http://reference.wolfram.com/language/Matchete/ref/\
+Symmetries.html"], StandardForm]], "Input", TextClipboardType -> 
+                "PlainText"]}, Visible -> False]]; 
+          SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+          FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+          NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        "\"Go to web URL\"" :> 
+        FrontEndExecute[{
+          NotebookLocate[{
+            URL[If[TrueQ[False], 
+                "http://reference.wolfram.com/system-modeler/", 
+                "http://reference.wolfram.com/language/"] <> 
+              "Matchete/ref/Symmetries" <> ".html"], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "ba83715d-71bc-4261-8799-a5bd833ebfae"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "0b43ff07-06a6-4bfd-8cd1-efc6d39b95cc"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"93d01f74-2ce0-4a50-b720-779d3af67bbf"],
+
+Cell["Matchete`", "ContextNameCell",ExpressionUUID->"406a16fc-fddc-4259-9bd2-ed6522365ac8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "Symmetries", "ObjectName",ExpressionUUID->
+      "202fec88-0c5f-49f9-8de2-e90a57e4b657"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"b6bd3f2d-8ed4-4b20-9248-9b41b5b21763"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "9a0a88ac-86d3-4ae5-9842-01dde25e9cd7"]
+    }],ExpressionUUID->"af873bb0-9ce9-4860-87b7-98998f7c9af6"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"78d636d3-8268-4d6a-a3be-\
+7f0094235c53"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData["Symmetries"], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "66250f0f-5bb2-4bbe-919a-16100f1592f0"],
+     "\[LineSeparator]is an option that takes a list of symmetries. The \
+possible option values are: Symmetric",
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["Indices"]], "paclet:Matchete/ref/Indices", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       RowBox[{
+        StyleBox["n1", "TI"], ",", 
+        StyleBox["n2", "TI"], ",", "..."}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "b4202f29-cae8-4f73-8c69-f06a800ad2b3"],
+     ", Antisymmetric",
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["Indices"]], "paclet:Matchete/ref/Indices", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       RowBox[{
+        StyleBox["n1", "TI"], ",", 
+        StyleBox["n2", "TI"], ",", "..."}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "a55182be-2e50-4c89-8bc3-bd91ee5bf47d"],
+     ", ",
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["SymmetricPermutation"]], 
+         "paclet:Matchete/ref/SymmetricPermutation", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       RowBox[{
+        StyleBox["n1", "TI"], ",", 
+        StyleBox["n2", "TI"], ",", "..."}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "221a5c1b-2e40-4fcc-aee9-414eee8ec4f4"],
+     " or ",
+     Cell[BoxData[
+      RowBox[{
+       TemplateBox[{
+         Cell[
+          TextData["AntisymmetricPermutation"]], 
+         "paclet:Matchete/ref/AntisymmetricPermutation", 
+         "Matchete Package Symbol"},
+        "PackageLink",
+        BaseStyle->"InlineFormula"], "[", 
+       RowBox[{
+        StyleBox["n1", "TI"], ",", 
+        StyleBox["n2", "TI"], ",", "..."}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "71600ed5-8a56-4480-a53b-2921e4c7690e"],
+     "."
+    }],ExpressionUUID->"d4e15ca2-0a2f-416e-b3bf-ea517be47117"]}
+  }]], "Usage",
+ CellID->653166138,ExpressionUUID->"220c5192-1d80-4e93-ba5a-47da3f69a52d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{
+    13.600000000000001`, {4.251494140625001, 9.348505859375}}]],
+  ExpressionUUID->"cc218308-7ff7-4187-aca1-fd7b89f153da"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"11b060d6-7361-4f9c-abbc-24991576d6c7"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(0)", "ExampleCount",ExpressionUUID->
+  "853e3921-a460-4736-a7b2-989641c380eb"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->675010040,ExpressionUUID->"5667fa3f-5a5d-4eae-944b-f952aff32677"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<Matchete`\>\"", "]"}]], "Input", "ExampleInitialization",
+ CellLabel->"In[1]:=",
+ CellID->1866223930,ExpressionUUID->"3697ea61-d471-4673-a131-fd3ac9092ff4"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"997d5050-c316-4abf-8042-cefc7a1bea93"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"Symmetries",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "AllOptsTable" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> $Failed, "ShowCitation" -> False, "HasOptions" -> 
+  True, "RootCaptions" -> "", "HeaderCoreAreaLink" -> {}, 
+  "Metadata" -> {
+   "built" -> "{2025, 6, 2, 17, 10, 21.051264}", 
+    "history" -> {"XX", "", "", ""}, "context" -> "Matchete`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "Matchete Symbol", "language" -> "en", "paclet" -> "Matchete", "status" -> 
+    "None", "summary" -> 
+    "Symmetries is an option that takes a list of symmetries. The possible \
+option values are: SymmetricIndices[n1, n2, ...], AntisymmetricIndices[n1, \
+n2, ...], SymmetricPermutation[n1, n2, ...] or AntisymmetricPermutation[n1, \
+n2, ...].", "synonyms" -> {}, "tabletags" -> {}, "title" -> "Symmetries", 
+    "titlemodifier" -> "", "metadescription" -> "", "windowtitle" -> 
+    "Symmetries", "type" -> "Symbol", "uri" -> "Matchete/ref/Symmetries"}},
+CellContext->"Global`",
+FrontEndVersion->"14.2 for Mac OS X x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "14.2 for Mac OS X x86 (64-bit) (December 26, 2024)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"ad7d09f0-734b-43c6-9d6c-d63f0bef0254"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[6648, 186, 1437, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"5667fa3f-5a5d-4eae-944b-f952aff32677",
+   CellTags->"PrimaryExamplesSection",
+   CellID->675010040]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 10519, 281}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[578, 21, 2924, 71, 50, "AnchorBarGrid",ExpressionUUID->"93d01f74-2ce0-4a50-b720-779d3af67bbf",
+ CellID->1],
+Cell[3505, 94, 91, 0, 22, "ContextNameCell",ExpressionUUID->"406a16fc-fddc-4259-9bd2-ed6522365ac8"],
+Cell[CellGroupData[{
+Cell[3621, 98, 553, 14, 57, "ObjectNameGrid",ExpressionUUID->"78d636d3-8268-4d6a-a3be-7f0094235c53"],
+Cell[4177, 114, 2434, 67, 127, "Usage",ExpressionUUID->"220c5192-1d80-4e93-ba5a-47da3f69a52d",
+ CellID->653166138]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6648, 186, 1437, 38, 34, "PrimaryExamplesSection",ExpressionUUID->"5667fa3f-5a5d-4eae-944b-f952aff32677",
+ CellTags->"PrimaryExamplesSection",
+ CellID->675010040],
+Cell[8088, 226, 198, 3, 29, "Input",ExpressionUUID->"3697ea61-d471-4673-a131-fd3ac9092ff4",
+ CellID->1866223930]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[8404, 234, 78, 0, 40, "FooterCell",ExpressionUUID->"997d5050-c316-4abf-8042-cefc7a1bea93"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
